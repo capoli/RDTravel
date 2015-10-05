@@ -1,7 +1,6 @@
 package com.realdolmen.rdtravel.controllers;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletException;
@@ -14,7 +13,7 @@ public class LoginController {
 
     public String logout() throws ServletException {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         origRequest.logout();
         return "/index.faces";
     }
