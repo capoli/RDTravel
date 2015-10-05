@@ -20,13 +20,18 @@ public class Trip extends AbstractEntity {
     @OneToMany
     private List<Flight> flights = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "trip_location_fk")
+    private Location destination;
+
     public Trip() {
     }
 
-    public Trip(Double pricePerDay, Date periodStart, Date periodEnd) {
+    public Trip(Double pricePerDay, Date periodStart, Date periodEnd, Location destination) {
         this.pricePerDay = pricePerDay;
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
+        this.destination = destination;
     }
 
     public Long getId() {
@@ -63,5 +68,13 @@ public class Trip extends AbstractEntity {
 
     public void addFlight(Flight flight) {
         this.flights.add(flight);
+    }
+
+    public Location getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Location destination) {
+        this.destination = destination;
     }
 }
