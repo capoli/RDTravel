@@ -20,20 +20,55 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>protected</web-resource-name>
-            <url-pattern>/pages/protected/*</url-pattern>
+            <web-resource-name>customer</web-resource-name>
+            <url-pattern>/pages/customer/*</url-pattern>
             <http-method>PUT</http-method>
             <http-method>DELETE</http-method>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>guest</role-name>
+            <role-name>customer</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>employee</web-resource-name>
+            <url-pattern>/pages/employee/*</url-pattern>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>employee</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>partner</web-resource-name>
+            <url-pattern>/pages/partner/*</url-pattern>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>partner</role-name>
         </auth-constraint>
     </security-constraint>
 
     <security-role>
-        <role-name>guest</role-name>
+        <role-name>customer</role-name>
+    </security-role>
+    <security-role>
+        <role-name>employee</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>partner</role-name>
     </security-role>
 
     <login-config>
