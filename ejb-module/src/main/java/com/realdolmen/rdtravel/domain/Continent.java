@@ -17,7 +17,7 @@ public class Continent extends AbstractEntity {
     private String code;
 
     @OneToMany(mappedBy = "continent")
-    private List<Country> countries = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
 
     public Continent() {
     }
@@ -47,11 +47,11 @@ public class Continent extends AbstractEntity {
         this.code = code.toUpperCase();
     }
 
-    public List<Country> getCountries() {
-        return countries;
+    public List<Location> getLocations() {
+        return locations;
     }
 
-    public void addCountry(Country country) {
-        this.countries.add(country);
+    public void addLocation(Location location) {
+        this.locations.add(location);
     }
 }

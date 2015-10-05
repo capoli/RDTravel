@@ -54,6 +54,11 @@
         <!--<class>com.realdolmen.course.domain.Airport</class>-->
         <!--<class>com.realdolmen.course.domain.Plane</class>-->
         <!--<class>com.realdolmen.course.persistence.PassengerRepository</class>-->
+        <class>com.realdolmen.rdtravel.domain.Booking</class>
+        <class>com.realdolmen.rdtravel.domain.Continent</class>
+        <class>com.realdolmen.rdtravel.domain.Flight</class>
+        <class>com.realdolmen.rdtravel.domain.Location</class>
+        <class>com.realdolmen.rdtravel.domain.Trip</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>

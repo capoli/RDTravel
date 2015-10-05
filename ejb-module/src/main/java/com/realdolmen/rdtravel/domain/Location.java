@@ -18,8 +18,8 @@ public class Location extends AbstractEntity {
     private String code;
 
     @ManyToOne
-    @JoinColumn(name = "county_fk")
-    private Country country;
+    @JoinColumn(name = "continent_fk")
+    private Continent continent;
 
     @OneToMany(mappedBy = "destination")
     private List<Trip> trips = new ArrayList<>();
@@ -27,10 +27,10 @@ public class Location extends AbstractEntity {
     public Location() {
     }
 
-    public Location(String name, String code, Country country) {
+    public Location(String name, String code, Continent continent) {
         this.name = name;
         setCode(code);
-        this.country = country;
+        this.continent = continent;
     }
 
     public Long getId() {
@@ -53,12 +53,12 @@ public class Location extends AbstractEntity {
         this.code = code.toUpperCase();
     }
 
-    public Country getCountry() {
-        return country;
+    public Continent getContinent() {
+        return continent;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setContinent(Continent continent) {
+        this.continent = continent;
     }
 
     public List<Trip> getTrips() {
