@@ -24,10 +24,11 @@ public class Booking extends AbstractEntity {
     public Booking() {
     }
 
-    public Booking(Double totalPrice, Integer numberOfParticipants, Double discount, Trip trip) {
+    public Booking(Double totalPrice, Integer numberOfParticipants, Double discount, PaymentType paymentType, Trip trip) {
         this.totalPrice = totalPrice;
         this.numberOfParticipants = numberOfParticipants;
         this.discount = discount;
+        this.paymentType = paymentType;
         this.trip = trip;
     }
 
@@ -65,5 +66,13 @@ public class Booking extends AbstractEntity {
 
     public void setTrip(Trip trip) {
         this.trip = trip;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 }

@@ -58,6 +58,7 @@
         <class>com.realdolmen.rdtravel.domain.Continent</class>
         <class>com.realdolmen.rdtravel.domain.Flight</class>
         <class>com.realdolmen.rdtravel.domain.Location</class>
+        <class>com.realdolmen.rdtravel.domain.Period</class>
         <class>com.realdolmen.rdtravel.domain.Trip</class>
 
         <properties>

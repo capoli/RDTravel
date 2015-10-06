@@ -221,6 +221,31 @@
     <location id="1212" name="South Africa" code="ZAF" continent_fk="1002" />
     <location id="1213" name="Zambia" code="ZMB" continent_fk="1002" />
     <location id="1214" name="Zimbabwe" code="ZWE" continent_fk="1002" />
+
+    <flight id="1000" numberOfSeats="200" price="75.00"
+            departureTime="2015-06-06 02:30:50.000" arrivalTime="2015-06-06 03:30:50.000"
+            flight_departure_location_fk="1000" flight_arrival_location_fk="1005"/>
+    <flight id="1001" numberOfSeats="180" price="100.00"
+            departureTime="2015-07-06 02:30:50.000" arrivalTime="2015-07-06 03:30:50.000"
+            flight_departure_location_fk="1010" flight_arrival_location_fk="1015"/>
+    <flight id="1002" numberOfSeats="200" price="50.00"
+            departureTime="2015-08-06 02:30:50.000" arrivalTime="2015-08-06 03:30:50.000"
+            flight_departure_location_fk="1020" flight_arrival_location_fk="1025"/>
+    <flight id="1003" numberOfSeats="180" price="65.00"
+            departureTime="2015-09-06 02:30:50.000" arrivalTime="2015-09-06 03:30:50.000"
+            flight_departure_location_fk="1030" flight_arrival_location_fk="1035"/>
+    <flight id="1004" numberOfSeats="200" price="85.00"
+            departureTime="2015-10-06 02:30:50.000" arrivalTime="2015-10-06 03:30:50.000"
+            flight_departure_location_fk="1040" flight_arrival_location_fk="1045"/>
+
+    <period id="1000" periodStart="2015-10-05 02:30:50.000" periodEnd="2015-10-10 02:30:50.000" />
+    <period id="1001" periodStart="2015-10-05 02:30:50.000" periodEnd="2015-10-10 02:30:50.000" />
+    <period id="1002" periodStart="2015-10-05 02:30:50.000" periodEnd="2015-10-10 02:30:50.000" />
+
+    <trip id="1000" pricePerDay="50.00" trip_location_fk="1005" period_fk="1000" />
+    <trip id="1001" pricePerDay="60.00" trip_location_fk="1006" period_fk="1001" />
+
+    <booking id="1000" numberOfParticipants="8" discount="0.05" paymentType="CREDITCARD" trip_fk="1000" />
     <!--<continent id="1000" name="Europe" code="EUR" />-->
     <!--<continent id="1001" name="ASIA" code="ASI" />-->
     <!--<location id="1000" name="BRUSSEL" code="BRU" continent_fk="1000" />-->

@@ -16,7 +16,7 @@ public class Continent extends AbstractEntity {
     @Access(value = AccessType.PROPERTY)
     private String code;
 
-    @OneToMany(mappedBy = "continent")
+    @OneToMany(mappedBy = "continent", cascade = CascadeType.PERSIST)
     private List<Location> locations = new ArrayList<>();
 
     public Continent() {

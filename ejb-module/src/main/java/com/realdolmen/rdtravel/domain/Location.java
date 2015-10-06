@@ -21,7 +21,7 @@ public class Location extends AbstractEntity {
     @JoinColumn(name = "continent_fk")
     private Continent continent;
 
-    @OneToMany(mappedBy = "destination")
+    @OneToMany(mappedBy = "destination", cascade = CascadeType.PERSIST)
     private List<Trip> trips = new ArrayList<>();
 
     public Location() {

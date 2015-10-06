@@ -7,31 +7,33 @@ import java.util.List;
 
 @Entity
 public class Trip extends AbstractEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Double pricePerDay;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date periodStart;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date periodEnd;
-
     @OneToMany
     private List<Flight> flights = new ArrayList<>();
+
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.PERSIST)
+    private List<Booking> bookings = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "trip_location_fk")
     private Location destination;
 
+    @ManyToOne
+    @JoinColumn(name = "period_fk")
+    private Period period;
+
     public Trip() {
     }
 
-    public Trip(Double pricePerDay, Date periodStart, Date periodEnd, Location destination) {
+    public Trip(Double pricePerDay, Location destination, Period period) {
         this.pricePerDay = pricePerDay;
-        this.periodStart = periodStart;
-        this.periodEnd = periodEnd;
         this.destination = destination;
+        this.period = period;
     }
 
     public Long getId() {
@@ -44,22 +46,6 @@ public class Trip extends AbstractEntity {
 
     public void setPricePerDay(Double pricePerDay) {
         this.pricePerDay = pricePerDay;
-    }
-
-    public Date getPeriodStart() {
-        return periodStart;
-    }
-
-    public void setPeriodStart(Date periodStart) {
-        this.periodStart = periodStart;
-    }
-
-    public Date getPeriodEnd() {
-        return periodEnd;
-    }
-
-    public void setPeriodEnd(Date periodEnd) {
-        this.periodEnd = periodEnd;
     }
 
     public List<Flight> getFlights() {
@@ -76,5 +62,21 @@ public class Trip extends AbstractEntity {
 
     public void setDestination(Location destination) {
         this.destination = destination;
+    }
+
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void addBooking(Booking booking) {
+        this.bookings.add(booking);
     }
 }
