@@ -1,0 +1,23 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form prependId="false">
+        <h:panelGrid columns="2" rendered="#{request.getUserPrincipal() == null}">
+
+            <label for="username">Username</label>
+            <h:inputText id="username" value="#{loginController.user.userName}"/>
+            <label for="password">Password</label>
+            <h:inputText id="password" value="#{loginController.user.password}"/>
+        </h:panelGrid>
+        <h:commandButton id="login-button" value="Login3" action="#{loginController.login}"
+                         rendered="#{request.getUserPrincipal() == null}"/>
+        <h:outputText id="screen-name" value="#{request.getUserPrincipal().getName()}"
+                      rendered="#{request.getUserPrincipal() != null}"/>
+        <h:commandButton id="logout-button" action="#{loginController.logout}" value="Log out"
+                         rendered="#{request.getUserPrincipal() != null}"/>
+    </h:form>
+
+    <p id="error-message"><h:outputText value="Wrong username or password" rendered="#{loginController.loginFailed}"/>
+    </p>
+</ui:composition>
