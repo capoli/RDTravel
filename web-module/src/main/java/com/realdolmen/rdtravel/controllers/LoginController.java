@@ -37,7 +37,7 @@ public class LoginController implements Serializable {
         setLoginFailed(false);
         HttpServletRequest request = (HttpServletRequest) getContext().getRequest();
         try {
-            request.login(user.getUserName(), user.getPassword());
+            request.login(user.getName(), user.getPassword());
         } catch (ServletException e) {
             setLoginFailed(true);
         } finally {

@@ -6,7 +6,7 @@
         <h:panelGrid columns="2" rendered="#{request.getUserPrincipal() == null}">
 
             <label for="username">Username</label>
-            <h:inputText id="username" value="#{loginController.user.userName}"/>
+            <h:inputText id="username" value="#{loginController.user.name}"/>
             <label for="password">Password</label>
             <h:inputText id="password" value="#{loginController.user.password}"/>
         </h:panelGrid>

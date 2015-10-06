@@ -1,16 +1,22 @@
 package com.realdolmen.rdtravel.domain;
 
+import javax.persistence.*;
 
-public class User {
-    private String userName;
+@Entity
+public class User extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private String name;
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -19,5 +25,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
