@@ -1,4 +1,256 @@
 <dataset>
+    <continent id="1006" name="North America" code="NAC" />
+    <continent id="1001" name="South Asia" code="SAS" />
+    <continent id="1003" name="Europe and Central Asia" code="ECS" />
+    <continent id="1000" name="Latin America and Caribbean" code="LCN" />
+    <continent id="1005" name="East Asia and Pacific" code="EAS" />
+    <continent id="1002" name="Sub-Saharan Africa" code="SSF" />
+    <continent id="1004" name="Middle East and North Africa" code="MEA" />
+    <location id="1000" name="Aruba" code="ABW" continent_fk="1000" />
+    <location id="1001" name="Afghanistan" code="AFG" continent_fk="1001" />
+    <location id="1002" name="Angola" code="AGO" continent_fk="1002" />
+    <location id="1003" name="Albania" code="ALB" continent_fk="1003" />
+    <location id="1004" name="Andorra" code="AND" continent_fk="1003" />
+    <location id="1005" name="United Arab Emirates" code="ARE" continent_fk="1004" />
+    <location id="1006" name="Argentina" code="ARG" continent_fk="1000" />
+    <location id="1007" name="Armenia" code="ARM" continent_fk="1003" />
+    <location id="1008" name="American Samoa" code="ASM" continent_fk="1005" />
+    <location id="1009" name="Antigua and Barbuda" code="ATG" continent_fk="1000" />
+    <location id="1010" name="Australia" code="AUS" continent_fk="1005" />
+    <location id="1011" name="Austria" code="AUT" continent_fk="1003" />
+    <location id="1012" name="Azerbaijan" code="AZE" continent_fk="1003" />
+    <location id="1013" name="Burundi" code="BDI" continent_fk="1002" />
+    <location id="1014" name="Belgium" code="BEL" continent_fk="1003" />
+    <location id="1015" name="Benin" code="BEN" continent_fk="1002" />
+    <location id="1016" name="Burkina Faso" code="BFA" continent_fk="1002" />
+    <location id="1017" name="Bangladesh" code="BGD" continent_fk="1001" />
+    <location id="1018" name="Bulgaria" code="BGR" continent_fk="1003" />
+    <location id="1019" name="Bahrain" code="BHR" continent_fk="1004" />
+    <location id="1020" name="Bahamas, The" code="BHS" continent_fk="1000" />
+    <location id="1021" name="Bosnia and Herzegovina" code="BIH" continent_fk="1003" />
+    <location id="1022" name="Belarus" code="BLR" continent_fk="1003" />
+    <location id="1023" name="Belize" code="BLZ" continent_fk="1000" />
+    <location id="1024" name="Bermuda" code="BMU" continent_fk="1006" />
+    <location id="1025" name="Bolivia" code="BOL" continent_fk="1000" />
+    <location id="1026" name="Brazil" code="BRA" continent_fk="1000" />
+    <location id="1027" name="Barbados" code="BRB" continent_fk="1000" />
+    <location id="1028" name="Brunei Darussalam" code="BRN" continent_fk="1005" />
+    <location id="1029" name="Bhutan" code="BTN" continent_fk="1001" />
+    <location id="1030" name="Botswana" code="BWA" continent_fk="1002" />
+    <location id="1031" name="Central African Republic" code="CAF" continent_fk="1002" />
+    <location id="1032" name="Canada" code="CAN" continent_fk="1006" />
+    <location id="1033" name="Switzerland" code="CHE" continent_fk="1003" />
+    <location id="1034" name="Channel Islands" code="CHI" continent_fk="1003" />
+    <location id="1035" name="Chile" code="CHL" continent_fk="1000" />
+    <location id="1036" name="China" code="CHN" continent_fk="1005" />
+    <location id="1037" name="Cote d'Ivoire" code="CIV" continent_fk="1002" />
+    <location id="1038" name="Cameroon" code="CMR" continent_fk="1002" />
+    <location id="1039" name="Congo, Dem. Rep." code="COD" continent_fk="1002" />
+    <location id="1040" name="Congo, Rep." code="COG" continent_fk="1002" />
+    <location id="1041" name="Colombia" code="COL" continent_fk="1000" />
+    <location id="1042" name="Comoros" code="COM" continent_fk="1002" />
+    <location id="1043" name="Cabo Verde" code="CPV" continent_fk="1002" />
+    <location id="1044" name="Costa Rica" code="CRI" continent_fk="1000" />
+    <location id="1045" name="Cuba" code="CUB" continent_fk="1000" />
+    <location id="1046" name="Curacao" code="CUW" continent_fk="1000" />
+    <location id="1047" name="Cayman Islands" code="CYM" continent_fk="1000" />
+    <location id="1048" name="Cyprus" code="CYP" continent_fk="1003" />
+    <location id="1049" name="Czech Republic" code="CZE" continent_fk="1003" />
+    <location id="1050" name="Germany" code="DEU" continent_fk="1003" />
+    <location id="1051" name="Djibouti" code="DJI" continent_fk="1004" />
+    <location id="1052" name="Dominica" code="DMA" continent_fk="1000" />
+    <location id="1053" name="Denmark" code="DNK" continent_fk="1003" />
+    <location id="1054" name="Dominican Republic" code="DOM" continent_fk="1000" />
+    <location id="1055" name="Algeria" code="DZA" continent_fk="1004" />
+    <location id="1056" name="Ecuador" code="ECU" continent_fk="1000" />
+    <location id="1057" name="Egypt, Arab Rep." code="EGY" continent_fk="1004" />
+    <location id="1058" name="Eritrea" code="ERI" continent_fk="1002" />
+    <location id="1059" name="Spain" code="ESP" continent_fk="1003" />
+    <location id="1060" name="Estonia" code="EST" continent_fk="1003" />
+    <location id="1061" name="Ethiopia" code="ETH" continent_fk="1002" />
+    <location id="1062" name="Finland" code="FIN" continent_fk="1003" />
+    <location id="1063" name="Fiji" code="FJI" continent_fk="1005" />
+    <location id="1064" name="France" code="FRA" continent_fk="1003" />
+    <location id="1065" name="Faeroe Islands" code="FRO" continent_fk="1003" />
+    <location id="1066" name="Micronesia, Fed. Sts." code="FSM" continent_fk="1005" />
+    <location id="1067" name="Gabon" code="GAB" continent_fk="1002" />
+    <location id="1068" name="United Kingdom" code="GBR" continent_fk="1003" />
+    <location id="1069" name="Georgia" code="GEO" continent_fk="1003" />
+    <location id="1070" name="Ghana" code="GHA" continent_fk="1002" />
+    <location id="1071" name="Guinea" code="GIN" continent_fk="1002" />
+    <location id="1072" name="Gambia, The" code="GMB" continent_fk="1002" />
+    <location id="1073" name="Guinea-Bissau" code="GNB" continent_fk="1002" />
+    <location id="1074" name="Equatorial Guinea" code="GNQ" continent_fk="1002" />
+    <location id="1075" name="Greece" code="GRC" continent_fk="1003" />
+    <location id="1076" name="Grenada" code="GRD" continent_fk="1000" />
+    <location id="1077" name="Greenland" code="GRL" continent_fk="1003" />
+    <location id="1078" name="Guatemala" code="GTM" continent_fk="1000" />
+    <location id="1079" name="Guam" code="GUM" continent_fk="1005" />
+    <location id="1080" name="Guyana" code="GUY" continent_fk="1000" />
+    <location id="1081" name="Hong Kong SAR, China" code="HKG" continent_fk="1005" />
+    <location id="1082" name="Honduras" code="HND" continent_fk="1000" />
+    <location id="1083" name="Croatia" code="HRV" continent_fk="1003" />
+    <location id="1084" name="Haiti" code="HTI" continent_fk="1000" />
+    <location id="1085" name="Hungary" code="HUN" continent_fk="1003" />
+    <location id="1086" name="Indonesia" code="IDN" continent_fk="1005" />
+    <location id="1087" name="Isle of Man" code="IMN" continent_fk="1003" />
+    <location id="1088" name="India" code="IND" continent_fk="1001" />
+    <location id="1089" name="Ireland" code="IRL" continent_fk="1003" />
+    <location id="1090" name="Iran, Islamic Rep." code="IRN" continent_fk="1004" />
+    <location id="1091" name="Iraq" code="IRQ" continent_fk="1004" />
+    <location id="1092" name="Iceland" code="ISL" continent_fk="1003" />
+    <location id="1093" name="Israel" code="ISR" continent_fk="1004" />
+    <location id="1094" name="Italy" code="ITA" continent_fk="1003" />
+    <location id="1095" name="Jamaica" code="JAM" continent_fk="1000" />
+    <location id="1096" name="Jordan" code="JOR" continent_fk="1004" />
+    <location id="1097" name="Japan" code="JPN" continent_fk="1005" />
+    <location id="1098" name="Kazakhstan" code="KAZ" continent_fk="1003" />
+    <location id="1099" name="Kenya" code="KEN" continent_fk="1002" />
+    <location id="1100" name="Kyrgyz Republic" code="KGZ" continent_fk="1003" />
+    <location id="1101" name="Cambodia" code="KHM" continent_fk="1005" />
+    <location id="1102" name="Kiribati" code="KIR" continent_fk="1005" />
+    <location id="1103" name="St. Kitts and Nevis" code="KNA" continent_fk="1000" />
+    <location id="1104" name="Korea, Rep." code="KOR" continent_fk="1005" />
+    <location id="1105" name="Kosovo" code="KSV" continent_fk="1003" />
+    <location id="1106" name="Kuwait" code="KWT" continent_fk="1004" />
+    <location id="1107" name="Lao PDR" code="LAO" continent_fk="1005" />
+    <location id="1108" name="Lebanon" code="LBN" continent_fk="1004" />
+    <location id="1109" name="Liberia" code="LBR" continent_fk="1002" />
+    <location id="1110" name="Libya" code="LBY" continent_fk="1004" />
+    <location id="1111" name="St. Lucia" code="LCA" continent_fk="1000" />
+    <location id="1112" name="Liechtenstein" code="LIE" continent_fk="1003" />
+    <location id="1113" name="Sri Lanka" code="LKA" continent_fk="1001" />
+    <location id="1114" name="Lesotho" code="LSO" continent_fk="1002" />
+    <location id="1115" name="Lithuania" code="LTU" continent_fk="1003" />
+    <location id="1116" name="Luxembourg" code="LUX" continent_fk="1003" />
+    <location id="1117" name="Latvia" code="LVA" continent_fk="1003" />
+    <location id="1118" name="Macao SAR, China" code="MAC" continent_fk="1005" />
+    <location id="1119" name="St. Martin (French part)" code="MAF" continent_fk="1000" />
+    <location id="1120" name="Morocco" code="MAR" continent_fk="1004" />
+    <location id="1121" name="Monaco" code="MCO" continent_fk="1003" />
+    <location id="1122" name="Moldova" code="MDA" continent_fk="1003" />
+    <location id="1123" name="Madagascar" code="MDG" continent_fk="1002" />
+    <location id="1124" name="Maldives" code="MDV" continent_fk="1001" />
+    <location id="1125" name="Mexico" code="MEX" continent_fk="1000" />
+    <location id="1126" name="Marshall Islands" code="MHL" continent_fk="1005" />
+    <location id="1127" name="Macedonia, FYR" code="MKD" continent_fk="1003" />
+    <location id="1128" name="Mali" code="MLI" continent_fk="1002" />
+    <location id="1129" name="Malta" code="MLT" continent_fk="1004" />
+    <location id="1130" name="Myanmar" code="MMR" continent_fk="1005" />
+    <location id="1131" name="Montenegro" code="MNE" continent_fk="1003" />
+    <location id="1132" name="Mongolia" code="MNG" continent_fk="1005" />
+    <location id="1133" name="Northern Mariana Islands" code="MNP" continent_fk="1005" />
+    <location id="1134" name="Mozambique" code="MOZ" continent_fk="1002" />
+    <location id="1135" name="Mauritania" code="MRT" continent_fk="1002" />
+    <location id="1136" name="Mauritius" code="MUS" continent_fk="1002" />
+    <location id="1137" name="Malawi" code="MWI" continent_fk="1002" />
+    <location id="1138" name="Malaysia" code="MYS" continent_fk="1005" />
+    <location id="1139" name="Namibia" code="NAM" continent_fk="1002" />
+    <location id="1140" name="New Caledonia" code="NCL" continent_fk="1005" />
+    <location id="1141" name="Niger" code="NER" continent_fk="1002" />
+    <location id="1142" name="Nigeria" code="NGA" continent_fk="1002" />
+    <location id="1143" name="Nicaragua" code="NIC" continent_fk="1000" />
+    <location id="1144" name="Netherlands" code="NLD" continent_fk="1003" />
+    <location id="1145" name="Norway" code="NOR" continent_fk="1003" />
+    <location id="1146" name="Nepal" code="NPL" continent_fk="1001" />
+    <location id="1147" name="New Zealand" code="NZL" continent_fk="1005" />
+    <location id="1148" name="Oman" code="OMN" continent_fk="1004" />
+    <location id="1149" name="Pakistan" code="PAK" continent_fk="1001" />
+    <location id="1150" name="Panama" code="PAN" continent_fk="1000" />
+    <location id="1151" name="Peru" code="PER" continent_fk="1000" />
+    <location id="1152" name="Philippines" code="PHL" continent_fk="1005" />
+    <location id="1153" name="Palau" code="PLW" continent_fk="1005" />
+    <location id="1154" name="Papua New Guinea" code="PNG" continent_fk="1005" />
+    <location id="1155" name="Poland" code="POL" continent_fk="1003" />
+    <location id="1156" name="Puerto Rico" code="PRI" continent_fk="1000" />
+    <location id="1157" name="Korea, Dem. Rep." code="PRK" continent_fk="1005" />
+    <location id="1158" name="Portugal" code="PRT" continent_fk="1003" />
+    <location id="1159" name="Paraguay" code="PRY" continent_fk="1000" />
+    <location id="1160" name="West Bank and Gaza" code="PSE" continent_fk="1004" />
+    <location id="1161" name="French Polynesia" code="PYF" continent_fk="1005" />
+    <location id="1162" name="Qatar" code="QAT" continent_fk="1004" />
+    <location id="1163" name="Romania" code="ROU" continent_fk="1003" />
+    <location id="1164" name="Russian Federation" code="RUS" continent_fk="1003" />
+    <location id="1165" name="Rwanda" code="RWA" continent_fk="1002" />
+    <location id="1166" name="Saudi Arabia" code="SAU" continent_fk="1004" />
+    <location id="1167" name="Sudan" code="SDN" continent_fk="1002" />
+    <location id="1168" name="Senegal" code="SEN" continent_fk="1002" />
+    <location id="1169" name="Singapore" code="SGP" continent_fk="1005" />
+    <location id="1170" name="Solomon Islands" code="SLB" continent_fk="1005" />
+    <location id="1171" name="Sierra Leone" code="SLE" continent_fk="1002" />
+    <location id="1172" name="El Salvador" code="SLV" continent_fk="1000" />
+    <location id="1173" name="San Marino" code="SMR" continent_fk="1003" />
+    <location id="1174" name="Somalia" code="SOM" continent_fk="1002" />
+    <location id="1175" name="Serbia" code="SRB" continent_fk="1003" />
+    <location id="1176" name="South Sudan" code="SSD" continent_fk="1002" />
+    <location id="1177" name="Sao Tome and Principe" code="STP" continent_fk="1002" />
+    <location id="1178" name="Suriname" code="SUR" continent_fk="1000" />
+    <location id="1179" name="Slovak Republic" code="SVK" continent_fk="1003" />
+    <location id="1180" name="Slovenia" code="SVN" continent_fk="1003" />
+    <location id="1181" name="Sweden" code="SWE" continent_fk="1003" />
+    <location id="1182" name="Swaziland" code="SWZ" continent_fk="1002" />
+    <location id="1183" name="Sint Maarten (Dutch part)" code="SXM" continent_fk="1000" />
+    <location id="1184" name="Seychelles" code="SYC" continent_fk="1002" />
+    <location id="1185" name="Syrian Arab Republic" code="SYR" continent_fk="1004" />
+    <location id="1186" name="Turks and Caicos Islands" code="TCA" continent_fk="1000" />
+    <location id="1187" name="Chad" code="TCD" continent_fk="1002" />
+    <location id="1188" name="Togo" code="TGO" continent_fk="1002" />
+    <location id="1189" name="Thailand" code="THA" continent_fk="1005" />
+    <location id="1190" name="Tajikistan" code="TJK" continent_fk="1003" />
+    <location id="1191" name="Turkmenistan" code="TKM" continent_fk="1003" />
+    <location id="1192" name="Timor-Leste" code="TLS" continent_fk="1005" />
+    <location id="1193" name="Tonga" code="TON" continent_fk="1005" />
+    <location id="1194" name="Trinidad and Tobago" code="TTO" continent_fk="1000" />
+    <location id="1195" name="Tunisia" code="TUN" continent_fk="1004" />
+    <location id="1196" name="Turkey" code="TUR" continent_fk="1003" />
+    <location id="1197" name="Tuvalu" code="TUV" continent_fk="1005" />
+    <location id="1198" name="Taiwan, China" code="TWN" continent_fk="1005" />
+    <location id="1199" name="Tanzania" code="TZA" continent_fk="1002" />
+    <location id="1200" name="Uganda" code="UGA" continent_fk="1002" />
+    <location id="1201" name="Ukraine" code="UKR" continent_fk="1003" />
+    <location id="1202" name="Uruguay" code="URY" continent_fk="1000" />
+    <location id="1203" name="United States" code="USA" continent_fk="1006" />
+    <location id="1204" name="Uzbekistan" code="UZB" continent_fk="1003" />
+    <location id="1205" name="St. Vincent and the Grenadines" code="VCT" continent_fk="1000" />
+    <location id="1206" name="Venezuela, RB" code="VEN" continent_fk="1000" />
+    <location id="1207" name="Virgin Islands (U.S.)" code="VIR" continent_fk="1000" />
+    <location id="1208" name="Vietnam" code="VNM" continent_fk="1005" />
+    <location id="1209" name="Vanuatu" code="VUT" continent_fk="1005" />
+    <location id="1210" name="Samoa" code="WSM" continent_fk="1005" />
+    <location id="1211" name="Yemen, Rep." code="YEM" continent_fk="1004" />
+    <location id="1212" name="South Africa" code="ZAF" continent_fk="1002" />
+    <location id="1213" name="Zambia" code="ZMB" continent_fk="1002" />
+    <location id="1214" name="Zimbabwe" code="ZWE" continent_fk="1002" />
+
+    <flight id="1000" numberOfSeats="200" price="75.00"
+            departureTime="2015-06-06 02:30:50.000" arrivalTime="2015-06-06 03:30:50.000"
+            flight_departure_location_fk="1000" flight_arrival_location_fk="1005"/>
+    <flight id="1001" numberOfSeats="180" price="100.00"
+            departureTime="2015-07-06 02:30:50.000" arrivalTime="2015-07-06 03:30:50.000"
+            flight_departure_location_fk="1010" flight_arrival_location_fk="1015"/>
+    <flight id="1002" numberOfSeats="200" price="50.00"
+            departureTime="2015-08-06 02:30:50.000" arrivalTime="2015-08-06 03:30:50.000"
+            flight_departure_location_fk="1020" flight_arrival_location_fk="1025"/>
+    <flight id="1003" numberOfSeats="180" price="65.00"
+            departureTime="2015-09-06 02:30:50.000" arrivalTime="2015-09-06 03:30:50.000"
+            flight_departure_location_fk="1030" flight_arrival_location_fk="1035"/>
+    <flight id="1004" numberOfSeats="200" price="85.00"
+            departureTime="2015-10-06 02:30:50.000" arrivalTime="2015-10-06 03:30:50.000"
+            flight_departure_location_fk="1040" flight_arrival_location_fk="1045"/>
+
+    <period id="1000" periodStart="2015-10-05 02:30:50.000" periodEnd="2015-10-10 02:30:50.000" />
+    <period id="1001" periodStart="2015-10-05 02:30:50.000" periodEnd="2015-10-10 02:30:50.000" />
+    <period id="1002" periodStart="2015-10-05 02:30:50.000" periodEnd="2015-10-10 02:30:50.000" />
+
+    <trip id="1000" pricePerDay="50.00" trip_location_fk="1005" period_fk="1000" />
+    <trip id="1001" pricePerDay="60.00" trip_location_fk="1006" period_fk="1001" />
+
+    <booking id="1000" numberOfParticipants="8" discount="0.05" paymentType="CREDITCARD" trip_fk="1000" />
+    <!--<continent id="1000" name="Europe" code="EUR" />-->
+    <!--<continent id="1001" name="ASIA" code="ASI" />-->
+    <!--<location id="1000" name="BRUSSEL" code="BRU" continent_fk="1000" />-->
+    <!--<location id="1001" name="MADRID" code="MAD" continent_fk="1001" />-->
+    <!--<location id="1002" name="ROME" code="ROM" continent_fk="1002" />-->
     <!--<book id="1000" author="George Orwell" title="Nineteen Eighty Four" genre="fiction"/>-->
     <!--<book id="2000" author="Aldous Huxley" title="Brave New World" genre="fiction"/>-->
     <!--<book id="3000" author="Bram Stoker" title="Dracula" genre="fiction"/>-->

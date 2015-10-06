@@ -10,17 +10,24 @@ public class Flight extends AbstractEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureTime;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
+
     /* duration of the flight in minutes */
     @Transient
     private Integer duration;
+
     private Integer numberOfSeats;
+
     private Double price;
 
     @ManyToOne
+    @JoinColumn(name = "flight_departure_location_fk")
     private Location departureLocation;
+
     @ManyToOne
+    @JoinColumn(name = "flight_arrival_location_fk")
     private Location arrivalLocation;
 
     public Flight() {
@@ -48,6 +55,14 @@ public class Flight extends AbstractEntity {
 
     public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public Date getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 
     public Integer getDuration() {
