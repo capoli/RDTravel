@@ -30,6 +30,10 @@ public class Flight extends AbstractEntity {
     @JoinColumn(name = "flight_arrival_location_fk")
     private Location arrivalLocation;
 
+    @ManyToOne
+    @JoinColumn(name = "flight_trip_fk")
+    private Trip trip;
+
     public Flight() {
     }
 
@@ -43,6 +47,17 @@ public class Flight extends AbstractEntity {
         this.arrivalLocation = arrivalLocation;
         //TODO: calculate duration
         // this.duration
+    }
+
+    public Flight(Date departureTime, Date arrivalTime, Integer duration, Integer numberOfSeats, Double price, Location departureLocation, Location arrivalLocation, Trip trip) {
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.duration = duration;
+        this.numberOfSeats = numberOfSeats;
+        this.price = price;
+        this.departureLocation = departureLocation;
+        this.arrivalLocation = arrivalLocation;
+        this.trip = trip;
     }
 
     public Long getId() {
@@ -103,5 +118,13 @@ public class Flight extends AbstractEntity {
 
     public void setArrivalLocation(Location arrivalLocation) {
         this.arrivalLocation = arrivalLocation;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
     }
 }

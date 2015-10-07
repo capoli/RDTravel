@@ -13,7 +13,7 @@ public class Trip extends AbstractEntity {
 
     private Double pricePerDay;
 
-    @OneToMany
+    @OneToMany(mappedBy = "trip")
     private List<Flight> flights = new ArrayList<>();
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.PERSIST)
