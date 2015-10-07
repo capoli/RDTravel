@@ -16,7 +16,10 @@ public class Trip extends AbstractEntity {
     @XmlElement(name = "price-per-day")
     private Double pricePerDay;
 
-    @OneToMany(mappedBy = "trip")
+    @ManyToMany
+    @JoinTable(name = "trip_flight",
+            joinColumns = @JoinColumn(name = "trip_fk"),
+            inverseJoinColumns = @JoinColumn(name = "flight_fk"))
     @XmlElementWrapper(name = "flights")
     @XmlElement(name = "flight")
     private List<Flight> flights = new ArrayList<>();
@@ -85,5 +88,13 @@ public class Trip extends AbstractEntity {
 
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

@@ -6,6 +6,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -14,29 +17,18 @@ public class TripEJB implements RemoteTripEJB {
     @PersistenceContext
     private EntityManager em;
 
+    //TODO: available seats ook in rekening brengen
     @Override
-    public List<Trip> findTrips() {
-        return em.createQuery("select t from Trip t", Trip.class).getResultList();
-    }
-
-    @Override
-    public Trip findTripById(Long id) {
-        return em.find(Trip.class, id);
-    }
-
-    @Override
-    public Trip createTrip(Trip trip) {
-        em.persist(trip);
-        return trip;
-    }
-
-    @Override
-    public void deleteTrip(Trip trip) {
-        em.remove(updateTrip(trip));
-    }
-
-    @Override
-    public Trip updateTrip(Trip trip) {
-        return em.merge(trip);
+    public List<Trip> findTripsForCriteria(Long destinationId, Date periodStart, Date periodEnd) {
+//        TypedQuery query = em.createQuery("select t from Trip t " +
+//                "where t.destination.id = :destId " +
+//                "and t.period.periodStart <= :pStart and t.period.periodEnd >= :pStart " +
+//                "and t.period.periodStart <= :pEnd and t.period.periodEnd >= :pEnd " +
+//                "order by t.period.periodStart", Trip.class);
+        TypedQuery query = em.createQuery("select t from Trip t where t.destination.id = :destId", Trip.class);
+        query.setParameter("destId", destinationId);
+//        query.setParameter("pStart", periodStart);
+//        query.setParameter("pEnd", periodEnd);
+        return query.getResultList();
     }
 }

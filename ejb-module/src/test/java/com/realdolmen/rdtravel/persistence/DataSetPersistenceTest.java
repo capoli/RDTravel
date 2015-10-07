@@ -16,15 +16,20 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class DataSetPersistenceTest extends PersistenceTest {
     private static final Logger logger = LoggerFactory.getLogger(DataSetPersistenceTest.class);
+//    private static boolean setupCalled = false;
 
     @Before
     public void loadDataSet() throws Exception {
-        logger.info("Loading dataset");
-        IDataSet dataSet = new FlatXmlDataSetBuilder().build(getClass().getResource("/data.xml"));
+//        if(!setupCalled) {
+            logger.info("Loading dataset");
+            IDataSet dataSet = new FlatXmlDataSetBuilder().build(getClass().getResource("/data.xml"));
 
-        IDatabaseConnection connection = new DatabaseConnection(newConnection());
-        connection.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory()); // Set factorytype in dbconfig to remove warning
-        DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
-        connection.close();
+            IDatabaseConnection connection = new DatabaseConnection(newConnection());
+            connection.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory()); // Set factorytype in dbconfig to remove warning
+            DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+            connection.close();
+
+//            setupCalled = true;
+//        }
     }
 }
