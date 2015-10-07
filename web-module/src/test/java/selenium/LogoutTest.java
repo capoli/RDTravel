@@ -18,7 +18,7 @@ public class LogoutTest {
     @Before
     public void openBrowser() {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8080/web-module-1.5/");
+        driver.get(WebUtil.baseUrl);
     }
 
     @Test

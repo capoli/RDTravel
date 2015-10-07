@@ -105,4 +105,9 @@ public abstract class PersistenceTest extends Assert {
         Map<String, String> properties = properties();
         return DriverManager.getConnection(properties.get(URL), properties.get(USER), properties.get(PASSWORD));
     }
+
+    protected void flushAndClear(){
+        entityManager().flush();
+        entityManager().clear();
+    }
 }

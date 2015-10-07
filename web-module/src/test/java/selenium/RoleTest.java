@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class RoleTest {
     private WebDriver driver;
-    private static final String baseUrl = "http://localhost:8080/web-module-1.5/";
+    private static final String baseUrl = WebUtil.baseUrl;
     public static final String customerPage = baseUrl + "pages/customer/customer.faces";
     private static final String employeePage = baseUrl + "pages/employee/employee.faces";
     private static final String partnerPage = baseUrl + "pages/partner/partner.faces";

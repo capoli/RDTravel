@@ -2,9 +2,14 @@
     <user id="1000" name="customer" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
     <user id="1001" name="employee" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
     <user id="1002" name="partner" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
+    <user id="1003" name="customer1" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
+    <customer id="1000"/>
+    <customer id="1003"/>s
     <userrole id="1000" userName="customer" role="customer"/>
     <userrole id="1001" userName="employee" role="employee"/>
     <userrole id="1002" userName="partner" role="partner"/>
+    <userrole id="1003" userName="customer1" role="customer"/>
+
     <continent id="1006" name="North America" code="NAC"/>
     <continent id="1001" name="South Asia" code="SAS"/>
     <continent id="1003" name="Europe and Central Asia" code="ECS"/>
@@ -251,7 +256,8 @@
     <trip id="1000" pricePerDay="50.00" trip_location_fk="1005" period_fk="1000"/>
     <trip id="1001" pricePerDay="60.00" trip_location_fk="1006" period_fk="1001"/>
 
-    <booking id="1000" numberOfParticipants="8" discount="0.05" paymentType="CREDITCARD" trip_fk="1000"/>
+    <booking id="1000" numberOfParticipants="8" discount="0.05" paymentType="CREDITCARD" trip_fk="1000"
+             customer_fk="1000"/>
     <!--<continent id="1000" name="Europe" code="EUR" />-->
     <!--<continent id="1001" name="ASIA" code="ASI" />-->
     <!--<location id="1000" name="BRUSSEL" code="BRU" continent_fk="1000" />-->
