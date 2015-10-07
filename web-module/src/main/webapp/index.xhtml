@@ -3,17 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         >
 
 <h:head>
     <meta charset="UTF-8"/>
-    <title>Home</title>
+    <title>RDTravel</title>
 </h:head>
 <h:body>
     <h1>Home</h1>
+    <ui:include src="WEB-INF/login-part.xhtml"/>
 
     <p>Landing page.</p>
-    <h:link outcome="/pages/customer/customer.faces">Customer</h:link><br/>
+    <h:link outcome="/pages/customer/customer.faces">Customer1</h:link><br/>
     <h:link outcome="/pages/employee/employee.faces">Employee</h:link><br/>
     <h:link outcome="/pages/partner/partner.faces">Partner</h:link><br/>
     <h:form>

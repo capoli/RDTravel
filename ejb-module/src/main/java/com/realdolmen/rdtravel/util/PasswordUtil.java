@@ -9,8 +9,13 @@ import java.util.Base64;
  */
 
 public class PasswordUtil {
-    public static String getPasswordHash(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+    public static String getPasswordHash(String password) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-256 algorithm not available for password hashing", e);
+        }
         md.update(password.getBytes());
         return Base64.getEncoder().encodeToString(md.digest());
     }

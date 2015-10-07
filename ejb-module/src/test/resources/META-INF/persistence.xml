@@ -56,10 +56,13 @@
         <!--<class>com.realdolmen.course.persistence.PassengerRepository</class>-->
         <class>com.realdolmen.rdtravel.domain.Booking</class>
         <class>com.realdolmen.rdtravel.domain.Continent</class>
+        <class>com.realdolmen.rdtravel.domain.Customer</class>
         <class>com.realdolmen.rdtravel.domain.Flight</class>
         <class>com.realdolmen.rdtravel.domain.Location</class>
         <class>com.realdolmen.rdtravel.domain.Period</class>
         <class>com.realdolmen.rdtravel.domain.Trip</class>
+        <class>com.realdolmen.rdtravel.domain.User</class>
+        <class>com.realdolmen.rdtravel.domain.UserRole</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>

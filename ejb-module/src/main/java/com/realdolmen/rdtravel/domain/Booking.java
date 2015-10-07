@@ -1,10 +1,13 @@
 package com.realdolmen.rdtravel.domain;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
+
 @Entity
 public class Booking extends AbstractEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //TODO: add customer
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //TODO: calculatePrice
     @Transient
@@ -21,15 +24,20 @@ public class Booking extends AbstractEntity {
     @JoinColumn(name = "trip_fk")
     private Trip trip;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_fk")
+    private Customer customer;
+
     public Booking() {
     }
 
-    public Booking(Double totalPrice, Integer numberOfParticipants, Double discount, PaymentType paymentType, Trip trip) {
+    public Booking(Double totalPrice, Integer numberOfParticipants, Double discount, PaymentType paymentType, Trip trip, Customer customer) {
         this.totalPrice = totalPrice;
         this.numberOfParticipants = numberOfParticipants;
         this.discount = discount;
         this.paymentType = paymentType;
         this.trip = trip;
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -74,5 +82,13 @@ public class Booking extends AbstractEntity {
 
     public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
