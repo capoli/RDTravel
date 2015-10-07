@@ -1,9 +1,15 @@
 package com.realdolmen.rdtravel.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 @Entity
+@XmlRootElement(name = "flight")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Flight extends AbstractEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,10 +30,12 @@ public class Flight extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "flight_departure_location_fk")
+    @XmlElement(name = "departure-location")
     private Location departureLocation;
 
     @ManyToOne
     @JoinColumn(name = "flight_arrival_location_fk")
+    @XmlElement(name = "arrival-location")
     private Location arrivalLocation;
 
     @ManyToOne

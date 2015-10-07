@@ -1,6 +1,8 @@
 package com.realdolmen.rdtravel.domain;
 
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +13,12 @@ public class Trip extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @XmlElement(name = "price-per-day")
     private Double pricePerDay;
 
     @OneToMany(mappedBy = "trip")
+    @XmlElementWrapper(name = "flights")
+    @XmlElement(name = "flight")
     private List<Flight> flights = new ArrayList<>();
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.PERSIST)
@@ -21,10 +26,12 @@ public class Trip extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "trip_location_fk")
+    @XmlElement(name = "destination")
     private Location destination;
 
     @ManyToOne
     @JoinColumn(name = "period_fk")
+    @XmlElement(name = "period")
     private Period period;
 
     public Trip() {
