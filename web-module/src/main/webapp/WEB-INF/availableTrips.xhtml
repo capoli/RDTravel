@@ -10,6 +10,65 @@
     <title>Available trips</title>
 </h:head>
 <h:body>
-    <h1>Available trips</h1>
+    <h1>Available trips for <h:outputText value="#{searchTripController.selectedDestination.name}"/></h1>
+
+    <h:form>
+        <div>
+            <p:dataTable id="trips" var="trip" value="#{searchTripController.availableTrips}" selection="#{searchTripController.selectedTripId}" rowKey="#{trip.id}">
+                <f:facet name="header">
+                    RadioButton
+                </f:facet>
+                <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                <p:column headerText="Period start">
+                    <h:outputText value="#{trip.period.periodStart}" />
+                </p:column>
+                <p:column headerText="Period end">
+                    <h:outputText value="#{trip.period.periodEnd}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton process="trips" value="Confirm" action="#{searchTripController.selectTrip()}" />
+                </f:facet>
+            </p:dataTable>
+        </div>
+        <!--<div>-->
+        <!--<p:outputLabel for="trip" value="Trip:  "/>-->
+        <!--<p:selectOneMenu id="trip" value="#{searchTripController.selectedTripId}" required="true">-->
+        <!--<f:selectItems value="#{searchTripController.availableTrips}" var="trip"-->
+        <!--itemLabel="#{trip.period.periodStart.toGMTString()} to #{trip.period.periodEnd.toGMTString()}"-->
+        <!--itemValue="#{trip.id}"/>-->
+        <!--</p:selectOneMenu>-->
+        <!--</div>-->
+
+        <!--<div>-->
+        <!--<p:dataTable id="flights" value="#{searchTripController.selectedTrip.flights}" var="flight">-->
+        <!--<p:column>-->
+        <!--<f:facet name="header">-->
+        <!--<h:outputText value="From"/>-->
+        <!--</f:facet>-->
+        <!--<h:outputText value="#{flight.departureLocation.name}"/>-->
+        <!--</p:column>-->
+        <!--<p:column>-->
+        <!--<f:facet name="header">-->
+        <!--<h:outputText value="To"/>-->
+        <!--</f:facet>-->
+        <!--<h:outputText value="#{flight.arrivalLocation.name}"/>-->
+        <!--</p:column>-->
+        <!--<p:column>-->
+        <!--<f:facet name="header">-->
+        <!--<h:outputText value="Departure"/>-->
+        <!--</f:facet>-->
+        <!--<h:outputText value="#{flight.departureTime.toGMTString()}"/>-->
+        <!--</p:column>-->
+        <!--<p:column>-->
+        <!--<f:facet name="header">-->
+        <!--<h:outputText value="Arrival"/>-->
+        <!--</f:facet>-->
+        <!--<h:outputText value="#{flight.arrivalTime.toGMTString()}"/>-->
+        <!--</p:column>-->
+        <!--</p:dataTable>-->
+        <!--</div>-->
+
+        <!--<p:commandButton value="Confirm" action="#{searchTripController.selectTrip()}"/>-->
+    </h:form>
 </h:body>
 </html>

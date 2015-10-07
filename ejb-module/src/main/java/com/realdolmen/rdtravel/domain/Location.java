@@ -21,8 +21,8 @@ public class Location extends AbstractEntity {
     @JoinColumn(name = "continent_fk")
     private Continent continent;
 
-    @OneToMany(mappedBy = "destination", cascade = CascadeType.PERSIST)
-    private List<Trip> trips = new ArrayList<>();
+//    @OneToMany(mappedBy = "destination", cascade = CascadeType.PERSIST)
+//    private List<Trip> trips = new ArrayList<>();
 
     public Location() {
     }
@@ -61,11 +61,11 @@ public class Location extends AbstractEntity {
         this.continent = continent;
     }
 
-    public List<Trip> getTrips() {
-        return trips;
-    }
-
-    public void addTrip(Trip trip) {
-        this.trips.add(trip);
-    }
+//    public List<Trip> getTrips() {
+//        return trips;
+//    }
+//
+//    public void addTrip(Trip trip) {
+//        this.trips.add(trip);
+//    }
 }
