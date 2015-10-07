@@ -16,29 +16,7 @@ public class LocationEJB implements RemoteLocationEJB {
     private EntityManager em;
 
     @Override
-    public List<Location> findLocations() {
-        return em.createQuery("select t from Location t", Location.class).getResultList();
+    public List<Location> findLocationsWithTrips() {
+        return em.createQuery("select l from Location l where l.trips.size > 0 order by l.name", Location.class).getResultList();
     }
-
-    @Override
-    public Location findLocationById(Long id) {
-        return em.find(Location.class, id);
-    }
-
-    @Override
-    public Location createLocation(Location location) {
-        em.persist(location);
-        return location;
-    }
-
-    @Override
-    public void deleteLocation(Location location) {
-        em.remove(updateLocation(location));
-    }
-
-    @Override
-    public Location updateLocation(Location location) {
-        return em.merge(location);
-    }
-
 }

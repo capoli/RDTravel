@@ -7,13 +7,5 @@ import java.util.List;
 
 @Remote
 public interface RemoteLocationEJB  {
-    List<Location> findLocations();
-
-    Location findLocationById(Long id);
-
-    Location createLocation(Location location);
-
-    void deleteLocation(Location location);
-
-    Location updateLocation(Location location);
+    List<Location> findLocationsWithTrips();
 }

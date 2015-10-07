@@ -1,7 +1,9 @@
 package com.realdolmen.rdtravel.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Flight extends AbstractEntity {
@@ -30,9 +32,11 @@ public class Flight extends AbstractEntity {
     @JoinColumn(name = "flight_arrival_location_fk")
     private Location arrivalLocation;
 
-    @ManyToOne
-    @JoinColumn(name = "flight_trip_fk")
-    private Trip trip;
+//    @ManyToOne
+//    @JoinColumn(name = "flight_trip_fk")
+//    private Trip trip;
+    @ManyToMany(mappedBy = "flights")
+    private List<Trip> trips = new ArrayList<>();
 
     public Flight() {
     }
@@ -47,17 +51,6 @@ public class Flight extends AbstractEntity {
         this.arrivalLocation = arrivalLocation;
         //TODO: calculate duration
         // this.duration
-    }
-
-    public Flight(Date departureTime, Date arrivalTime, Integer duration, Integer numberOfSeats, Double price, Location departureLocation, Location arrivalLocation, Trip trip) {
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.duration = duration;
-        this.numberOfSeats = numberOfSeats;
-        this.price = price;
-        this.departureLocation = departureLocation;
-        this.arrivalLocation = arrivalLocation;
-        this.trip = trip;
     }
 
     public Long getId() {
@@ -120,11 +113,15 @@ public class Flight extends AbstractEntity {
         this.arrivalLocation = arrivalLocation;
     }
 
-    public Trip getTrip() {
-        return trip;
+    public List<Trip> getTrips() {
+        return trips;
     }
 
-    public void setTrip(Trip trip) {
-        this.trip = trip;
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
+
+    public void addTrip(Trip trip) {
+        this.trips.add(trip);
     }
 }

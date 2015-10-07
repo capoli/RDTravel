@@ -13,7 +13,10 @@ public class Trip extends AbstractEntity {
 
     private Double pricePerDay;
 
-    @OneToMany(mappedBy = "trip")
+    @ManyToMany
+    @JoinTable(name = "trip_flight",
+            joinColumns = @JoinColumn(name = "trip_fk"),
+            inverseJoinColumns = @JoinColumn(name = "flight_fk"))
     private List<Flight> flights = new ArrayList<>();
 
     @OneToMany(mappedBy = "trip", cascade = CascadeType.PERSIST)
@@ -78,5 +81,13 @@ public class Trip extends AbstractEntity {
 
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
