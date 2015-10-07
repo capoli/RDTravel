@@ -26,9 +26,6 @@ public class SearchTripController implements Serializable {
     CrudEJB crudEJB;
 
     @EJB
-    LocationEJB locationEJB;
-
-    @EJB
     TripEJB tripEJB;
 
     @Inject
@@ -40,6 +37,8 @@ public class SearchTripController implements Serializable {
     private Date periodStart;
     private Date periodEnd;
     private List<Trip> availableTrips;
+    private Trip selectedTrip;
+    private Long selectedTripId;
 
 //    @PostConstruct
 //    public void postConstruct() {
@@ -61,14 +60,22 @@ public class SearchTripController implements Serializable {
     public String searchForTrips() {
         selectedDestination = (Location) crudEJB.findById(Location.class, selectedDestinationId);
         availableTrips = tripEJB.findTripsForCriteria(selectedDestinationId, periodStart, periodEnd);
+        if(availableTrips.size() > 0) selectedTrip = availableTrips.get(0);
+        else selectedTrip = new Trip();
         return "/WEB-INF/availableTrips";
     }
 
+    public String selectTrip() {
+        selectedTrip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
+        return "/WEB-INF/summaryPage";
+    }
+
+    public void selectedTripChange() {
+        selectedTrip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
+    }
+
     public List<Location> getAllLocations() {
-//        List<Location> locations = (List<Location>) (List<?>) crudEJB.findAll(Location.class);
-//        Collections.sort(locations, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-//        return locations;
-        return locationEJB.findLocationsWithTrips();
+        return tripEJB.findLocationsWithTrips();
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -115,5 +122,30 @@ public class SearchTripController implements Serializable {
 
     public void setPeriodEnd(Date periodEnd) {
         this.periodEnd = periodEnd;
+    }
+
+    public List<Trip> getAvailableTrips() {
+        return availableTrips;
+    }
+
+    public void setAvailableTrips(List<Trip> availableTrips) {
+        this.availableTrips = availableTrips;
+    }
+
+    public Trip getSelectedTrip() {
+        return selectedTrip;
+    }
+
+    public void setSelectedTrip(Trip selectedTrip) {
+        this.selectedTrip = selectedTrip;
+    }
+
+    public Long getSelectedTripId() {
+        return selectedTripId;
+    }
+
+    public void setSelectedTripId(Long selectedTripId) {
+        this.selectedTripId = selectedTripId;
+        selectedTrip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
     }
 }

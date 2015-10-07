@@ -12,9 +12,9 @@ public class TripPersistenceTest extends DataSetPersistenceTest {
         Period period = entityManager().find(Period.class, 1000l);
         Trip trip = new Trip(45.00, location, period);
         period.addTrip(trip);
-        location.addTrip(trip);
+//        location.addTrip(trip);
         entityManager().persist(period);
-        entityManager().persist(location);
+        entityManager().persist(trip);
         entityManager().flush();
         entityManager().refresh(period);
         entityManager().refresh(location);
