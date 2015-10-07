@@ -2,12 +2,16 @@ package com.realdolmen.rdtravel.domain;
 
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
+@XmlRootElement(name = "trip")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Trip extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +24,7 @@ public class Trip extends AbstractEntity {
     @JoinTable(name = "trip_flight",
             joinColumns = @JoinColumn(name = "trip_fk"),
             inverseJoinColumns = @JoinColumn(name = "flight_fk"))
-    @XmlElementWrapper(name = "flights")
+
     @XmlElement(name = "flight")
     private List<Flight> flights = new ArrayList<>();
 
@@ -88,10 +92,6 @@ public class Trip extends AbstractEntity {
 
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
-    }
-
-    public void setFlights(List<Flight> flights) {
-        this.flights = flights;
     }
 
     public void setBookings(List<Booking> bookings) {

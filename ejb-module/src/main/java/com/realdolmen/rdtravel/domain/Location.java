@@ -1,7 +1,11 @@
 package com.realdolmen.rdtravel.domain;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +32,6 @@ public class Location extends AbstractEntity {
     private Continent continent;
 
     @OneToMany(mappedBy = "destination", cascade = CascadeType.PERSIST)
-    @XmlElementWrapper(name = "trips")
     @XmlElement(name = "trip")
     private List<Trip> trips = new ArrayList<>();
 
@@ -75,5 +78,11 @@ public class Location extends AbstractEntity {
 
     public void addTrip(Trip trip) {
         this.trips.add(trip);
+    }
+
+    public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        if (parent instanceof Trip) {
+            this.addTrip((Trip) parent);
+        }
     }
 }
