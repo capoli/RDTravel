@@ -13,6 +13,8 @@ public interface RemoteCustomerEJB {
 
     Customer findCustomerByName(String name);
 
+    Customer findCustomerByEmail(String email);
+
     Customer createCustomer(Customer customer);
 
     void deleteCustomer(Customer customer);

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+</h:head>
+<h:body>
+    <h1>Register</h1>
+    <h:form prependId="false" id="registerForm">
+        <p:panelGrid id="panel" border="0" columns="3" cellpadding="4" cellspacing="5">
+            <p:outputLabel for="username" value="Username:"/>
+            <p:inputText type="text" id="username" required="true"
+                         value="#{registerController.registerModel.userName}">
+                <f:validator binding="#{userNameValidator}"/>
+            </p:inputText>
+            <p:message for="username" id="username-error"/>
+            <p:outputLabel for="password" value="Password:"/>
+            <p:inputText type="password" name="password" id="password" required="true"
+                         value="#{registerController.registerModel.password}">
+                <f:validator binding="#{passwordValidator}"/>
+            </p:inputText>
+            <p:message for="password" id="password-error"/>
+            <p:outputLabel for="email" value="Email: "/>
+            <p:inputText type="email" name="email" id="email" value="#{registerController.registerModel.email}"
+                         required="true">
+                <f:validator binding="#{emailValidator}"/>
+            </p:inputText>
+            <p:message for="email" id="email-error"/>
+            <h:panelGroup>
+                <h:commandButton id="register-button" value="Register" action="#{registerController.register}"/>
+            </h:panelGroup>
+        </p:panelGrid>
+    </h:form>
+    <h:outputText value="Invalid username or password" rendered="#{request.getParameter('failed') == true}"/>
+</h:body>
+</html>

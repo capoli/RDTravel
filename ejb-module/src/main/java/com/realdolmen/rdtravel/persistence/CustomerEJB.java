@@ -5,6 +5,7 @@ import com.realdolmen.rdtravel.domain.Customer;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -26,8 +27,27 @@ public class CustomerEJB implements RemoteCustomerEJB {
     }
 
     @Override
+    /**
+     * Returns null when no customer is found.
+     */
     public Customer findCustomerByName(String name) {
-        return em.createQuery("select c from Customer c where c.name = :name", Customer.class).setParameter("name", name).getSingleResult();
+        try {
+            return em.createQuery("select c from Customer c where c.name = :name", Customer.class).setParameter("name", name).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    /**
+     * Returns null when no customer is found.
+     */
+    public Customer findCustomerByEmail(String email) {
+        try {
+            return em.createQuery("select c from Customer c where c.email = :email", Customer.class).setParameter("email", email).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override

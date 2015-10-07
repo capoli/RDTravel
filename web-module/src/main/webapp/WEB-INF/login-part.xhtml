@@ -10,7 +10,7 @@
             <label for="password">Password</label>
             <h:inputText id="password" value="#{loginController.user.password}"/>
         </h:panelGrid>
-        <h:commandButton id="login-button" value="Login4" action="#{loginController.login}"
+        <h:commandButton id="login-button" value="Log in" action="#{loginController.login}"
                          rendered="#{request.getUserPrincipal() == null}"/>
         <h:outputText id="screen-name" value="#{request.getUserPrincipal().getName()}"
                       rendered="#{request.getUserPrincipal() != null}"/>

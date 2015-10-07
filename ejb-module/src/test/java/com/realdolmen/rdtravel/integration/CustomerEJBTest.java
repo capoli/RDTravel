@@ -13,6 +13,7 @@ public class CustomerEJBTest extends RemoteIntegrationTest {
     private RemoteCustomerEJB repo;
     private static final long customerId = 1000;
     private static final String customerName = "customer";
+    private static final String customerEmail = "customer@hotmail.com";
     private static final long customerWithoutBookingsId = 1003;
 
     @Before
@@ -34,6 +35,11 @@ public class CustomerEJBTest extends RemoteIntegrationTest {
     @Test
     public void customerCanBeFoundByName() {
         assertNotNull(repo.findCustomerByName(customerName));
+    }
+
+    @Test
+    public void customerCanBeFoundByEmail() {
+        assertNotNull(repo.findCustomerByEmail("customer@hotmail.com"));
     }
 
     @Test
@@ -59,5 +65,4 @@ public class CustomerEJBTest extends RemoteIntegrationTest {
         customer = repo.findCustomerById(customerId);
         assertEquals(newName, customer.getName());
     }
-
 }

@@ -49,11 +49,11 @@ public class CustomerPersistenceTest extends PersistenceTest {
     }
 
     private Customer newCustomer() {
-        return new Customer(TEST_CUSTOMER_NAME, "test");
+        return new Customer(TEST_CUSTOMER_NAME, "test", "testCustomer@hotmail.com");
     }
 
     private Customer newCustomerForDelete() {
-        return new Customer("toBeDeleted", "test");
+        return new Customer("toBeDeleted", "test", "toBeDeleted@hotmail.com");
     }
 
 
