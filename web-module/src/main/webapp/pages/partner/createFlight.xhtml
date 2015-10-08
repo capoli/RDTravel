@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+        >
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Create flight</title>
+</h:head>
+<h:body>
+    <h:form id="flight-creation-form" prependId="false">
+        <div>
+            <p:outputLabel for="departure-location" value="Destination:  "/>
+            <p:selectOneMenu styleClass="departure-location-selection" id="departure-location" required="true"
+                             value="#{createFlightController.arrivalLocationId}">
+                <f:selectItems
+                        value="#{searchTripController.getAllLocations()}"
+                        var="location"
+                        itemLabel="#{location.name}" itemValue="#{location.id}"/>
+            </p:selectOneMenu>
+        </div>
+
+
+        <div>
+            <p:outputLabel for="arrival-location" value="Destination:  "/>
+            <p:selectOneMenu styleClass="arrival-location-selection" id="arrival-location" required="true"
+                             value="#{createFlightController.departureLocationId}">
+                <f:selectItems value="#{searchTripController.getAllLocations()}"
+                               var="location"
+                               itemLabel="#{location.name}" itemValue="#{location.id}"/>
+            </p:selectOneMenu>
+        </div>
+    </h:form>
+
+    <p>This can only be viewed by partners</p>
+</h:body>
+</html>
