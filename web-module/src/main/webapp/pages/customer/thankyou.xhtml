@@ -11,17 +11,10 @@
 </h:head>
 <h:body>
     <ui:composition template="/resources/templates/commonLayout.xhtml">
-        <ui:define name="pageTitle">Choose booking</ui:define>
+        <ui:define name="pageTitle">Thank you</ui:define>
         <ui:define name="content">
-            <h1>Choose option</h1>
-            <h:form>
-                <p:commandButton value="gogogo" action="#{searchTripController.goToPayment()}" />
-            </h:form>
-
-            <h:link outcome="/availableTrips.xhtml" value="Cancel">
-                <f:param name="cid" value="#{searchTripController.conversation.id}" />
-            </h:link>
-            <br/>
+            <h1>Thank you</h1>
+            <h2>Have fun on your trip</h2>
         </ui:define>
     </ui:composition>
 </h:body>

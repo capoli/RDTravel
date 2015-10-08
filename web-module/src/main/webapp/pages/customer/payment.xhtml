@@ -13,7 +13,54 @@
     <ui:composition template="/resources/templates/commonLayout.xhtml">
         <ui:define name="pageTitle">Payment</ui:define>
         <ui:define name="content">
-            <h1>Payment</h1>
+            <h:form>
+                <p:panel header="Summary">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="numberOfParticipants2" value="Number of participants:"/>
+                        <h:outputText id="numberOfParticipants2" value="#{searchTripController.numberOfParticipants}"
+                                      required="true"/>
+
+                        <h:outputLabel value="Destination:"/>
+                        <h:outputText value="#{searchTripController.selectedTrip.destination.name}"/>
+
+                        <h:outputLabel value="Period start:"/>
+                        <h:outputText value="#{searchTripController.selectedTrip.period.periodStart.toGMTString()}"/>
+
+                        <h:outputLabel value="Period end:"/>
+                        <h:outputText value="#{searchTripController.selectedTrip.period.periodEnd.toGMTString()}"/>
+                    </h:panelGrid>
+                    <ui:repeat value="#{searchTripController.selectedTrip.flights}" var="flight">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel value="From:"/>
+                            <h:outputText value="#{flight.departureLocation.name}"/>
+
+                            <h:outputLabel value="To:"/>
+                            <h:outputText value="#{flight.arrivalLocation.name}"/>
+
+                            <h:outputLabel value="Departure:"/>
+                            <h:outputText value="#{flight.departureTime.toGMTString()}"/>
+
+                            <h:outputLabel value="Arrival:"/>
+                            <h:outputText value="#{flight.arrivalTime.toGMTString()}"/>
+                        </h:panelGrid>
+                    </ui:repeat>
+                </p:panel>
+                <p:panel header="Payment">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel value="Total price:"/>
+                        <h:outputText value="#{searchTripController.totalPrice}"/>
+
+                        <p:outputLabel for="paymentTypes" value="Payment type:"/>
+                        <p:selectOneMenu id="paymentTypes" value="#{searchTripController.selectedPaymentType}">
+                            <f:selectItems value="#{searchTripController.getAllPaymentTypes()}" var="type"
+                                           itemLabel="#{type}"
+                                           itemValue="#{type}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+                <p:separator/>
+                <p:commandButton value="Book" action="#{searchTripController.confirmConversation()}"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

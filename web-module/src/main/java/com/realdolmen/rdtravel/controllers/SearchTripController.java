@@ -1,8 +1,9 @@
 package com.realdolmen.rdtravel.controllers;
 
-import com.realdolmen.rdtravel.domain.Location;
-import com.realdolmen.rdtravel.domain.Trip;
+import com.realdolmen.rdtravel.domain.*;
+import com.realdolmen.rdtravel.persistence.BookingEJB;
 import com.realdolmen.rdtravel.persistence.CrudEJB;
+import com.realdolmen.rdtravel.persistence.CustomerEJB;
 import com.realdolmen.rdtravel.persistence.TripEJB;
 import org.primefaces.event.SelectEvent;
 
@@ -13,7 +14,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -26,6 +30,12 @@ public class SearchTripController implements Serializable {
     @EJB
     TripEJB tripEJB;
 
+    @EJB
+    CustomerEJB customerEJB;
+
+    @EJB
+    BookingEJB bookingEJB;
+
     @Inject
     private Conversation conversation;
 
@@ -37,6 +47,11 @@ public class SearchTripController implements Serializable {
     private List<Trip> availableTrips;
     private Trip selectedTrip;
     private Long selectedTripId;
+    private Double totalPrice;
+    private String creditCardNumber;
+    private String creditCardDate;
+//    private List<String> paymentTypes;
+    private String selectedPaymentType;
 
     public String startConversation() {
         selectedDestination = new Location();
@@ -46,8 +61,14 @@ public class SearchTripController implements Serializable {
     }
 
     public String confirmConversation() {
+        Customer customerByName = customerEJB.findCustomerByName(getRequest().getUserPrincipal().getName().toLowerCase());
+//        PaymentType currPaymentType = Enum.valueOf(PaymentType.class, selectedPaymentType);
+        PaymentType currPaymentType = PaymentType.valueOf(selectedPaymentType);
+        Booking newBook = new Booking(totalPrice, numberOfParticipants,
+                currPaymentType, selectedTrip, customerByName);
+        Booking tempBook = (Booking) crudEJB.create(newBook);
         conversation.end();
-        return "something";
+        return "/pages/customer/thankyou.xhtml?faces-redirect=true";
     }
 
     public String searchForTrips() {
@@ -63,9 +84,44 @@ public class SearchTripController implements Serializable {
     public String confirmSummary() {
         return "/pages/customer/choiceConfirmation.xhtml?faces-redirect=true";
     }
-    
+
+    public String goToPayment() {
+        long diffDates = selectedTrip.getPeriod().getPeriodEnd().getTime() - selectedTrip.getPeriod().getPeriodStart().getTime();
+        double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
+        totalPrice = days * selectedTrip.getPricePerDay();
+        for (Flight flight : selectedTrip.getFlights()) {
+            totalPrice += flight.getPrice();
+        }
+        totalPrice = (new BigDecimal(totalPrice)).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        return "/pages/customer/payment.xhtml?faces-redirect=true";
+    }
+
+    public void onPaymentTypeChange() {
+        //TODO: implent
+    }
+
+    public void onRedirectToPayment() {
+//        paymentTypes = bookingEJB.getPaymentTypes();
+//        selectedPaymentType = paymentTypes.get(0);
+        long diffDates = selectedTrip.getPeriod().getPeriodEnd().getTime() - selectedTrip.getPeriod().getPeriodStart().getTime();
+        double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
+        totalPrice = days * selectedTrip.getPricePerDay();
+        for (Flight flight : selectedTrip.getFlights()) {
+            totalPrice += flight.getPrice();
+        }
+        totalPrice = (new BigDecimal(totalPrice)).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
     public List<Location> getAllLocations() {
         return tripEJB.findLocationsWithTrips();
+    }
+
+    public List<String> getAllPaymentTypes() {
+        return bookingEJB.getPaymentTypesAsString();
+    }
+
+    public HttpServletRequest getRequest() {
+        return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
 
     public void onTripChange() {
@@ -73,17 +129,14 @@ public class SearchTripController implements Serializable {
             selectedTripId = -1l;
         } else if (selectedTripId.equals(-1l)) {
             selectedTrip = null;
-        } else
-        /*if (selectedTripId != null)*/ {
+        } else {
             for (Trip current : availableTrips) {
                 if (current.getId().equals(selectedTripId)) {
                     selectedTrip = current;
                     return;
                 }
             }
-        } /*else {
-            selectedTripId = (long) 0;
-        }*/
+        }
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -162,5 +215,45 @@ public class SearchTripController implements Serializable {
 
     public void setConversation(Conversation conversation) {
         this.conversation = conversation;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
+    }
+
+    public String getCreditCardDate() {
+        return creditCardDate;
+    }
+
+    public void setCreditCardDate(String creditCardDate) {
+        this.creditCardDate = creditCardDate;
+    }
+
+//    public List<String> getPaymentTypes() {
+//        return paymentTypes;
+//    }
+//
+//    public void setPaymentTypes(List<String> paymentTypes) {
+//        this.paymentTypes = paymentTypes;
+//    }
+
+    public String getSelectedPaymentType() {
+        return selectedPaymentType;
+    }
+
+    public void setSelectedPaymentType(String selectedPaymentType) {
+        this.selectedPaymentType = selectedPaymentType;
     }
 }
