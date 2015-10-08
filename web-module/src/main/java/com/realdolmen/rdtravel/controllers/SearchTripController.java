@@ -61,7 +61,7 @@ public class SearchTripController implements Serializable {
     }
 
     public String confirmSummary() {
-        return "/pages/customer/payment.xhtml?faces-redirect=true";
+        return "/pages/customer/choiceConfirmation.xhtml?faces-redirect=true";
     }
 
     public List<Location> getAllLocations() {
