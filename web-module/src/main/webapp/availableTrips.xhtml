@@ -8,52 +8,57 @@
         >
 <h:head>
     <meta charset="UTF-8"/>
-    <title>Available trips</title>
 </h:head>
 <h:body>
-    <h1>Available trips for <h:outputText value="#{searchTripController.selectedDestination.name}"/></h1>
+    <ui:composition template="resources/templates/commonLayout.xhtml">
+        <ui:define name="pageTitle">Available trips</ui:define>
+        <ui:define name="content">
+            <h1>Available trips for <h:outputText value="#{searchTripController.selectedDestination.name}"/></h1>
 
-    <h:form>
-        <p:panel>
-            <p:outputLabel for="trips" value="Options: "/>
-            <p:selectOneMenu id="trips" value="#{searchTripController.selectedTripId}">
-                <p:ajax process="trips" listener="#{searchTripController.onTripChange()}" update="flights" partialSubmit="true"/>
-                <f:selectItem itemLabel="Select a period" itemValue="" noSelectionOption="true"/>
-                <f:selectItems value="#{searchTripController.availableTrips}" var="trip"
-                               itemLabel="#{trip.period.periodStart.toGMTString()} to #{trip.period.periodEnd.toGMTString()}"
-                               itemValue="#{trip.id}"/>
-            </p:selectOneMenu>
-            <p:outputPanel id="flights" style="display: block">
-                <p:dataTable value="#{searchTripController.selectedTrip.flights}" var="flight">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="From"/>
-                        </f:facet>
-                        <h:outputText value="#{flight.departureLocation.name}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="To"/>
-                        </f:facet>
-                        <h:outputText value="#{flight.arrivalLocation.name}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Departure"/>
-                        </f:facet>
-                        <h:outputText value="#{flight.departureTime.toGMTString()}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Arrival"/>
-                        </f:facet>
-                        <h:outputText value="#{flight.arrivalTime.toGMTString()}"/>
-                    </p:column>
-                </p:dataTable>
-            </p:outputPanel>
-            <p:separator/>
-            <p:commandButton value="Submit" action="#{searchTripController.selectTrip()}"/>
-        </p:panel>
-    </h:form>
+            <h:form>
+                <p:panel>
+                    <p:outputLabel for="trips" value="Options: "/>
+                    <p:selectOneMenu id="trips" value="#{searchTripController.selectedTripId}">
+                        <f:validator binding="#{tripValidator}"/>
+                        <p:ajax process="trips" listener="#{searchTripController.onTripChange()}" update="flights" partialSubmit="true"/>
+                        <f:selectItem itemLabel="Select a period" itemValue="-1" noSelectionOption="true"/>
+                        <f:selectItems value="#{searchTripController.availableTrips}" var="trip"
+                                       itemLabel="#{trip.period.periodStart.toGMTString()} to #{trip.period.periodEnd.toGMTString()}"
+                                       itemValue="#{trip.id}"/>
+                    </p:selectOneMenu>
+                    <p:outputPanel id="flights" style="display: block">
+                        <p:dataTable value="#{searchTripController.selectedTrip.flights}" var="flight">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="From"/>
+                                </f:facet>
+                                <h:outputText value="#{flight.departureLocation.name}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="To"/>
+                                </f:facet>
+                                <h:outputText value="#{flight.arrivalLocation.name}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Departure"/>
+                                </f:facet>
+                                <h:outputText value="#{flight.departureTime.toGMTString()}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Arrival"/>
+                                </f:facet>
+                                <h:outputText value="#{flight.arrivalTime.toGMTString()}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:outputPanel>
+                    <p:separator/>
+                    <p:commandButton value="Submit" action="#{searchTripController.selectTrip()}"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

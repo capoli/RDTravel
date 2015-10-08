@@ -8,9 +8,21 @@
         >
 <h:head>
     <meta charset="UTF-8"/>
-    <title>Available trips</title>
 </h:head>
 <h:body>
-    <h1>Available trips for</h1>
+    <ui:composition template="/resources/templates/commonLayout.xhtml">
+        <ui:define name="pageTitle">Choose booking</ui:define>
+        <ui:define name="content">
+            <h1>Choose option</h1>
+            <h:link outcome="payment.xhtml" value="Go on">
+                <f:param name="cid" value="#{searchTripController.conversation.id}" />
+            </h:link>
+            <br/>
+            <h:link outcome="/availableTrips.xhtml" value="Cancel">
+                <f:param name="cid" value="#{searchTripController.conversation.id}" />
+            </h:link>
+            <br/>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

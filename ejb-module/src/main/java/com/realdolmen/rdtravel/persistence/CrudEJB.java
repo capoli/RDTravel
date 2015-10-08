@@ -4,6 +4,7 @@ import com.realdolmen.rdtravel.domain.AbstractEntity;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -21,7 +22,13 @@ public class CrudEJB implements CrudEJBService {
 
     @Override
     public AbstractEntity findById(Class type, Long id) {
-        return (AbstractEntity) em.find(type, id);
+        AbstractEntity abstractEntity = null;
+        try {
+            abstractEntity = (AbstractEntity) em.find(type, id);
+        } catch (NoResultException ex) {
+            abstractEntity = null;
+        }
+        return abstractEntity;
     }
 
     @Override

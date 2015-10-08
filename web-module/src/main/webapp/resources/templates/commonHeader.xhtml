@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
         >
 <body>
 <ui:composition>
@@ -7,7 +8,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">RDTravel</a>
+                <h:link styleClass="navbar-brand" outcome="index.faces">RDTravel</h:link>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

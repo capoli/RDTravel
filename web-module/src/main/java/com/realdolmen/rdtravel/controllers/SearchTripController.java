@@ -63,20 +63,27 @@ public class SearchTripController implements Serializable {
     public String confirmSummary() {
         return "/pages/customer/choiceConfirmation.xhtml?faces-redirect=true";
     }
-
+    
     public List<Location> getAllLocations() {
         return tripEJB.findLocationsWithTrips();
     }
 
     public void onTripChange() {
-        if (selectedTripId != null) {
+        if (selectedTripId == null) {
+            selectedTripId = -1l;
+        } else if (selectedTripId.equals(-1l)) {
+            selectedTrip = null;
+        } else
+        /*if (selectedTripId != null)*/ {
             for (Trip current : availableTrips) {
                 if (current.getId().equals(selectedTripId)) {
                     selectedTrip = current;
                     return;
                 }
             }
-        } else selectedTripId = (long) 0;
+        } /*else {
+            selectedTripId = (long) 0;
+        }*/
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -147,5 +154,13 @@ public class SearchTripController implements Serializable {
 
     public void setSelectedTripId(Long selectedTripId) {
         this.selectedTripId = selectedTripId;
+    }
+
+    public Conversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 }
