@@ -53,6 +53,10 @@ public class Flight extends AbstractEntity {
     @XmlElement(name = "trip")
     private List<Trip> trips = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "airline_fk")
+    private Airline airline;
+
     public Flight() {
     }
 
@@ -142,5 +146,13 @@ public class Flight extends AbstractEntity {
 
     public void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
         this.addTrip((Trip) parent);
+    }
+
+    public Airline getAirline() {
+        return airline;
+    }
+
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 }
