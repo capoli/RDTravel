@@ -3,11 +3,9 @@ package com.realdolmen.rdtravel.controllers;
 import com.realdolmen.rdtravel.domain.Location;
 import com.realdolmen.rdtravel.domain.Trip;
 import com.realdolmen.rdtravel.persistence.CrudEJB;
-import com.realdolmen.rdtravel.persistence.LocationEJB;
 import com.realdolmen.rdtravel.persistence.TripEJB;
 import org.primefaces.event.SelectEvent;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -33,23 +31,18 @@ public class SearchTripController implements Serializable {
 
     private Location selectedDestination;
     private Long selectedDestinationId;
-    private int numberOfParticipants;
+    private Integer numberOfParticipants;
     private Date periodStart;
     private Date periodEnd;
     private List<Trip> availableTrips;
     private Trip selectedTrip;
     private Long selectedTripId;
 
-//    @PostConstruct
-//    public void postConstruct() {
-//        selectedDestination = new Location();
-//    }
-
     public String startConversation() {
         selectedDestination = new Location();
         availableTrips = new ArrayList<>();
         conversation.begin();
-        return "searchTrip";
+        return "searchTrip.xhtml?faces-redirect=true";
     }
 
     public String confirmConversation() {
@@ -60,22 +53,30 @@ public class SearchTripController implements Serializable {
     public String searchForTrips() {
         selectedDestination = (Location) crudEJB.findById(Location.class, selectedDestinationId);
         availableTrips = tripEJB.findTripsForCriteria(selectedDestinationId, periodStart, periodEnd);
-        if(availableTrips.size() > 0) selectedTrip = availableTrips.get(0);
-        else selectedTrip = new Trip();
-        return "/WEB-INF/availableTrips";
+        return "availableTrips.xhtml?faces-redirect=true";
     }
 
     public String selectTrip() {
-        selectedTrip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
-        return "/WEB-INF/summaryPage";
+        return "summaryPage.xhtml?faces-redirect=true";
     }
 
-    public void selectedTripChange() {
-        selectedTrip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
+    public String confirmSummary() {
+        return "/pages/customer/payment.xhtml?faces-redirect=true";
     }
 
     public List<Location> getAllLocations() {
         return tripEJB.findLocationsWithTrips();
+    }
+
+    public void onTripChange() {
+        if (selectedTripId != null) {
+            for (Trip current : availableTrips) {
+                if (current.getId().equals(selectedTripId)) {
+                    selectedTrip = current;
+                    return;
+                }
+            }
+        } else selectedTripId = (long) 0;
     }
 
     public void onDateSelect(SelectEvent event) {
@@ -100,11 +101,11 @@ public class SearchTripController implements Serializable {
         this.selectedDestinationId = selectedDestinationId;
     }
 
-    public int getNumberOfParticipants() {
+    public Integer getNumberOfParticipants() {
         return numberOfParticipants;
     }
 
-    public void setNumberOfParticipants(int numberOfParticipants) {
+    public void setNumberOfParticipants(Integer numberOfParticipants) {
         this.numberOfParticipants = numberOfParticipants;
     }
 
@@ -146,6 +147,5 @@ public class SearchTripController implements Serializable {
 
     public void setSelectedTripId(Long selectedTripId) {
         this.selectedTripId = selectedTripId;
-        selectedTrip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
     }
 }

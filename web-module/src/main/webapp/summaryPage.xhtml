@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        >
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Summary page</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Summary page">
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputLabel for="numberOfParticipants2" value="Number of participants:"/>
+                <h:outputText id="numberOfParticipants2" value="#{searchTripController.numberOfParticipants}" required="true"/>
+
+                <h:outputLabel value="Destination:"/>
+                <h:outputText value="#{searchTripController.selectedTrip.destination.name}"/>
+
+                <h:outputLabel value="Period start:"/>
+                <h:outputText value="#{searchTripController.selectedTrip.period.periodStart.toGMTString()}"/>
+
+                <h:outputLabel value="Period end:"/>
+                <h:outputText value="#{searchTripController.selectedTrip.period.periodEnd.toGMTString()}"/>
+            </h:panelGrid>
+            <ui:repeat value="#{searchTripController.selectedTrip.flights}" var="flight">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="From:"/>
+                    <h:outputText value="#{flight.departureLocation.name}"/>
+
+                    <h:outputLabel value="To:"/>
+                    <h:outputText value="#{flight.arrivalLocation.name}"/>
+
+                    <h:outputLabel value="Departure:"/>
+                    <h:outputText value="#{flight.departureTime.toGMTString()}"/>
+
+                    <h:outputLabel value="Arrival:"/>
+                    <h:outputText value="#{flight.arrivalTime.toGMTString()}"/>
+                </h:panelGrid>
+            </ui:repeat>
+
+            <p:separator/>
+
+            <p:commandButton value="Confirm" action="#{searchTripController.confirmSummary()}"/>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

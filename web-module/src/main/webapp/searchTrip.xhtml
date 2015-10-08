@@ -10,46 +10,42 @@
     <title>Search trip</title>
 </h:head>
 <h:body>
-    <h1>Search trip</h1>
-    <h:form id="form">
-        <div>
-            <p:outputLabel for="destination" value="Destination:  "/>
-            <p:selectOneMenu id="destination" value="#{searchTripController.selectedDestinationId}" required="true">
-                <f:selectItems value="#{searchTripController.getAllLocations()}" var="location"
-                               itemLabel="#{location.name}" itemValue="#{location.id}"/>
-            </p:selectOneMenu>
-        </div>
+    <h:form id="searchTrip">
+        <p:panel header="Search trip">
+            <h:panelGrid id="searchTripGrid" columns="2" cellpadding="5">
 
-        <div>
-            <p:outputLabel for="popup1" value="Period start:  " />
-            <p:calendar id="popup1" value="#{searchTripController.periodStart}" required="true"/>
-        </div>
+                <h:outputLabel for="destination" value="Destination:"/>
+                <p:selectOneMenu id="destination" value="#{searchTripController.selectedDestinationId}" required="true">
+                    <f:selectItems value="#{searchTripController.getAllLocations()}" var="location"
+                                   itemLabel="#{location.name}" itemValue="#{location.id}"/>
+                </p:selectOneMenu>
 
-        <div>
-            <p:outputLabel for="popup2" value="Period end:  " />
-            <p:calendar id="popup2" value="#{searchTripController.periodEnd}" required="true"/>
-        </div>
+                <h:outputLabel for="periodStartDatePicker" value="Period start:" />
+                <p:calendar id="periodStartDatePicker" value="#{searchTripController.periodStart}" required="true"/>
 
-        <div>
-            <p:outputLabel for="numberOfParticipants" value="Number of participants:  "/>
-            <p:inputText id="numberOfParticipants" value="#{searchTripController.numberOfParticipants}" required="true"/>
-        </div>
+                <h:outputLabel for="periodEndDatePicker" value="Period end:" />
+                <p:calendar id="periodEndDatePicker" value="#{searchTripController.periodEnd}" required="true"/>
 
-        <p:commandButton value="Search" action="#{searchTripController.searchForTrips()}"/>
+                <h:outputLabel for="numberOfParticipants" value="Number of participants:  "/>
+                <p:inputText id="numberOfParticipants" value="#{searchTripController.numberOfParticipants}" required="true"/>
 
-        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                <h:outputText value="Period start:  "/>
-                <h:outputText value="#{searchTripController.periodStart}">
-                    <f:convertDateTime pattern="MM/dd/yyyy"/>
-                </h:outputText>
+                <p:commandButton value="Search" action="#{searchTripController.searchForTrips()}"/>
 
-                <h:outputText value="Period end:  "/>
-                <h:outputText value="#{searchTripController.periodEnd}">
-                    <f:convertDateTime pattern="MM/dd/yyyy"/>
-                </h:outputText>
-            </p:panelGrid>
-        </p:dialog>
+                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                        <h:outputText value="Period start:  "/>
+                        <h:outputText value="#{searchTripController.periodStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy"/>
+                        </h:outputText>
+
+                        <h:outputText value="Period end:  "/>
+                        <h:outputText value="#{searchTripController.periodEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy"/>
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:dialog>
+            </h:panelGrid>
+        </p:panel>
     </h:form>
 </h:body>
 </html>
