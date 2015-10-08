@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -61,41 +62,45 @@ public class RegisterTest {
     @Test
     public void testIfFailOnWrongNameLength() {
         register("nope", "test", "nope@hotmail.com");
-        assertTrue(driver.findElement(By.id(userNameErrorId)).isDisplayed());
+        checkIfErrorTriggered(userNameErrorId);
         register("WAAAAAAAYYYYYYYYYYTOOOOOOOOOOOOOOOOOOOOOLOOOOOOOOOOOOOOOOOOOONG", "test", "tooLong@hotmail.com");
-        assertTrue(driver.findElement(By.id(userNameErrorId)).isDisplayed());
+        checkIfErrorTriggered(userNameErrorId);
     }
 
     @Test
     public void testIfFailOnWrongNameCharacter() {
         register("thiswontwork@", "test", "wontwork@hotmail.com");
-        assertTrue(driver.findElement(By.id(userNameErrorId)).isDisplayed());
+        checkIfErrorTriggered(userNameErrorId);
     }
 
     @Test
     public void testIfFailOnAlreadyExistentName() {
         register("customer", "test", "customer@hotmail.com");
-        assertTrue(driver.findElement(By.id(userNameErrorId)).isDisplayed());
+        checkIfErrorTriggered(userNameErrorId);
     }
 
     @Test
     public void testIfFailOnPasswordWrongLength() {
         register("passwordCheck1", "pas1", "passwordCheck1@hotmail.com");
-        assertTrue(driver.findElement(By.id(passwordErrorid)).isDisplayed());
+        checkIfErrorTriggered(passwordErrorid);
     }
 
     @Test
     public void testIfFailOnPasswordWrongFormat() {
         register("passwordCheck2", "nonumbers", "passwordCheck2@hotmail.com");
-        assertTrue(driver.findElement(By.id(passwordErrorid)).isDisplayed());
+        checkIfErrorTriggered(passwordErrorid);
         register("passwordCheck3", "123123123", "passwordCheck3@hotmail.com");
-        assertTrue(driver.findElement(By.id(passwordErrorid)).isDisplayed());
+        checkIfErrorTriggered(passwordErrorid);
     }
 
     @Test
     public void testIfFailOnEmailUsedByOtherAccount() {
         register("emailCheck1", "test123", "customer@hotmail.com");
-        assertTrue(driver.findElement(By.id(emailErrorId)).isDisplayed());
+        checkIfErrorTriggered(emailErrorId);
+    }
+
+    private void checkIfErrorTriggered(String errorMessageId) {
+        assertFalse(driver.findElement(By.id(errorMessageId)).getText().equals(""));
     }
 
 
