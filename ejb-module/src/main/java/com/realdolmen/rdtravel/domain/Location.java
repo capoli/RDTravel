@@ -1,9 +1,10 @@
 package com.realdolmen.rdtravel.domain;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement(name = "location")
@@ -68,12 +69,4 @@ public class Location extends AbstractEntity {
     public void setContinent(Continent continent) {
         this.continent = continent;
     }
-
-//    public List<Trip> getTrips() {
-//        return trips;
-//    }
-//
-//    public void addTrip(Trip trip) {
-//        this.trips.add(trip);
-//    }
 }

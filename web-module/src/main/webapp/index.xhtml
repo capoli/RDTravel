@@ -8,21 +8,19 @@
 
 <h:head>
     <meta charset="UTF-8"/>
-    <title>RDTravel</title>
 </h:head>
 <h:body>
-    <h1>Home</h1>
-    <ui:include src="WEB-INF/login-part.xhtml"/>
-
-    <p>Landing page.</p>
-    <h:link outcome="/pages/customer/customer.faces">Customer1</h:link><br/>
-    <h:link outcome="/pages/employee/employee.faces">Employee</h:link><br/>
-    <h:link outcome="/pages/partner/partner.faces">Partner</h:link><br/>
-    <h:form>
-        <p:commandButton value="Search trip" action="#{searchTripController.startConversation()}"/>
-    </h:form>
-    <h:form>
-        <p:commandButton action="#{loginController.logout}" value="Log out"/>
-    </h:form>
+    <ui:composition template="resources/templates/commonLayout.xhtml">
+        <ui:define name="pageTitle">RDTravel</ui:define>
+        <ui:define name="content">
+            <h1>Home</h1>
+            <h:link outcome="/pages/customer/customer.faces">Customer1</h:link><br/>
+            <h:link outcome="/pages/employee/employee.faces">Employee</h:link><br/>
+            <h:link outcome="/pages/partner/partner.faces">Partner</h:link><br/>
+            <h:form>
+                <p:commandButton value="Search trip" action="#{searchTripController.startConversation()}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>

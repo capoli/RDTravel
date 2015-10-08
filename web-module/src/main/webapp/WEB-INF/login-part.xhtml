@@ -1,21 +1,31 @@
 <ui:composition
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:form prependId="false">
-        <h:panelGrid columns="2" rendered="#{request.getUserPrincipal() == null}">
-
-            <label for="username">Username</label>
-            <h:inputText id="username" value="#{loginController.user.name}"/>
-            <label for="password">Password</label>
-            <h:inputText id="password" value="#{loginController.user.password}"/>
-        </h:panelGrid>
-        <h:commandButton id="login-button" value="Log in" action="#{loginController.login}"
-                         rendered="#{request.getUserPrincipal() == null}"/>
-        <h:outputText id="screen-name" value="#{request.getUserPrincipal().getName()}"
-                      rendered="#{request.getUserPrincipal() != null}"/>
-        <h:commandButton id="logout-button" action="#{loginController.logout}" value="Log out"
-                         rendered="#{request.getUserPrincipal() != null}"/>
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:form prependId="false" styleClass="navbar-form navbar-right">
+        <h:panelGroup layout="block" class="form-group" rendered="#{request.getUserPrincipal() == null}">
+            <h:inputText styleClass="form-control" a:placeholder="username" id="username"
+                         value="#{loginController.user.name}"/>
+            <h:inputText styleClass="form-control" a:placeholder="password" id="password"
+                         value="#{loginController.user.password}"/>
+            <h:commandButton styleClass="btn btn-default" id="login-button" value="Log in"
+                             action="#{loginController.login}"
+                             rendered="#{request.getUserPrincipal() == null}"/>
+        </h:panelGroup>
+    </h:form>
+    <h:form prependId="false" styleClass="navbar-form navbar-right" rendered="#{request.getUserPrincipal() != null}">
+        <div class="form-control">
+            <h:outputText id="screen-name" value="#{request.getUserPrincipal().getName()}"
+                          rendered="#{request.getUserPrincipal() != null}"/>
+        </div>
+        <h:commandButton styleClass="btn btn-default" id="logout-button" action="#{loginController.logout}"
+                         value="Log out"/>
+    </h:form>
+    <h:form prependId="false" styleClass="navbar-form navbar-right" rendered="#{request.getUserPrincipal() == null}">
+        <h:panelGroup>
+            <h:commandButton styleClass="btn btn-default" value="Register" action="register.faces"/>
+        </h:panelGroup>
     </h:form>
 
     <p id="error-message"><h:outputText value="Wrong username or password" rendered="#{loginController.loginFailed}"/>

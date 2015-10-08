@@ -1,7 +1,10 @@
 package com.realdolmen.rdtravel.domain;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +12,8 @@ import java.util.List;
 @XmlRootElement(name = "continent")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Continent extends AbstractEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic(optional = false)
@@ -22,7 +26,6 @@ public class Continent extends AbstractEntity {
     private String code;
 
     @OneToMany(mappedBy = "continent", cascade = CascadeType.PERSIST)
-    @XmlElementWrapper(name = "locations")
     @XmlElement(name = "location")
     private List<Location> locations = new ArrayList<>();
 

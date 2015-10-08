@@ -101,9 +101,9 @@ public class RegisterTest {
 
     private void register(String userName, String password, String email) {
         driver.get(registerPage);
-        WebElement userNameField = driver.findElement(By.id("username"));
+        WebElement userNameField = driver.findElement(By.id("register-username"));
         userNameField.sendKeys(userName);
-        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement passwordField = driver.findElement(By.id("register-password"));
         passwordField.sendKeys(password);
         WebElement emailField = driver.findElement(By.id("email"));
         emailField.sendKeys(email);

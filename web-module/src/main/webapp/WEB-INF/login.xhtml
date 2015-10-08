@@ -22,6 +22,7 @@
             </h:panelGroup>
         </p:panelGrid>
     </form>
+    <h:link outcome="/register.faces">Register</h:link><br/>
     <h:outputText value="Invalid username or password" rendered="#{request.getParameter('failed') == true}"/>
 </h:body>
 </html>
