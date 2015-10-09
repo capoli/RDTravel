@@ -7,9 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
 
 public class RegisterTest {
     private HtmlUnitDriver driver;
@@ -97,6 +96,14 @@ public class RegisterTest {
     public void testIfFailOnEmailUsedByOtherAccount() {
         register("emailCheck1", "test123", "customer@hotmail.com");
         checkIfErrorTriggered(emailErrorId);
+    }
+
+    @Test
+    public void testIfCustomerCanViewRestrictedPageAfterRegister() {
+        register("accessCheck", "test123", "accessCheck@hotmail.com");
+        LoginUtil.testLoginWithPassword("accessCheck", "test123", driver);
+        driver.get(RoleTest.customerPage);
+        assertEquals("Customer", driver.getTitle());
     }
 
     private void checkIfErrorTriggered(String errorMessageId) {
