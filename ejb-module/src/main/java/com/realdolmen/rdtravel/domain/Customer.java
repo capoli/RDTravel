@@ -30,4 +30,12 @@ public class Customer extends User {
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
