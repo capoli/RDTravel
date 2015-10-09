@@ -241,14 +241,6 @@ public class SearchTripController implements Serializable {
         this.creditCardDate = creditCardDate;
     }
 
-//    public List<String> getPaymentTypes() {
-//        return paymentTypes;
-//    }
-//
-//    public void setPaymentTypes(List<String> paymentTypes) {
-//        this.paymentTypes = paymentTypes;
-//    }
-
     public String getSelectedPaymentType() {
         return selectedPaymentType;
     }
