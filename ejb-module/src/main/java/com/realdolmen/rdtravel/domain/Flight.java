@@ -155,4 +155,6 @@ public class Flight extends AbstractEntity {
     public void setAirline(Airline airline) {
         this.airline = airline;
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.realdolmen.rdtravel.models;
+package com.realdolmen.rdtravel.viewmodels;
 
 
 import javax.validation.constraints.NotNull;
