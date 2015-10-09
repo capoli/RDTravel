@@ -18,19 +18,22 @@
                     <h:panelGrid id="searchTripGrid" columns="2" cellpadding="5">
 
                         <h:outputLabel for="destination" value="Destination:"/>
-                        <p:selectOneMenu id="destination" value="#{searchTripController.selectedDestinationId}" required="true">
+                        <p:selectOneMenu id="destination" value="#{searchTripController.selectedDestinationId}"
+                                         required="true">
                             <f:selectItems value="#{searchTripController.getAllLocations()}" var="location"
                                            itemLabel="#{location.name}" itemValue="#{location.id}"/>
                         </p:selectOneMenu>
 
-                        <h:outputLabel for="periodStartDatePicker" value="Period start:" />
-                        <p:calendar id="periodStartDatePicker" value="#{searchTripController.periodStart}" required="true"/>
+                        <h:outputLabel for="periodStartDatePicker" value="Period start:"/>
+                        <p:calendar id="periodStartDatePicker" value="#{searchTripController.periodStart}"
+                                    required="true"/>
 
-                        <h:outputLabel for="periodEndDatePicker" value="Period end:" />
+                        <h:outputLabel for="periodEndDatePicker" value="Period end:"/>
                         <p:calendar id="periodEndDatePicker" value="#{searchTripController.periodEnd}" required="true"/>
 
                         <h:outputLabel for="numberOfParticipants" value="Number of participants:  "/>
-                        <p:inputText id="numberOfParticipants" value="#{searchTripController.numberOfParticipants}" required="true"/>
+                        <p:inputText id="numberOfParticipants" value="#{searchTripController.numberOfParticipants}"
+                                     required="true"/>
 
                         <p:commandButton value="Search" action="#{searchTripController.searchForTrips()}"/>
 

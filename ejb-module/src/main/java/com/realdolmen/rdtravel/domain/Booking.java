@@ -9,8 +9,7 @@ public class Booking extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //TODO: calculatePrice
-    @Transient
+
     private Double totalPrice;
 
     private Integer numberOfParticipants;
@@ -35,6 +34,14 @@ public class Booking extends AbstractEntity {
         this.totalPrice = totalPrice;
         this.numberOfParticipants = numberOfParticipants;
         this.discount = discount;
+        this.paymentType = paymentType;
+        this.trip = trip;
+        this.customer = customer;
+    }
+
+    public Booking(Double totalPrice, Integer numberOfParticipants, PaymentType paymentType, Trip trip, Customer customer) {
+        this.totalPrice = totalPrice;
+        this.numberOfParticipants = numberOfParticipants;
         this.paymentType = paymentType;
         this.trip = trip;
         this.customer = customer;
