@@ -41,4 +41,10 @@ public class TripEJB implements RemoteTripEJB {
         return em.createQuery("select distinct t.destination from Trip t order by t.destination.name", Location.class)
                 .getResultList();
     }
+
+    @Override
+    public List<String> findLocationnamesWithTrips() {
+        return em.createQuery("select distinct lower(t.destination.name) from Trip t order by t.destination.name", String.class)
+                .getResultList();
+    }
 }

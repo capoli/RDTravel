@@ -1,16 +1,15 @@
 package com.realdolmen.rdtravel.controllers;
 
+import com.google.gson.Gson;
 import com.realdolmen.rdtravel.domain.*;
-import com.realdolmen.rdtravel.persistence.BookingEJB;
-import com.realdolmen.rdtravel.persistence.CrudEJB;
-import com.realdolmen.rdtravel.persistence.CustomerEJB;
-import com.realdolmen.rdtravel.persistence.TripEJB;
+import com.realdolmen.rdtravel.persistence.*;
 import org.primefaces.event.SelectEvent;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,6 +19,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Named
 @ConversationScoped
@@ -35,6 +35,9 @@ public class SearchTripController implements Serializable {
 
     @EJB
     BookingEJB bookingEJB;
+
+    @EJB
+    LocationEJB locationEJB;
 
     @Inject
     private Conversation conversation;
@@ -52,6 +55,15 @@ public class SearchTripController implements Serializable {
     private String creditCardDate;
 //    private List<String> paymentTypes;
     private String selectedPaymentType;
+    @ManagedProperty("#{param.locationName}")
+    private String locationName;
+
+    public void onSearchTripLoad() {
+        selectedDestination = new Location();
+        availableTrips = new ArrayList<>();
+        conversation.begin();
+        selectedDestinationId = locationEJB.getLocationIdByName(locationName);
+    }
 
     public String startConversation() {
         selectedDestination = new Location();
@@ -114,6 +126,12 @@ public class SearchTripController implements Serializable {
 
     public List<Location> getAllLocations() {
         return tripEJB.findLocationsWithTrips();
+    }
+
+    public List<String> getAllLocationsAsGson() {
+        Gson gson = new Gson();
+        List<String> collect = tripEJB.findLocationnamesWithTrips().stream().map(gson::toJson).collect(Collectors.toList());
+        return collect;
     }
 
     public List<String> getAllPaymentTypes() {
@@ -247,5 +265,13 @@ public class SearchTripController implements Serializable {
 
     public void setSelectedPaymentType(String selectedPaymentType) {
         this.selectedPaymentType = selectedPaymentType;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

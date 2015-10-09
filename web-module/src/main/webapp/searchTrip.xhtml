@@ -13,6 +13,10 @@
     <ui:composition template="resources/templates/commonLayout.xhtml">
         <ui:define name="pageTitle">Search trip</ui:define>
         <ui:define name="content">
+            <f:metadata>
+                <f:viewParam name="locationName" value="#{searchTripController.locationName}"/>
+                <f:event type="preRenderView" listener="#{searchTripController.onSearchTripLoad()}"/>
+            </f:metadata>
             <h:form id="searchTrip">
                 <p:panel header="Search trip">
                     <h:panelGrid id="searchTripGrid" columns="2" cellpadding="5">
