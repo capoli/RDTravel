@@ -15,64 +15,71 @@
 <h:body>
     <ui:composition template="commonLayout.xhtml">
         <ui:define name="content">
-            <ui:insert name="meta-data"/>
-            <h:form id="flight-form" prependId="false">
-                <p:panelGrid id="panel" border="1" columns="3">
-                    <p:outputLabel for="departure-location" value="Departure:  "/>
-                    <p:selectOneMenu styleClass="departure-location-selection" id="departure-location"
-                                     required="true"
-                                     value="#{controller.flightModel.arrivalLocationId}">
-                        <f:selectItems
-                                value="#{createFlightController.getAllLocations()}"
-                                var="location"
-                                itemLabel="#{location.name}" itemValue="#{location.id}"/>
-                    </p:selectOneMenu>
-                    <p:message for="departure-location"/>
+            <ui:fragment rendered="#{not controller.hasError}">
+                <ui:insert name="meta-data"/>
+                <h:form id="flight-form" prependId="false">
+                    <p:panelGrid id="panel" border="1" columns="3">
+                        <p:outputLabel for="departure-location" value="Departure:  "/>
+                        <p:selectOneMenu styleClass="departure-location-selection" id="departure-location"
+                                         value="#{controller.flightModel.arrivalLocationId}"
+                                         disabled="#{controller.isReadOnly}">
+                            <f:selectItems
+                                    value="#{createFlightController.getAllLocations()}"
+                                    var="location"
+                                    itemLabel="#{location.name}" itemValue="#{location.id}"/>
+                        </p:selectOneMenu>
+                        <p:message for="departure-location"/>
 
-                    <p:outputLabel for="arrival-location" value="Arrival:  "/>
-                    <p:selectOneMenu styleClass="arrival-location-selection" id="arrival-location" required="true"
-                                     value="#{controller.flightModel.departureLocationId}">
-                        <f:selectItems value="#{createFlightController.getAllLocations()}"
-                                       var="location"
-                                       itemLabel="#{location.name}" itemValue="#{location.id}"/>
-                    </p:selectOneMenu>
-                    <p:message for="arrival-location"/>
+                        <p:outputLabel for="arrival-location" value="Arrival:  "/>
+                        <p:selectOneMenu styleClass="arrival-location-selection" id="arrival-location"
+                                         value="#{controller.flightModel.departureLocationId}"
+                                         disabled="#{controller.isReadOnly}">
+                            <f:selectItems value="#{createFlightController.getAllLocations()}"
+                                           var="location"
+                                           itemLabel="#{location.name}" itemValue="#{location.id}"/>
+                        </p:selectOneMenu>
+                        <p:message for="arrival-location"/>
 
-                    <p:outputLabel for="departure-date-time" value="Departure Time: "/>
-                    <p:calendar id="departure-date-time" value="#{controller.flightModel.departureDateTime}"
-                                pattern="MM/dd/yyyy HH:mm:ss">
-                        <f:validator binding="#{notEmptyValidator}"/>
-                    </p:calendar>
-                    <p:message for="departure-date-time" id="departure-date-time-error"/>
+                        <p:outputLabel for="departure-date-time" value="Departure Time: "/>
+                        <p:calendar id="departure-date-time" value="#{controller.flightModel.departureDateTime}"
+                                    pattern="MM/dd/yyyy HH:mm:ss" disabled="#{controller.isReadOnly}">
+                            <f:validator binding="#{notEmptyValidator}"/>
+                        </p:calendar>
+                        <p:message for="departure-date-time" id="departure-date-time-error"/>
 
-                    <p:outputLabel for="arrival-date-time" value="Arrival Time: "/>
-                    <p:calendar id="arrival-date-time" value="#{controller.flightModel.arrivalDateTime}"
-                                pattern="MM/dd/yyyy HH:mm:ss">
-                        <f:validator binding="#{notEmptyValidator}"/>
-                    </p:calendar>
-                    <p:message for="arrival-date-time" id="arrival-date-time-error"/>
+                        <p:outputLabel for="arrival-date-time" value="Arrival Time: "/>
+                        <p:calendar id="arrival-date-time" value="#{controller.flightModel.arrivalDateTime}"
+                                    pattern="MM/dd/yyyy HH:mm:ss" disabled="#{controller.isReadOnly}">
+                            <f:validator binding="#{notEmptyValidator}"/>
+                        </p:calendar>
+                        <p:message for="arrival-date-time" id="arrival-date-time-error"/>
 
-                    <p:outputLabel for="flight-price" value="Price: "/>
-                    <p:inputText id="flight-price"
-                                 value="#{controller.flightModel.flightPrice}"
-                                 converterMessage="The number must be decimal eg: 000.00">
-                        <f:convertNumber pattern="#,###,##0.00"/>
-                        <f:validateLongRange minimum="0"/>
-                        <f:validator binding="#{notEmptyValidator}"/>
-                    </p:inputText>
-                    <p:message for="flight-price" id="flight-price-error"/>
+                        <p:outputLabel for="flight-price" value="Price: "/>
+                        <p:inputText id="flight-price"
+                                     value="#{controller.flightModel.flightPrice}"
+                                     converterMessage="The number must be decimal eg: 000.00"
+                                     disabled="#{controller.isReadOnly}">
+                            <f:convertNumber pattern="#,###,##0.00"/>
+                            <f:validateLongRange minimum="0"/>
+                            <f:validator binding="#{notEmptyValidator}"/>
+                        </p:inputText>
+                        <p:message for="flight-price" id="flight-price-error"/>
 
-                    <p:outputLabel for="flight-available-seats" value="Available seats: "/>
-                    <p:inputText type="number" min="0" id="flight-available-seats"
-                                 value="#{controller.flightModel.availableSeats}">
-                        <f:validator binding="#{positiveIntegerValidator}"/>
-                    </p:inputText>
-                    <p:message for="flight-available-seats" id="flight-available-seats-error"/>
-                </p:panelGrid>
-                <ui:insert name="action-panel">
-                </ui:insert>
-            </h:form>
+                        <p:outputLabel for="flight-available-seats" value="Available seats: "/>
+                        <p:inputText type="number" min="0" id="flight-available-seats"
+                                     value="#{controller.flightModel.availableSeats}"
+                                     disabled="#{controller.isReadOnly}">
+                            <f:validator binding="#{positiveIntegerValidator}"/>
+                        </p:inputText>
+                        <p:message for="flight-available-seats" id="flight-available-seats-error"/>
+                        <ui:insert name="additional-fields"/>
+                    </p:panelGrid>
+                    <ui:insert name="action-panel">
+                    </ui:insert>
+                </h:form>
+            </ui:fragment>
         </ui:define>
+
     </ui:composition>
 </h:body>
 </html>

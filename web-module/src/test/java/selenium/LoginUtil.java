@@ -7,11 +7,13 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class LoginUtil {
 
+    private static final String defaultPassword = "test";
+
     public static void testLogin(String userName, WebDriver driver) {
-        testLoginWithPassword(userName, "test", driver);
+        loginOnTitleBar(userName, "test", driver);
     }
 
-    public static void testLoginWithPassword(String userName, String password, WebDriver driver) {
+    public static void loginOnTitleBar(String userName, String password, WebDriver driver) {
         WebElement searchField = driver.findElement(By.id("username"));
         searchField.sendKeys(userName);
         searchField = driver.findElement(By.id("password"));
@@ -19,12 +21,20 @@ public class LoginUtil {
         searchField.submit();
     }
 
-    public static void partnerLogin(HtmlUnitDriver driver) {
-        WebElement username = driver.findElement(By.id("j_username"));
-        username.sendKeys("partner");
-        WebElement password = driver.findElement(By.id("j_password"));
-        password.sendKeys("test");
+    public static void loginOnAuthTrigger(String userName, String password, WebDriver driver) {
+        WebElement userNameField = driver.findElement(By.id("j_username"));
+        userNameField.sendKeys(userName);
+        WebElement passwordField = driver.findElement(By.id("j_password"));
+        passwordField.sendKeys(password);
         WebElement form = driver.findElement(By.id("login"));
         form.submit();
+    }
+
+    public static void partnerLogin(HtmlUnitDriver driver) {
+        loginOnAuthTrigger("partner", defaultPassword, driver);
+    }
+
+    public static void employeeLogin(WebDriver driver) {
+        loginOnAuthTrigger("employee", defaultPassword, driver);
     }
 }

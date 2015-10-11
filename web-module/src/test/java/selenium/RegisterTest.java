@@ -101,7 +101,7 @@ public class RegisterTest {
     @Test
     public void testIfCustomerCanViewRestrictedPageAfterRegister() {
         register("accessCheck", "test123", "accessCheck@hotmail.com");
-        LoginUtil.testLoginWithPassword("accessCheck", "test123", driver);
+        LoginUtil.loginOnTitleBar("accessCheck", "test123", driver);
         driver.get(RoleTest.customerPage);
         assertEquals("Customer", driver.getTitle());
     }
