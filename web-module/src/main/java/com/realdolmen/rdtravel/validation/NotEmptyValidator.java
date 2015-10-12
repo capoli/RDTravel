@@ -20,7 +20,7 @@ public class NotEmptyValidator implements Validator {
         }
     }
 
-    private String getLabel(UIComponent component) {
+    protected String getLabel(UIComponent component) {
         String label = "This field";
         Object labelAttribute = component.getAttributes().get("label");
         if (labelAttribute != null) {

@@ -1,8 +1,8 @@
 package com.realdolmen.rdtravel.controllers;
 
 import com.realdolmen.rdtravel.domain.Customer;
-import com.realdolmen.rdtravel.models.RegisterModel;
 import com.realdolmen.rdtravel.persistence.CustomerEJB;
+import com.realdolmen.rdtravel.viewmodels.RegisterModel;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -33,6 +33,6 @@ public class RegisterController {
     public String register() {
         Customer customer = new Customer(registerModel.getUserName(), registerModel.getPassword(), registerModel.getEmail());
         customerEJB.createCustomer(customer);
-        return "index.faces";
+        return "/index.faces?faces.redirect=true";
     }
 }

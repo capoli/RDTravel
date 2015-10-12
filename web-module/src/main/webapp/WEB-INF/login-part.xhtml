@@ -7,8 +7,8 @@
         <h:panelGroup layout="block" class="form-group" rendered="#{request.getUserPrincipal() == null}">
             <h:inputText styleClass="form-control" a:placeholder="username" id="username"
                          value="#{loginController.user.name}"/>
-            <h:inputText styleClass="form-control" a:placeholder="password" id="password"
-                         value="#{loginController.user.password}"/>
+            <h:inputSecret styleClass="form-control" a:placeholder="password" id="password"
+                           value="#{loginController.user.password}"/>
             <h:commandButton styleClass="btn btn-default" id="login-button" value="Log in"
                              action="#{loginController.login}"
                              rendered="#{request.getUserPrincipal() == null}"/>

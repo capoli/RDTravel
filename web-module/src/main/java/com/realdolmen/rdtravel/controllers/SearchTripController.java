@@ -58,27 +58,28 @@ public class SearchTripController implements Serializable {
     @ManagedProperty("#{param.locationName}")
     private String locationName;
 
+    public void startConversation() {
+        conversation.begin();
+    }
+
     public void onSearchTripLoad() {
         selectedDestination = new Location();
         availableTrips = new ArrayList<>();
-        conversation.begin();
         selectedDestinationId = locationEJB.getLocationIdByName(locationName);
     }
 
-    public String startConversation() {
+    public String searchTrip() {
         selectedDestination = new Location();
         availableTrips = new ArrayList<>();
-        conversation.begin();
+        startConversation();
         return "searchTrip.xhtml?faces-redirect=true";
     }
 
     public String confirmConversation() {
         Customer customerByName = customerEJB.findCustomerByName(getRequest().getUserPrincipal().getName().toLowerCase());
-//        PaymentType currPaymentType = Enum.valueOf(PaymentType.class, selectedPaymentType);
         PaymentType currPaymentType = PaymentType.valueOf(selectedPaymentType);
-        Booking newBook = new Booking(totalPrice, numberOfParticipants,
-                currPaymentType, selectedTrip, customerByName);
-        Booking tempBook = (Booking) crudEJB.create(newBook);
+        Booking booking = (Booking) crudEJB.create(new Booking(totalPrice, numberOfParticipants,
+                currPaymentType, selectedTrip, customerByName));
         conversation.end();
         return "/pages/customer/thankyou.xhtml?faces-redirect=true";
     }
@@ -113,8 +114,6 @@ public class SearchTripController implements Serializable {
     }
 
     public void onRedirectToPayment() {
-//        paymentTypes = bookingEJB.getPaymentTypes();
-//        selectedPaymentType = paymentTypes.get(0);
         long diffDates = selectedTrip.getPeriod().getPeriodEnd().getTime() - selectedTrip.getPeriod().getPeriodStart().getTime();
         double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
         totalPrice = days * selectedTrip.getPricePerDay();
@@ -145,7 +144,7 @@ public class SearchTripController implements Serializable {
     public void onTripChange() {
         if (selectedTripId == null) {
             selectedTripId = -1l;
-        } else if (selectedTripId.equals(-1l)) {
+        } else if (selectedTripId.equals(-1L)) {
             selectedTrip = null;
         } else {
             for (Trip current : availableTrips) {

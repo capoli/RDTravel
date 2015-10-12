@@ -43,7 +43,7 @@ public class LoginController implements Serializable {
         } finally {
             user.setPassword(null);
         }
-        return "index.faces";
+        return "/index.faces";
     }
 
     private ExternalContext getContext() {

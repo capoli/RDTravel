@@ -5,6 +5,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import com.realdolmen.rdtravel.domain.Location;
+import java.util.List;
 
 @Stateless
 @LocalBean
@@ -19,5 +21,9 @@ public class LocationEJB implements RemoteLocationEJB {
         } catch (NoResultException e) {
             return null;
         }
+    }
+	@Override
+    public List<Location> findAllLocations() {
+        return em.createQuery("select l from Location l", Location.class).getResultList();
     }
 }

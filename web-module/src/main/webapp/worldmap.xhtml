@@ -14,13 +14,11 @@
         <ui:define name="pageTitle">Select a destination</ui:define>
         <ui:define name="content">
             <ui:include src="resources/images/worldmap.svg"/>
-            <script type="application/javascript" src="resources/js/jquery-1.11.3.js"></script>
             <h:outputScript>
                 window.addEventListener("load", init, false);
                 var locations;
                 function init() {
                 locations = #{searchTripController.getAllLocationsAsGson()};
-                console.log(locations);
                 addListeners();
                 }
 
@@ -28,19 +26,17 @@
                 locations.forEach(function (value) {
                     if(document.getElementById(value) !== null) {
                         document.getElementById(value).addEventListener("click", redirectForCountry, false);
-                        document.getElementById(value).setAttribute('style', 'background-color:plum')
+                        document.getElementById(value).classList.add('available-country');
                     }
                 });
                 }
 
                 function redirectForCountry(event) {
-                console.log(event.target);
-                console.log(event.target.getAttribute('id'));
                 var arr = window.location.href.split('/');
+                #{searchTripController.startConversation()}
                 var sub = window.location.href.substring(0, window.location.href.length - arr[arr.length - 1].length);
-                window.location.href = sub + 'searchTrip.faces?cid=' +
-                    #{searchTripController.conversation.id} + '\&locationName='+event.target.getAttribute('id');
-                //window.location.href = ;
+                window.location.href = sub + 'searchTrip.faces?cid=' + #{searchTripController.conversation.id}
+                    + '&amp;locationName='+event.target.getAttribute('id');
                 }
             </h:outputScript>
         </ui:define>

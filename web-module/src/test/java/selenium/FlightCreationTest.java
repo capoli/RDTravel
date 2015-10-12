@@ -16,6 +16,13 @@ public class FlightCreationTest {
     private static final String arrivalDateErrorId = "arrival-date-time-error";
     private static final String priceErrorId = "flight-price-error";
     private static final String seatsErrorId = "flight-available-seats-error";
+    static final String departureLocationId = "departure-location";
+    static final String arrivalLocationId = "arrival-location";
+    static final String departureDateId = "departure-date-time";
+    static final String arrivalDateId = "arrival-date-time";
+    static final String flightPriceId = "flight-price";
+    static final String flightAvailableSeatsId = "flight-available-seats";
+    static final String flightFormId = "flight-form";
 
     @Before
     public void openBrowser() {
@@ -31,54 +38,54 @@ public class FlightCreationTest {
 
     @Test
     public void testIfCreationFormExists() {
-        assertTrue(driver.findElement(By.id("flight-creation-form")).isDisplayed());
+        assertTrue(driver.findElement(By.id(flightFormId)).isDisplayed());
     }
 
     @Test
     public void testIfDepartureLocationDropdownExists() {
-        assertTrue(driver.findElement(By.id("departure-location")).isDisplayed());
+        assertTrue(driver.findElement(By.id(departureLocationId)).isDisplayed());
     }
 
     @Test
     public void testIfDepartureLocationDropdownIsPopulated() {
-        WebElement element = driver.findElement(By.id("departure-location"));
+        WebElement element = driver.findElement(By.id(departureLocationId));
         checkIfMoreThan10Options(element);
     }
 
     @Test
     public void testIfArrivalLocationDropdownExists() {
-        assertTrue(driver.findElement(By.id("arrival-location")).isDisplayed());
+        assertTrue(driver.findElement(By.id(arrivalLocationId)).isDisplayed());
     }
 
     @Test
     public void testIfArrivalLocationDropdownIsPopulated() {
-        WebElement element = driver.findElement(By.id("arrival-location"));
+        WebElement element = driver.findElement(By.id(arrivalLocationId));
         checkIfMoreThan10Options(element);
     }
 
     @Test
     public void testIfDepartureTimePickerPresent() {
-        assertTrue(driver.findElement(By.id("departure-date-time")).isDisplayed());
+        assertTrue(driver.findElement(By.id(departureDateId)).isDisplayed());
     }
 
     @Test
     public void testIfArrivalTimePickerPresent() {
-        assertTrue(driver.findElement(By.id("arrival-date-time")).isDisplayed());
+        assertTrue(driver.findElement(By.id(arrivalDateId)).isDisplayed());
     }
 
     @Test
     public void testIfPriceFieldExists() {
-        assertTrue(driver.findElement(By.id("flight-price")).isDisplayed());
+        assertTrue(driver.findElement(By.id(flightPriceId)).isDisplayed());
     }
 
     @Test
     public void testIFAvailableSeatsFieldPresent() {
-        assertTrue(driver.findElement(By.id("flight-available-seats")).isDisplayed());
+        assertTrue(driver.findElement(By.id(flightAvailableSeatsId)).isDisplayed());
     }
 
     @Test
     public void testIfCreateButtonExists() {
-        assertTrue(driver.findElement(By.id("create-flight-button")).isDisplayed());
+        assertTrue(driver.findElement(By.id("action-flight-button")).isDisplayed());
     }
 
     @Test
@@ -123,21 +130,15 @@ public class FlightCreationTest {
     }
 
     private void fillForm(String price, String seats) {
-        WebElement flightPrice = driver.findElement(By.id("flight-price"));
+        WebElement flightPrice = driver.findElement(By.id(flightPriceId));
         flightPrice.sendKeys(price);
-        WebElement flightAvailableSeats = driver.findElement(By.id("flight-available-seats"));
+        WebElement flightAvailableSeats = driver.findElement(By.id(flightAvailableSeatsId));
         flightAvailableSeats.sendKeys(seats);
-        WebElement form = driver.findElement(By.id("flight-creation-form"));
+        WebElement form = driver.findElement(By.id(flightFormId));
         form.submit();
     }
 
     private void login() {
-        assertEquals("Login", driver.getTitle());
-        WebElement username = driver.findElement(By.id("j_username"));
-        username.sendKeys("partner");
-        WebElement password = driver.findElement(By.id("j_password"));
-        password.sendKeys("test");
-        WebElement form = driver.findElement(By.id("login"));
-        form.submit();
+        LoginUtil.partnerLogin(driver);
     }
 }
