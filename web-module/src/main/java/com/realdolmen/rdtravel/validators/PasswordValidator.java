@@ -1,19 +1,19 @@
-package com.realdolmen.rdtravel.validation;
+package com.realdolmen.rdtravel.validators;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import java.util.regex.Pattern;
 
 @Named
 @RequestScoped
-public class PasswordValidator implements Validator {
+public class PasswordValidator extends NotEmptyValidator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+        super.validate(context, component, value);
         String password = value.toString();
         checkLength(password.length());
         checkLettersAndNumbers(password);

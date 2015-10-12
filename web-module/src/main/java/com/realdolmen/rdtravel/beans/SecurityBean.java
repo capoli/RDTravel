@@ -1,4 +1,4 @@
-package com.realdolmen.rdtravel.controllers;
+package com.realdolmen.rdtravel.beans;
 
 
 import com.realdolmen.rdtravel.domain.Customer;
@@ -16,7 +16,7 @@ import java.security.Principal;
 
 @Named
 @RequestScoped
-public class UserProducer {
+public class SecurityBean {
     @Inject
     private Principal principal;
 

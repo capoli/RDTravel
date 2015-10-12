@@ -1,4 +1,4 @@
-package com.realdolmen.rdtravel.validation;
+package com.realdolmen.rdtravel.validators;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;

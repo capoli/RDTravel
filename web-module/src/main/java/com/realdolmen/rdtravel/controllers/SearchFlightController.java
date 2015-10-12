@@ -1,5 +1,6 @@
 package com.realdolmen.rdtravel.controllers;
 
+import com.realdolmen.rdtravel.beans.SecurityBean;
 import com.realdolmen.rdtravel.domain.Flight;
 import com.realdolmen.rdtravel.domain.Partner;
 import com.realdolmen.rdtravel.domain.Role;
@@ -18,7 +19,7 @@ public class SearchFlightController {
     private FlightEJB flightEJB;
 
     @Inject
-    private UserProducer userProducer;
+    private SecurityBean securityBean;
     private List<Flight> flights;
     private List<Flight> filteredFlights;
 
@@ -28,7 +29,7 @@ public class SearchFlightController {
         if (isEmployee())
             this.flights = flightEJB.findFlights();
         if (isPartner()) {
-            Partner partner = userProducer.getPartner();
+            Partner partner = securityBean.getPartner();
             this.flights = flightEJB.findFlightsByAirline(partner.getAirline().getId());
         }
     }
@@ -48,11 +49,11 @@ public class SearchFlightController {
     }
 
     public boolean isPartner() {
-        return userProducer.getRole().equals(Role.PARTNER);
+        return securityBean.getRole().equals(Role.PARTNER);
     }
 
     public boolean isEmployee() {
-        return userProducer.getRole().equals(Role.EMPLOYEE);
+        return securityBean.getRole().equals(Role.EMPLOYEE);
     }
 
     public List<Flight> getFlights() {

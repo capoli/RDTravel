@@ -1,6 +1,7 @@
 package com.realdolmen.rdtravel.controllers;
 
 import com.realdolmen.rdtravel.beans.FlightIdBean;
+import com.realdolmen.rdtravel.beans.SecurityBean;
 import com.realdolmen.rdtravel.domain.Flight;
 import com.realdolmen.rdtravel.domain.Partner;
 import com.realdolmen.rdtravel.domain.Role;
@@ -23,40 +24,61 @@ public class UpdateFlightController extends BaseFlightController {
     protected FlightIdBean flightIdBean;
 
     @Inject
-    protected UserProducer userProducer;
+    protected SecurityBean securityBean;
 
     public void onLoad() {
+        if (tryHandleNewFlightParam()) {
+            if (tryContinueWithFlightIdBean()) {
+                if (tryRetrieveFlightToUpdate()) {
+                    if (partnerIsFromSameAirline()) {
+                        populateFlightModel();
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean tryHandleNewFlightParam() {
         if (flightIdParam != null) {
             try {
                 flightIdBean.setFlightId(Long.parseLong(flightIdParam));
             } catch (NumberFormatException e) {
                 handleFlightError("flightId: " + flightIdParam + " could not be parsed correctly");
-                return;
+                return false;
             }
         }
+        return true;
+    }
+
+    public boolean tryContinueWithFlightIdBean() {
         if (flightIdBean.getFlightId() != null) {
-            flightToUpdate = attemptFlightRetrieval(flightIdBean.getFlightId());
-            if (flightToUpdate != null) {
-                if (partnerIsFromSameAirline()) {
-                    populateFlightModel();
-                } else {
-                    handleFlightError("You are not allowed to alter this flight");
-                }
-            } else {
-                handleFlightError("No Flight with Id: " + flightIdParam + " could be found");
-            }
+            return true;
         } else {
             handleFlightError("Parameter \"flightId\" is missing");
+            return false;
         }
     }
 
+    public boolean tryRetrieveFlightToUpdate() {
+        flightToUpdate = attemptFlightRetrieval(flightIdBean.getFlightId());
+        if (flightToUpdate != null) {
+            return true;
+
+        } else {
+            handleFlightError("No Flight with Id: " + flightIdParam + " could be found");
+            return false;
+        }
+    }
+
+
     public boolean partnerIsFromSameAirline() {
-        if (userProducer.getRole().equals(Role.PARTNER)) {
-            Partner partner = userProducer.getPartner();
+        if (securityBean.getRole().equals(Role.PARTNER)) {
+            Partner partner = securityBean.getPartner();
             if (partner != null) {
                 if (flightToUpdate.getAirline() != null && partner.getAirline() != null)
                     return partner.getAirline().getId().equals(flightToUpdate.getAirline().getId());
             }
+            handleFlightError("You are not allowed to alter this flight");
             return false;
         }
         return true;
@@ -108,11 +130,4 @@ public class UpdateFlightController extends BaseFlightController {
         return flightIdParam;
     }
 
-    public Flight getFlightToUpdate() {
-        return flightToUpdate;
-    }
-
-    public void setFlightToUpdate(Flight flightToUpdate) {
-        this.flightToUpdate = flightToUpdate;
-    }
 }
