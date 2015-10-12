@@ -53,10 +53,11 @@ public class SearchTripController implements Serializable {
     private Double totalPrice;
     private String creditCardNumber;
     private String creditCardDate;
-//    private List<String> paymentTypes;
+    //    private List<String> paymentTypes;
     private String selectedPaymentType;
     @ManagedProperty("#{param.locationName}")
     private String locationName;
+    private Boolean isCreditCard = true;
 
     public void startConversation() {
         conversation.begin();
@@ -111,11 +112,13 @@ public class SearchTripController implements Serializable {
             totalPrice += flight.getPrice() * (1.0 - flight.getDiscount());
         }
         totalPrice = (new BigDecimal(totalPrice)).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        selectedPaymentType = "CREDITCARD";
+        isCreditCard = true;
         return "/pages/customer/payment.xhtml?faces-redirect=true";
     }
 
     public void onPaymentTypeChange() {
-        //TODO: implent
+        isCreditCard = selectedPaymentType.equalsIgnoreCase("CREDITCARD");
     }
 
     public void onRedirectToPayment() {
@@ -277,5 +280,13 @@ public class SearchTripController implements Serializable {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+    }
+
+    public Boolean getIsCreditCard() {
+        return isCreditCard;
+    }
+
+    public void setIsCreditCard(Boolean isCreditCard) {
+        this.isCreditCard = isCreditCard;
     }
 }
