@@ -1,3 +1,4 @@
+
 ### Maven template
 target/
 pom.xml.tag
@@ -72,3 +73,6 @@ hs_err_pid*
 
 ###When XmlPersistenceToolTest fails to clean up
 testTripsCreation.xml
+
+###For smaller data.xml for faster testing
+/ejb-module/src/test/resources/data-min.xml

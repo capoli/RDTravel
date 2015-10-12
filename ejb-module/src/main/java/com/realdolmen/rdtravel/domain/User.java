@@ -11,11 +11,13 @@ public class User extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
+    @Basic(optional = false)
     private String name;
 
     /**
      * ALWAYS use the setter to alter the password.
      */
+    @Basic(optional = false)
     private String password;
 
     public User() {
@@ -49,7 +51,9 @@ public class User extends AbstractEntity {
     }
 
     public void setHashedPassword(String password) {
-        this.password = PasswordUtil.getPasswordHash(password);
+        if (password != null) {
+            this.password = PasswordUtil.getPasswordHash(password);
+        }
     }
 
 

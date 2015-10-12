@@ -8,7 +8,7 @@ public class UserRole extends AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Basic(optional = false)
     private String userName;
 
     @Enumerated(EnumType.STRING)

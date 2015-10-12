@@ -1,9 +1,6 @@
 package com.realdolmen.rdtravel.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +10,7 @@ public class Customer extends User {
     private List<Booking> bookings = new ArrayList<>();
 
     @Basic(optional = false)
+    @Column(unique = true)
     private String email;
 
     public Customer() {
