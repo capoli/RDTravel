@@ -1,16 +1,15 @@
 package com.realdolmen.rdtravel.controllers;
 
+import com.google.gson.Gson;
 import com.realdolmen.rdtravel.domain.*;
-import com.realdolmen.rdtravel.persistence.BookingEJB;
-import com.realdolmen.rdtravel.persistence.CrudEJB;
-import com.realdolmen.rdtravel.persistence.CustomerEJB;
-import com.realdolmen.rdtravel.persistence.TripEJB;
+import com.realdolmen.rdtravel.persistence.*;
 import org.primefaces.event.SelectEvent;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,6 +19,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Named
 @ConversationScoped
@@ -35,6 +35,9 @@ public class SearchTripController implements Serializable {
 
     @EJB
     BookingEJB bookingEJB;
+
+    @EJB
+    LocationEJB locationEJB;
 
     @Inject
     private Conversation conversation;
@@ -52,28 +55,43 @@ public class SearchTripController implements Serializable {
     private String creditCardDate;
 //    private List<String> paymentTypes;
     private String selectedPaymentType;
+    @ManagedProperty("#{param.locationName}")
+    private String locationName;
 
-    public String startConversation() {
+    public void startConversation() {
+        conversation.begin();
+    }
+
+    public void onSearchTripLoad() {
         selectedDestination = new Location();
         availableTrips = new ArrayList<>();
-        conversation.begin();
+        selectedDestinationId = locationEJB.getLocationIdByName(locationName);
+    }
+
+    public String searchTrip() {
+        selectedDestination = new Location();
+        availableTrips = new ArrayList<>();
+        startConversation();
         return "searchTrip.xhtml?faces-redirect=true";
     }
 
     public String confirmConversation() {
         Customer customerByName = customerEJB.findCustomerByName(getRequest().getUserPrincipal().getName().toLowerCase());
-//        PaymentType currPaymentType = Enum.valueOf(PaymentType.class, selectedPaymentType);
         PaymentType currPaymentType = PaymentType.valueOf(selectedPaymentType);
-        Booking newBook = new Booking(totalPrice, numberOfParticipants,
-                currPaymentType, selectedTrip, customerByName);
-        Booking tempBook = (Booking) crudEJB.create(newBook);
+        Trip trip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
+        Booking booking = (Booking) crudEJB.create(new Booking(totalPrice, numberOfParticipants,
+                currPaymentType, trip, customerByName));
+        for (Flight flight : selectedTrip.getFlights()) {
+            flight.setAvailableSeats(flight.getAvailableSeats() - numberOfParticipants);
+            crudEJB.update(flight);
+        }
         conversation.end();
         return "/pages/customer/thankyou.xhtml?faces-redirect=true";
     }
 
     public String searchForTrips() {
         selectedDestination = (Location) crudEJB.findById(Location.class, selectedDestinationId);
-        availableTrips = tripEJB.findTripsForCriteria(selectedDestinationId, periodStart, periodEnd);
+        availableTrips = tripEJB.findTripsForCriteria(selectedDestinationId, periodStart, periodEnd, numberOfParticipants);
         return "availableTrips.xhtml?faces-redirect=true";
     }
 
@@ -90,7 +108,7 @@ public class SearchTripController implements Serializable {
         double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
         totalPrice = days * selectedTrip.getPricePerDay();
         for (Flight flight : selectedTrip.getFlights()) {
-            totalPrice += flight.getPrice();
+            totalPrice += flight.getPrice() * (1.0 - flight.getDiscount());
         }
         totalPrice = (new BigDecimal(totalPrice)).setScale(2, RoundingMode.HALF_UP).doubleValue();
         return "/pages/customer/payment.xhtml?faces-redirect=true";
@@ -101,8 +119,6 @@ public class SearchTripController implements Serializable {
     }
 
     public void onRedirectToPayment() {
-//        paymentTypes = bookingEJB.getPaymentTypes();
-//        selectedPaymentType = paymentTypes.get(0);
         long diffDates = selectedTrip.getPeriod().getPeriodEnd().getTime() - selectedTrip.getPeriod().getPeriodStart().getTime();
         double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
         totalPrice = days * selectedTrip.getPricePerDay();
@@ -116,6 +132,12 @@ public class SearchTripController implements Serializable {
         return tripEJB.findLocationsWithTrips();
     }
 
+    public List<String> getAllLocationsAsGson() {
+        Gson gson = new Gson();
+        List<String> collect = tripEJB.findLocationnamesWithTrips().stream().map(gson::toJson).collect(Collectors.toList());
+        return collect;
+    }
+
     public List<String> getAllPaymentTypes() {
         return bookingEJB.getPaymentTypesAsString();
     }
@@ -127,7 +149,7 @@ public class SearchTripController implements Serializable {
     public void onTripChange() {
         if (selectedTripId == null) {
             selectedTripId = -1l;
-        } else if (selectedTripId.equals(-1l)) {
+        } else if (selectedTripId.equals(-1L)) {
             selectedTrip = null;
         } else {
             for (Trip current : availableTrips) {
@@ -247,5 +269,13 @@ public class SearchTripController implements Serializable {
 
     public void setSelectedPaymentType(String selectedPaymentType) {
         this.selectedPaymentType = selectedPaymentType;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

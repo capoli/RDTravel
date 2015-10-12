@@ -53,15 +53,15 @@ public class XmlPersistenceToolTest {
 
     private Trip newTrip() {
         Trip trip = new Trip(499.99, hawai(), new Period(new Date(), new Date()));
-        trip.addFlight(new Flight(new Date(), new Date(), 200, 99.99, london(), hawai()));
-        trip.addFlight(new Flight(new Date(), new Date(), 200, 99.99, hawai(), london()));
+        trip.addFlight(new Flight(new Date(), new Date(), 200, 99.99, london(), hawai(), 0.05, 120));
+        trip.addFlight(new Flight(new Date(), new Date(), 200, 99.99, hawai(), london(), 0.05, 120));
         return trip;
     }
 
     private Trip otherTrip() {
         Trip trip = new Trip(399.99, tokyo(), new Period(new Date(), new Date()));
-        trip.addFlight(new Flight(new Date(), new Date(), 100, 79.99, sydney(), tokyo()));
-        trip.addFlight(new Flight(new Date(), new Date(), 100, 79.99, tokyo(), sydney()));
+        trip.addFlight(new Flight(new Date(), new Date(), 100, 79.99, sydney(), tokyo(), 0.05, 120));
+        trip.addFlight(new Flight(new Date(), new Date(), 100, 79.99, tokyo(), sydney(), 0.05, 120));
         return trip;
     }
 
