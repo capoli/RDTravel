@@ -13,4 +13,6 @@ public interface RemoteTripEJB {
     List<Trip> findTripsForCriteria(Long destinationId, Date periodStart, Date periodEnd, Integer numberOfParticipants);
     List<Location> findLocationsWithTrips();
     List<String> findLocationnamesWithTrips();
+
+    Trip findTripEagerLoaded(Long id);
 }

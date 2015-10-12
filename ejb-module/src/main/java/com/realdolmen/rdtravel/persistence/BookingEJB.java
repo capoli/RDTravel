@@ -1,5 +1,6 @@
 package com.realdolmen.rdtravel.persistence;
 
+import com.realdolmen.rdtravel.domain.Booking;
 import com.realdolmen.rdtravel.domain.PaymentType;
 import com.realdolmen.rdtravel.domain.Report;
 
@@ -57,4 +58,17 @@ public class BookingEJB implements RemoteBookingEJB {
 
         return new Report(avg, min, max);
     }
+
+    @Override
+    public List<Booking> getBookingsForPeriod(Date periodStart, Date periodEnd) {
+        Timestamp start = new Timestamp(periodStart.getTime());
+        Timestamp end = new Timestamp(periodEnd.getTime());
+        String jpqlQuery = "SELECT distinct b FROM Booking b WHERE b.trip.period.periodStart between :pStart and :pEnd " +
+                "AND b.trip.period.periodEnd between :pStart and :pEnd";
+        Query hql = em.createQuery(jpqlQuery, Booking.class)
+                .setParameter("pStart", start)
+                .setParameter("pEnd", end);
+        return hql.getResultList();
+    }
 }
+

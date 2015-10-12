@@ -18,4 +18,6 @@ public interface RemoteBookingEJB {
     PaymentType[] getPaymentTypes();
 
     Report getReportForPeriod(Date periodStart, Date periodEnd);
+
+    List<Booking> getBookingsForPeriod(Date periodStart, Date periodEnd);
 }

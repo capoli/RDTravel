@@ -62,4 +62,9 @@ public class TripEJB implements RemoteTripEJB {
         return em.createQuery("select distinct lower(t.destination.name) from Trip t order by t.destination.name", String.class)
                 .getResultList();
     }
+
+    @Override
+    public Trip findTripEagerLoaded(Long id) {
+        return (Trip) em.createQuery("SELECT distinct t FROM Trip t join fetch t.flights WHERE t.id = :id").setParameter("id", id).getResultList().get(0);
+    }
 }

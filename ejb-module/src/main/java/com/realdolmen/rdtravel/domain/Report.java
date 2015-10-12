@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Created by OCPAX79 on 12/10/2015.
- */
 public class Report implements Serializable {
     private Double average;
     private Double min;
