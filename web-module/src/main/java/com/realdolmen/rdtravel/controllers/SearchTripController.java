@@ -78,8 +78,9 @@ public class SearchTripController implements Serializable {
     public String confirmConversation() {
         Customer customerByName = customerEJB.findCustomerByName(getRequest().getUserPrincipal().getName().toLowerCase());
         PaymentType currPaymentType = PaymentType.valueOf(selectedPaymentType);
+        Trip trip = (Trip) crudEJB.findById(Trip.class, selectedTripId);
         Booking booking = (Booking) crudEJB.create(new Booking(totalPrice, numberOfParticipants,
-                currPaymentType, selectedTrip, customerByName));
+                currPaymentType, trip, customerByName));
         for (Flight flight : selectedTrip.getFlights()) {
             flight.setAvailableSeats(flight.getAvailableSeats() - numberOfParticipants);
             crudEJB.update(flight);
