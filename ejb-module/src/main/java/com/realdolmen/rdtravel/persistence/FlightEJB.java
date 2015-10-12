@@ -44,4 +44,8 @@ public class FlightEJB implements RemoteFlightEJB {
         return em.merge(flight);
     }
 
+    @Override
+    public List<Flight> findFlightsByAirline(long airLineId) {
+        return em.createQuery("select f from Flight f where f.airline.id = :id", Flight.class).setParameter("id", airLineId).getResultList();
+    }
 }

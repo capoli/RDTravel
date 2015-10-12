@@ -16,4 +16,6 @@ public interface RemoteFlightEJB  {
     void deleteFlight(Flight flight);
 
     Flight updateFlight(Flight flight);
+
+    List<Flight> findFlightsByAirline(long airLineId);
 }

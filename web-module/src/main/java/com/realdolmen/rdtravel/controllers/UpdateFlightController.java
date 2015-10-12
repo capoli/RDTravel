@@ -2,6 +2,8 @@ package com.realdolmen.rdtravel.controllers;
 
 import com.realdolmen.rdtravel.beans.FlightIdBean;
 import com.realdolmen.rdtravel.domain.Flight;
+import com.realdolmen.rdtravel.domain.Partner;
+import com.realdolmen.rdtravel.domain.Role;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
@@ -20,6 +22,9 @@ public class UpdateFlightController extends BaseFlightController {
     @Inject
     protected FlightIdBean flightIdBean;
 
+    @Inject
+    protected UserProducer userProducer;
+
     public void onLoad() {
         if (flightIdParam != null) {
             try {
@@ -32,18 +37,38 @@ public class UpdateFlightController extends BaseFlightController {
         if (flightIdBean.getFlightId() != null) {
             flightToUpdate = attemptFlightRetrieval(flightIdBean.getFlightId());
             if (flightToUpdate != null) {
-                flightModel.setArrivalDateTime(flightToUpdate.getArrivalTime());
-                flightModel.setDepartureDateTime(flightToUpdate.getDepartureTime());
-                flightModel.setArrivalLocationId(flightToUpdate.getArrivalLocation().getId());
-                flightModel.setDepartureLocationId(flightToUpdate.getDepartureLocation().getId());
-                flightModel.setFlightPrice(flightToUpdate.getPrice());
-                flightModel.setAvailableSeats(flightToUpdate.getNumberOfSeats());
+                if (partnerIsFromSameAirline()) {
+                    populateFlightModel();
+                } else {
+                    handleFlightError("You are not allowed to alter this flight");
+                }
             } else {
                 handleFlightError("No Flight with Id: " + flightIdParam + " could be found");
             }
         } else {
             handleFlightError("Parameter \"flightId\" is missing");
         }
+    }
+
+    public boolean partnerIsFromSameAirline() {
+        if (userProducer.getRole().equals(Role.PARTNER)) {
+            Partner partner = userProducer.getPartner();
+            if (partner != null) {
+                if (flightToUpdate.getAirline() != null && partner.getAirline() != null)
+                    return partner.getAirline().getId().equals(flightToUpdate.getAirline().getId());
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public void populateFlightModel() {
+        flightModel.setArrivalDateTime(flightToUpdate.getArrivalTime());
+        flightModel.setDepartureDateTime(flightToUpdate.getDepartureTime());
+        flightModel.setArrivalLocationId(flightToUpdate.getArrivalLocation().getId());
+        flightModel.setDepartureLocationId(flightToUpdate.getDepartureLocation().getId());
+        flightModel.setFlightPrice(flightToUpdate.getPrice());
+        flightModel.setAvailableSeats(flightToUpdate.getNumberOfSeats());
     }
 
     public String updateFlight() {
@@ -61,6 +86,19 @@ public class UpdateFlightController extends BaseFlightController {
         return updateFlight();
     }
 
+    private Flight attemptFlightRetrieval(Long id) {
+        try {
+            return flightEJB.findFlightById(id);
+        } catch (PersistenceException e) {
+            handleFlightError("Could not retrieve flight from database");
+        }
+        return null;
+    }
+
+    private void handleFlightError(String message) {
+        setHasError(true);
+        showErrorMessage(message);
+    }
 
     public void setFlightIdParam(String flightIdParam) {
         this.flightIdParam = flightIdParam;
@@ -76,19 +114,5 @@ public class UpdateFlightController extends BaseFlightController {
 
     public void setFlightToUpdate(Flight flightToUpdate) {
         this.flightToUpdate = flightToUpdate;
-    }
-
-    private Flight attemptFlightRetrieval(Long id) {
-        try {
-            return flightEJB.findFlightById(id);
-        } catch (PersistenceException e) {
-            handleFlightError("Could not retrieve flight from database");
-        }
-        return null;
-    }
-
-    private void handleFlightError(String message) {
-        setHasError(true);
-        showErrorMessage(message);
     }
 }

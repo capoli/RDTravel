@@ -10,7 +10,9 @@ import com.realdolmen.rdtravel.persistence.LocationEJB;
 import com.realdolmen.rdtravel.persistence.PartnerEJB;
 import com.realdolmen.rdtravel.viewmodels.FlightModel;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -52,6 +54,10 @@ public class BaseFlightController extends ExceptionHandlingController {
         flight.setPrice(flightModel.getFlightPrice());
     }
 
+    protected HttpServletRequest getRequest() {
+        return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    }
+
     public List<Location> getAllLocations() {
         return locationEJB.findAllLocations();
     }
@@ -79,4 +85,5 @@ public class BaseFlightController extends ExceptionHandlingController {
     public void setHasError(Boolean hasError) {
         this.hasError = hasError;
     }
+
 }
