@@ -21,7 +21,7 @@
                     <p:selectOneMenu id="trips" value="#{searchTripController.selectedTripId}">
                         <f:validator binding="#{tripValidator}"/>
                         <p:ajax process="trips" listener="#{searchTripController.onTripChange()}" update="flights" partialSubmit="true"/>
-                        <f:selectItem itemLabel="Select a period" itemValue="-1" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Select a period" itemValue="-1"/>
                         <f:selectItems value="#{searchTripController.availableTrips}" var="trip"
                                        itemLabel="#{trip.period.periodStart.toGMTString()} to #{trip.period.periodEnd.toGMTString()}"
                                        itemValue="#{trip.id}"/>

@@ -52,10 +52,28 @@
 
                         <p:outputLabel for="paymentTypes" value="Payment type:"/>
                         <p:selectOneMenu id="paymentTypes" value="#{searchTripController.selectedPaymentType}">
+                            <p:ajax listener="#{searchTripController.onPaymentTypeChange()}" process="paymentTypes"
+                                    update="creditcardoption" partialSubmit="true"/>
                             <f:selectItems value="#{searchTripController.getAllPaymentTypes()}" var="type"
                                            itemLabel="#{type}"
                                            itemValue="#{type}"/>
                         </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid id="creditcardoption" style="display: block" columns="3" cellpadding="5">
+                        <ui:fragment rendered="#{searchTripController.isCreditCard eq true}">
+                            <h:outputLabel for="creditcardnumber" value="Creditcard number:"/>
+                            <p:inputMask id="creditcardnumber" value="#{searchTripController.creditCardNumber}"
+                                         mask="9999-9999-9999-9999" required="true">
+                                <f:validator binding="#{creditCardNumberValidator}"/>
+                            </p:inputMask>
+                            <p:message for="creditcardnumber" id="creditcardnumber-error"/>
+                            <h:outputLabel for="creditcarddate" value="Creditcard date:"/>
+                            <p:inputMask id="creditcarddate" value="#{searchTripController.creditCardDate}"
+                                         mask="99/99" required="true">
+                                <f:validator binding="#{creditCardDateValidator}"/>
+                            </p:inputMask>
+                            <p:message for="creditcarddate" id="creditcarddate-error"/>
+                        </ui:fragment>
                     </h:panelGrid>
                 </p:panel>
                 <p:separator/>
