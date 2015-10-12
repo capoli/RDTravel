@@ -14,6 +14,7 @@ import java.util.List;
 @XmlRootElement(name = "flight")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Flight extends AbstractEntity {
+    private static final double MARGIN = 0.05;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +36,9 @@ public class Flight extends AbstractEntity {
 
     @XmlElement(name = "price")
     private Double price;
+
+    @XmlElement(name = "end-user-price")
+    private Double customerPrice;
 
     @ManyToOne
     @JoinColumn(name = "flight_departure_location_fk")
@@ -72,12 +76,12 @@ public class Flight extends AbstractEntity {
         this.price = price;
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
+        this.setDefaultCustomerPrice();
         //TODO: calculate duration
         // this.duration
         this.discount = discount;
         this.availableSeats = availableSeats;
     }
-
 
 
     public Long getId() {
@@ -164,8 +168,24 @@ public class Flight extends AbstractEntity {
         this.airline = airline;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Double getDiscount() {
         return discount;
+    }
+
+    public Double getCustomerPrice() {
+        return customerPrice;
+    }
+
+    public void setCustomerPrice(Double customerPrice) {
+        this.customerPrice = customerPrice;
+    }
+
+    public void setDefaultCustomerPrice() {
+        this.customerPrice = price + (price * MARGIN);
     }
 
     public void setDiscount(Double discount) {

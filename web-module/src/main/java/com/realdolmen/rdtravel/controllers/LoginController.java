@@ -30,7 +30,7 @@ public class LoginController implements Serializable {
         context.invalidateSession();
         HttpServletRequest origRequest = (HttpServletRequest) context.getRequest();
         origRequest.logout();
-        return "/index.faces";
+        return "/index.faces?faces-redirect=true";
     }
 
     public String login() throws IOException {
@@ -43,7 +43,7 @@ public class LoginController implements Serializable {
         } finally {
             user.setPassword(null);
         }
-        return "/index.faces";
+        return "/index.faces?faces-redirect=true";
     }
 
     private ExternalContext getContext() {

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Stateless
 @LocalBean
-public class FlightEJB implements RemoteFlightEJB{
+public class FlightEJB implements RemoteFlightEJB {
 
     @PersistenceContext
     private EntityManager em;
@@ -27,6 +27,9 @@ public class FlightEJB implements RemoteFlightEJB{
 
     @Override
     public Flight createFlight(Flight flight) {
+        if (flight.getCustomerPrice() == null) {
+            flight.setDefaultCustomerPrice();
+        }
         em.persist(flight);
         return flight;
     }
@@ -41,4 +44,8 @@ public class FlightEJB implements RemoteFlightEJB{
         return em.merge(flight);
     }
 
+    @Override
+    public List<Flight> findFlightsByAirline(long airLineId) {
+        return em.createQuery("select f from Flight f where f.airline.id = :id", Flight.class).setParameter("id", airLineId).getResultList();
+    }
 }

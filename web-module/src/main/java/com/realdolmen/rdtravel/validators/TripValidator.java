@@ -1,4 +1,4 @@
-package com.realdolmen.rdtravel.validation;
+package com.realdolmen.rdtravel.validators;
 
 import com.realdolmen.rdtravel.domain.Trip;
 import com.realdolmen.rdtravel.persistence.CrudEJB;
@@ -10,7 +10,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named

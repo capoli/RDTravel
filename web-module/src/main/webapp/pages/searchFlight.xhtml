@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        >
+<ui:composition template="/resources/templates/commonLayout.xhtml">
+    <ui:define name="pageTitle">Search flight</ui:define>
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable value="#{searchFlightController.flights}" var="flight"
+                         widgetVar="flightTable" filteredValue="#{searchFlightController.filteredFlights}">
+                <f:facet name="header">
+                    <p:outputPanel>
+                        <h:outputText value="Search all fields:"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('flightTable').filter()" style="width:150px"
+                                     placeholder="Enter keyword"/>
+                    </p:outputPanel>
+                </f:facet>
+                <p:column filterBy="#{flight.id}" filterMatchMode="contains">
+                    <f:facet name="header">Id</f:facet>
+                    #{flight.id}
+                </p:column>
+                <p:column filterBy="#{flight.departureLocation.name}" filterMatchMode="contains">
+                    <f:facet name="header">From</f:facet>
+                    #{flight.departureLocation.name}
+                </p:column>
+                <p:column filterBy="#{flight.arrivalLocation.name}" filterMatchMode="contains">
+                    <f:facet name="header">To</f:facet>
+                    #{flight.arrivalLocation.name}
+                </p:column>
+                <p:column filterBy="#{flight.airline.name}" filterMatchMode="contains">
+                    <f:facet name="header">Airline</f:facet>
+                    #{flight.airline.name}
+                </p:column>
+                <p:column filterBy="#{flight.departureTime}" filterMatchMode="contains">
+                    <f:facet name="header">Departure Time</f:facet>
+                    #{flight.departureTime}
+                </p:column>
+                <p:column filterBy="#{flight.arrivalTime}" filterMatchMode="contains">
+                    <f:facet name="header">Arrival Time</f:facet>
+                    #{flight.arrivalTime}
+                </p:column>
+                <p:column>
+                    <p:link value="edit" outcome="#{searchFlightController.getBaseNavigationRoute()}">
+                        <f:param name="flightId" value="#{flight.id}"/>
+                    </p:link>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

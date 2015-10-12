@@ -22,9 +22,8 @@
         </div>
 
         <div id="content">
-            <ui:insert name="content">
-                <ui:include src="/resources/templates/commonContent.xhtml"/>
-            </ui:insert>
+            <ui:insert name="content"/>
+            <h:messages id="application-messages" style="color: red; list-style-type: none"/>
         </div>
 
         <div id="footer">
@@ -32,7 +31,6 @@
                 <ui:include src="/resources/templates/commonFooter.xhtml"/>
             </ui:insert>
         </div>
-
     </div>
 
 </h:body>
