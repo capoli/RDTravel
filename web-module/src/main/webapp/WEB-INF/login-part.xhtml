@@ -9,7 +9,7 @@
                          value="#{loginController.user.name}"/>
             <h:inputSecret styleClass="form-control" a:placeholder="password" id="password"
                            value="#{loginController.user.password}"/>
-            <h:commandButton styleClass="btn btn-default" id="login-button" value="Log in"
+            <h:commandButton styleClass="btn btn-default" id="login-button" value="#{msg.login}"
                              action="#{loginController.login}"
                              rendered="#{request.getUserPrincipal() == null}"/>
         </h:panelGroup>
@@ -24,7 +24,7 @@
     </h:form>
     <h:form prependId="false" styleClass="navbar-form navbar-right" rendered="#{request.getUserPrincipal() == null}">
         <h:panelGroup>
-            <h:commandButton styleClass="btn btn-default" value="Register" action="register.faces"/>
+            <h:commandButton styleClass="btn btn-default" value="#{msg.register}" action="register.faces"/>
         </h:panelGroup>
     </h:form>
 

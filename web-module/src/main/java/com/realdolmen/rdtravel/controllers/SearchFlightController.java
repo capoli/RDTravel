@@ -2,16 +2,13 @@ package com.realdolmen.rdtravel.controllers;
 
 import com.realdolmen.rdtravel.domain.Flight;
 import com.realdolmen.rdtravel.domain.Partner;
+import com.realdolmen.rdtravel.domain.Role;
 import com.realdolmen.rdtravel.persistence.FlightEJB;
-import com.realdolmen.rdtravel.persistence.PartnerEJB;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.List;
 
 @Named
@@ -21,10 +18,7 @@ public class SearchFlightController {
     private FlightEJB flightEJB;
 
     @Inject
-    private PartnerEJB partnerEJB;
-
-    @Inject
-    private Principal principal;
+    private UserProducer userProducer;
     private List<Flight> flights;
     private List<Flight> filteredFlights;
 
@@ -34,7 +28,7 @@ public class SearchFlightController {
         if (isEmployee())
             this.flights = flightEJB.findFlights();
         if (isPartner()) {
-            Partner partner = partnerEJB.findPartnerByName(principal.getName());
+            Partner partner = userProducer.getPartner();
             this.flights = flightEJB.findFlightsByAirline(partner.getAirline().getId());
         }
     }
@@ -53,16 +47,12 @@ public class SearchFlightController {
         return determineRoute();
     }
 
-    public HttpServletRequest getRequest() {
-        return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    }
-
     public boolean isPartner() {
-        return getRequest().isUserInRole("PARTNER");
+        return userProducer.getRole().equals(Role.PARTNER);
     }
 
     public boolean isEmployee() {
-        return getRequest().isUserInRole("EMPLOYEE");
+        return userProducer.getRole().equals(Role.EMPLOYEE);
     }
 
     public List<Flight> getFlights() {
