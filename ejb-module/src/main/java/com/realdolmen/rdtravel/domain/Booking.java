@@ -14,8 +14,6 @@ public class Booking extends AbstractEntity {
 
     private Integer numberOfParticipants;
 
-    private Double discount;
-
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
@@ -28,15 +26,6 @@ public class Booking extends AbstractEntity {
     private Customer customer;
 
     public Booking() {
-    }
-
-    public Booking(Double totalPrice, Integer numberOfParticipants, Double discount, PaymentType paymentType, Trip trip, Customer customer) {
-        this.totalPrice = totalPrice;
-        this.numberOfParticipants = numberOfParticipants;
-        this.discount = discount;
-        this.paymentType = paymentType;
-        this.trip = trip;
-        this.customer = customer;
     }
 
     public Booking(Double totalPrice, Integer numberOfParticipants, PaymentType paymentType, Trip trip, Customer customer) {
@@ -65,14 +54,6 @@ public class Booking extends AbstractEntity {
 
     public void setNumberOfParticipants(Integer numberOfParticipants) {
         this.numberOfParticipants = numberOfParticipants;
-    }
-
-    public Double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Double discount) {
-        this.discount = discount;
     }
 
     public Trip getTrip() {

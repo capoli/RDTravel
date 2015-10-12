@@ -16,7 +16,7 @@ public class BookingPersistenceTest extends DataSetPersistenceTest {
     public void bookingCanBePersisted() throws Exception {
         Trip trip = entityManager().find(Trip.class, 1001l);
         Customer customer = entityManager().find(Customer.class, 1000l);
-        Booking booking = new Booking(1500.00, 3, 0.10, PaymentType.CREDITCARD, trip, customer);
+        Booking booking = new Booking(1500.00, 3, PaymentType.CREDITCARD, trip, customer);
         trip.addBooking(booking);
         entityManager().persist(customer);
         entityManager().persist(trip);

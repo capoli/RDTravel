@@ -57,11 +57,15 @@ public class Flight extends AbstractEntity {
     @JoinColumn(name = "airline_fk")
     private Airline airline;
 
+    private Double discount;
+
+    private Integer availableSeats;
+
     public Flight() {
     }
 
     public Flight(Date departureTime, Date arrivalTime, Integer numberOfSeats, Double price,
-                  Location departureLocation, Location arrivalLocation) {
+                  Location departureLocation, Location arrivalLocation, Double discount, Integer availableSeats) {
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.numberOfSeats = numberOfSeats;
@@ -70,7 +74,11 @@ public class Flight extends AbstractEntity {
         this.arrivalLocation = arrivalLocation;
         //TODO: calculate duration
         // this.duration
+        this.discount = discount;
+        this.availableSeats = availableSeats;
     }
+
+
 
     public Long getId() {
         return id;
@@ -156,5 +164,19 @@ public class Flight extends AbstractEntity {
         this.airline = airline;
     }
 
+    public Double getDiscount() {
+        return discount;
+    }
 
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Integer getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(Integer availableSeats) {
+        this.availableSeats = availableSeats;
+    }
 }

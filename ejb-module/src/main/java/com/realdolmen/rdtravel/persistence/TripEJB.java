@@ -23,7 +23,7 @@ public class TripEJB implements RemoteTripEJB {
 
     //TODO: available seats ook in rekening brengen
     @Override
-    public List<Trip> findTripsForCriteria(Long destinationId, Date periodStart, Date periodEnd) {
+    public List<Trip> findTripsForCriteria(Long destinationId, Date periodStart, Date periodEnd, Integer numberOfParticipants) {
         Timestamp start = new Timestamp(periodStart.getTime());
         Timestamp end = new Timestamp(periodEnd.getTime());
         String jpqlQuery = "SELECT distinct t FROM Trip t join fetch t.flights WHERE t.destination.id = :destId " +

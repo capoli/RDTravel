@@ -80,13 +80,17 @@ public class SearchTripController implements Serializable {
         PaymentType currPaymentType = PaymentType.valueOf(selectedPaymentType);
         Booking booking = (Booking) crudEJB.create(new Booking(totalPrice, numberOfParticipants,
                 currPaymentType, selectedTrip, customerByName));
+        for (Flight flight : selectedTrip.getFlights()) {
+            flight.setAvailableSeats(flight.getAvailableSeats() - numberOfParticipants);
+            crudEJB.update(flight);
+        }
         conversation.end();
         return "/pages/customer/thankyou.xhtml?faces-redirect=true";
     }
 
     public String searchForTrips() {
         selectedDestination = (Location) crudEJB.findById(Location.class, selectedDestinationId);
-        availableTrips = tripEJB.findTripsForCriteria(selectedDestinationId, periodStart, periodEnd);
+        availableTrips = tripEJB.findTripsForCriteria(selectedDestinationId, periodStart, periodEnd, numberOfParticipants);
         return "availableTrips.xhtml?faces-redirect=true";
     }
 
@@ -103,7 +107,7 @@ public class SearchTripController implements Serializable {
         double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
         totalPrice = days * selectedTrip.getPricePerDay();
         for (Flight flight : selectedTrip.getFlights()) {
-            totalPrice += flight.getPrice();
+            totalPrice += flight.getPrice() * (1.0 - flight.getDiscount());
         }
         totalPrice = (new BigDecimal(totalPrice)).setScale(2, RoundingMode.HALF_UP).doubleValue();
         return "/pages/customer/payment.xhtml?faces-redirect=true";
