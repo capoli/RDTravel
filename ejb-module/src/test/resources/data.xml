@@ -10,10 +10,10 @@
     <airline name="Thomas Cook" id="1000"/>
     <partner id="1002" airline_fk="1000"/>
 
-    <userrole id="1000" userName="customer" role="customer"/>
-    <userrole id="1001" userName="employee" role="employee"/>
-    <userrole id="1002" userName="partner" role="partner"/>
-    <userrole id="1003" userName="customer1" role="customer"/>
+    <userrole id="1000" userName="customer" role="CUSTOMER"/>
+    <userrole id="1001" userName="employee" role="EMPLOYEE"/>
+    <userrole id="1002" userName="partner" role="PARTNER"/>
+    <userrole id="1003" userName="customer1" role="CUSTOMER"/>
 
 
     <continent id="1006" name="North America" code="NAC"/>

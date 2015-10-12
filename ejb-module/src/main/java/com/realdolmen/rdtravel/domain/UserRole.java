@@ -14,6 +14,14 @@ public class UserRole extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public UserRole() {
+    }
+
+    public UserRole(String userName, Role role) {
+        this.userName = userName;
+        this.role = role;
+    }
+
     public Long getId() {
         return id;
     }

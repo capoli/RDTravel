@@ -28,7 +28,7 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>customer</role-name>
+            <role-name>CUSTOMER</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -42,7 +42,7 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>employee</role-name>
+            <role-name>EMPLOYEE</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -56,19 +56,19 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>partner</role-name>
+            <role-name>PARTNER</role-name>
         </auth-constraint>
     </security-constraint>
 
     <security-role>
-        <role-name>customer</role-name>
+        <role-name>CUSTOMER</role-name>
     </security-role>
     <security-role>
-        <role-name>employee</role-name>
+        <role-name>EMPLOYEE</role-name>
     </security-role>
 
     <security-role>
-        <role-name>partner</role-name>
+        <role-name>PARTNER</role-name>
     </security-role>
 
     <login-config>
