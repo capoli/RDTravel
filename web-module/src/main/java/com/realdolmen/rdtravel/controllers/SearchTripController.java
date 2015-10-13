@@ -109,7 +109,13 @@ public class SearchTripController implements Serializable {
         double days = Math.floor(diffDates / (1000.0 * 60 * 60 * 24));
         totalPrice = days * selectedTrip.getPricePerDay();
         for (Flight flight : selectedTrip.getFlights()) {
-            totalPrice += flight.getPrice() * (1.0 - flight.getDiscount());
+            if(flight.getNumberOfSeats() - flight.getSeatsThreshold() > flight.getAvailableSeats()) {
+                totalPrice += flight.getPrice() * (1.0 - flight.getAirline().getDiscount());
+            }
+            else {
+                totalPrice += flight.getPrice();
+            }
+
         }
         totalPrice = (new BigDecimal(totalPrice)).setScale(2, RoundingMode.HALF_UP).doubleValue();
         selectedPaymentType = "CREDITCARD";
