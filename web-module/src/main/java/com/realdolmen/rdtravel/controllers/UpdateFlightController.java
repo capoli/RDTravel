@@ -91,6 +91,7 @@ public class UpdateFlightController extends BaseFlightController {
         flightModel.setDepartureLocationId(flightToUpdate.getDepartureLocation().getId());
         flightModel.setFlightPrice(flightToUpdate.getPrice());
         flightModel.setAvailableSeats(flightToUpdate.getNumberOfSeats());
+        //TODO: flightModel.setSeatsThreshold(flightToUpdate.getSeatsThreshhold());
     }
 
     public String updateFlight() {

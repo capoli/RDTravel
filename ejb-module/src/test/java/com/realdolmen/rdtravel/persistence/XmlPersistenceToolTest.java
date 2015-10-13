@@ -1,7 +1,9 @@
 package com.realdolmen.rdtravel.persistence;
 
 
-import com.realdolmen.rdtravel.domain.*;
+import com.realdolmen.rdtravel.domain.Flight;
+import com.realdolmen.rdtravel.domain.Period;
+import com.realdolmen.rdtravel.domain.Trip;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,6 +18,7 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
+import static com.realdolmen.rdtravel.utils.TestDataUtil.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -65,21 +68,6 @@ public class XmlPersistenceToolTest {
         return trip;
     }
 
-    private Location hawai() {
-        return new Location("Hawai", "HAW", new Continent("America", "AM"));
-    }
-
-    private Location london() {
-        return new Location("London", "LON", new Continent("Europe", "EUR"));
-    }
-
-    private Location tokyo() {
-        return new Location("Tokyo", "TOK", new Continent("Asia", "AS"));
-    }
-
-    private Location sydney() {
-        return new Location("Sydney", "SYD", new Continent("Oceania", "OC"));
-    }
 
     private void createTripsFile() throws IOException, JAXBException {
         deleteTestFile();

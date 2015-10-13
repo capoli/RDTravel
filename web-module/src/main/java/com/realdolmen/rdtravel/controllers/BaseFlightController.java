@@ -52,6 +52,7 @@ public class BaseFlightController extends ExceptionHandlingController {
         flight.setArrivalTime(flightModel.getArrivalDateTime());
         flight.setNumberOfSeats(flightModel.getAvailableSeats());
         flight.setPrice(flightModel.getFlightPrice());
+        //TODO: flight.setSeatsThreshhold(flightModel.getSeatsThreshold());
     }
 
     protected HttpServletRequest getRequest() {

@@ -1,8 +1,8 @@
 <dataset>
-    <user id="1000" name="customer" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
-    <user id="1001" name="employee" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
-    <user id="1002" name="partner" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
-    <user id="1003" name="customer1" password="n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg="/>
+    <user id="1000" name="customer" password="7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4="/>
+    <user id="1001" name="employee" password="7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4="/>
+    <user id="1002" name="partner" password="7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4="/>
+    <user id="1003" name="customer1" password="7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4="/>
 
     <customer id="1000" email="customer@hotmail.com"/>
     <customer id="1003" email="customer1@hotmail.com"/>

@@ -2,6 +2,7 @@ package selenium;
 
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -119,6 +120,18 @@ public class FlightCreationTest {
     public void testIfErrorMessageOnNegativeSeats() {
         fillForm("199.88", "-200");
         checkIfErrorTriggered(seatsErrorId);
+    }
+
+    @Test
+    @Ignore
+    public void testIfSeatThresholdExists() {
+        //TODO: find seatsthresholdfield is displayed
+    }
+
+    @Test
+    @Ignore
+    public void testIfSeatsthresholdFilled() {
+        //TODO: check value of seatsThresholdField
     }
 
     private void checkIfErrorTriggered(String errorMessageId) {

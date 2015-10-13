@@ -10,6 +10,7 @@ public class FlightModel {
     private Date departureDateTime;
     private Double flightPrice;
     private Integer availableSeats;
+    private Double seatsThreshold;
 
     public Long getArrivalLocationId() {
         return arrivalLocationId;

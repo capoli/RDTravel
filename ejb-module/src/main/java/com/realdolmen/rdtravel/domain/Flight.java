@@ -40,12 +40,12 @@ public class Flight extends AbstractEntity {
     @XmlElement(name = "end-user-price")
     private Double customerPrice;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "flight_departure_location_fk")
     @XmlElement(name = "departure-location")
     private Location departureLocation;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "flight_arrival_location_fk")
     @XmlElement(name = "arrival-location")
     private Location arrivalLocation;

@@ -65,4 +65,11 @@ public class CustomerEJBTest extends RemoteIntegrationTest {
         customer = repo.findCustomerById(customerId);
         assertEquals(newName, customer.getName());
     }
+
+    @Test
+    public void customerCanBeCreated() {
+        Customer customer = new Customer("repoCustomer", "test123", "repoCustomer@hotmail.com");
+        repo.createCustomer(customer);
+        assertNotNull(customer.getId());
+    }
 }

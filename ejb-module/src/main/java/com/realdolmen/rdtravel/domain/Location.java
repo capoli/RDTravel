@@ -23,7 +23,7 @@ public class Location extends AbstractEntity {
     @XmlElement(name = "code")
     private String code;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "continent_fk")
     @XmlElement(name = "continent")
     private Continent continent;

@@ -49,6 +49,22 @@ public class SecurityBean {
         return null;
     }
 
+    public boolean isCustomer() {
+        return getRequest().isUserInRole(Role.CUSTOMER.getValue());
+    }
+
+    public boolean isPartner() {
+        return getRequest().isUserInRole(Role.PARTNER.getValue());
+    }
+
+    public boolean isEmployee() {
+        return getRequest().isUserInRole(Role.EMPLOYEE.getValue());
+    }
+
+    public boolean isGuest() {
+        return principal.getName().equals("anonymous");
+    }
+
     public Principal getPrincipal() {
         return principal;
     }
