@@ -59,9 +59,7 @@
                                      value="#{controller.flightModel.flightPrice}"
                                      converterMessage="The number must be decimal eg: 000.00"
                                      disabled="#{controller.isReadOnly}">
-                            <f:convertNumber pattern="#,###,##0.00"/>
-                            <f:validateLongRange minimum="0"/>
-                            <f:validator binding="#{notEmptyValidator}"/>
+                            <f:validator binding="#{positiveDoubleValidator}"/>
                         </p:inputText>
                         <p:message for="flight-price" id="flight-price-error"/>
 
