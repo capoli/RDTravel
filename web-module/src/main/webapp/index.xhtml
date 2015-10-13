@@ -13,21 +13,22 @@
     <ui:composition template="resources/templates/commonLayout.xhtml">
         <ui:define name="pageTitle">RDTravel</ui:define>
         <ui:define name="content">
-            <ui:fragment rendered="#{securityBean.isGuest() || securityBean.isCustomer()}">
-                <h:form>
-                    <p:commandButton value="Search trip" action="#{searchTripController.searchTrip()}"/>
-                </h:form> <br/>
-                <h:link outcome="worldmap.faces">
-                    <h:graphicImage library="images" name="worldMap.png"/></h:link>
-            </ui:fragment>
-            <ui:fragment rendered="#{securityBean.isEmployee()}">
-                <h:link outcome="/pages/employee/bookingReport.faces">Booking report</h:link> <br/>
-                <h:link outcome="/pages/searchFlight.faces">Look up flights</h:link>
-            </ui:fragment>
-            <ui:fragment rendered="#{securityBean.isPartner()}">
-                <h:link outcome="/pages/searchFlight.faces">Look up flights</h:link> <br/>
-                <h:link outcome="/pages/partner/createFlight.faces">Create new flight</h:link>
-            </ui:fragment>
+                <ui:fragment rendered="#{securityBean.isGuest() || securityBean.isCustomer()}">
+                    <h:form>
+                        <p:commandButton value="Search trip" action="#{searchTripController.searchTrip()}"/>
+                    </h:form>
+                    <h:form>
+                        <p:commandButton value="Search dest" action="worldmap.xhtml?faces-redirect=true"/>
+                    </h:form>
+                </ui:fragment>
+                <ui:fragment rendered="#{securityBean.isEmployee()}">
+                    <h:link outcome="/pages/employee/bookingReport.faces">Booking report</h:link> <br/>
+                    <h:link outcome="/pages/searchFlight.faces">Look up flights</h:link>
+                </ui:fragment>
+                <ui:fragment rendered="#{securityBean.isPartner()}">
+                    <h:link outcome="/pages/searchFlight.faces">Look up flights</h:link> <br/>
+                    <h:link outcome="/pages/partner/createFlight.faces">Create new flight</h:link>
+                </ui:fragment>
         </ui:define>
     </ui:composition>
 </h:body>

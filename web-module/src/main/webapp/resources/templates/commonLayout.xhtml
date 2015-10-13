@@ -4,34 +4,37 @@
         >
 
 <h:head>
-    <h:outputStylesheet name="main.css" library="stylesheets"/>
-    <h:outputStylesheet name="bootstrap.css" library="stylesheets"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <h:outputStylesheet name="bootstrap.css" library="css"/>
+    <h:outputStylesheet name="main.css" library="css"/>
+
     <title>
         <ui:insert name="pageTitle"/>
     </title>
 </h:head>
 
 <h:body>
+    <div id="header">
+        <ui:insert name="header">
+            <ui:include src="/resources/templates/commonHeader.xhtml"/>
+        </ui:insert>
+    </div>
 
-    <div id="page">
+    <div id="content" style="margin-bottom: 5%">
+        <ui:insert name="content"/>
+        <h:messages id="application-messages" style="color: red; list-style-type: none"/>
+    </div>
 
-        <div id="header">
-            <ui:insert name="header">
-                <ui:include src="/resources/templates/commonHeader.xhtml"/>
-            </ui:insert>
-        </div>
 
-        <div id="content">
-            <ui:insert name="content"/>
-            <h:messages id="application-messages" style="color: red; list-style-type: none"/>
-        </div>
-
-        <div id="footer">
+    <footer class="footer" style="position: fixed; top: 95%">
+        <div id="footer" class="container">
             <ui:insert name="footer">
                 <ui:include src="/resources/templates/commonFooter.xhtml"/>
             </ui:insert>
         </div>
-    </div>
+    </footer>
 
 </h:body>
 </html>

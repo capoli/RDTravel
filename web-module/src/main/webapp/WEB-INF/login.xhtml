@@ -12,21 +12,24 @@
     <ui:composition template="/resources/templates/commonLayout.xhtml">
         <ui:define name="pageTitle">Login</ui:define>
         <ui:define name="content">
-            <h1>Login</h1>
+            <div style="width: 75%; margin: auto">
+                <h1>Login</h1>
 
-            <form method="POST" action="j_security_check" id="login">
-                <p:panelGrid id="panel" columns="2" border="1" cellpadding="4" cellspacing="4">
-                    <p:outputLabel for="j_username" value="Username:"/>
-                    <p:inputText type="text" name="j_username" id="j_username"/>
-                    <p:outputLabel for="j_password" value="Password:"/>
-                    <p:inputText type="password" name="j_password" id="j_password"/>
-                    <h:panelGroup>
-                        <input type="submit" value="Login"/>
-                    </h:panelGroup>
-                </p:panelGrid>
-            </form>
-            <h:link outcome="/register.faces">Register</h:link><br/>
-            <h:outputText value="Invalid username or password" rendered="#{request.getParameter('failed') == true}"/>
+                <form method="POST" action="j_security_check" id="login">
+                    <div class="form-group">
+                        <h:outputLabel for="j_username" value="Username:"/>
+                        <h:inputText class="form-control" type="text" name="j_username" id="j_username"/>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="j_password" value="Password:"/>
+                        <h:inputText class="form-control" type="password" name="j_password" id="j_password"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Login</button>
+                </form>
+                <h:link outcome="/register.faces">Register</h:link><br/>
+                <h:outputText value="Invalid username or password"
+                              rendered="#{request.getParameter('failed') == true}"/>
+            </div>
         </ui:define>
     </ui:composition>
 </h:body>
