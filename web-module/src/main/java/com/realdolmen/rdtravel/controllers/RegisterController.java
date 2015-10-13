@@ -40,6 +40,6 @@ public class RegisterController {
         Customer customer = new Customer(registerModel.getUserName(), registerModel.getPassword(), registerModel.getEmail());
         customerEJB.createCustomer(customer);
         crudEJB.create(new UserRole(customer.getName(), Role.CUSTOMER));
-        return "/index.faces?faces.redirect=true";
+        return "/index.faces?faces-redirect=true";
     }
 }

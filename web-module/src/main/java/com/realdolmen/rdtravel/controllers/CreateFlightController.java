@@ -15,7 +15,7 @@ public class CreateFlightController extends BaseFlightController {
 
     public String createFlight() {
         doCreate();
-        return "/index.faces?faces.redirect=true";
+        return "/index.faces?faces-redirect=true";
     }
 
     private void doCreate() {

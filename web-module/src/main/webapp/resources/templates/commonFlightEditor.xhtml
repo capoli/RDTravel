@@ -72,7 +72,13 @@
                             <f:validator binding="#{positiveIntegerValidator}"/>
                         </p:inputText>
                         <p:message for="flight-available-seats" id="flight-available-seats-error"/>
-                        <!-- TODO: seatsthreshold field-->
+                        <p:outputLabel for="seats-threshold" value="Volume sales threshold: "/>
+                        <p:inputText type="number" min="0" id="seats-threshold"
+                                     value="#{controller.flightModel.seatsThreshold}"
+                                     disabled="#{controller.isReadOnly}">
+                            <f:validator binding="#{positiveIntegerValidator}"/>
+                        </p:inputText>
+                        <p:message for="seats-threshold" id="seats-threshold-error"/>
                         <ui:insert name="additional-fields"/>
                     </p:panelGrid>
                     <ui:insert name="action-panel">

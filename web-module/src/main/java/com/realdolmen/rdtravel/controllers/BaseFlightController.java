@@ -37,7 +37,7 @@ public class BaseFlightController extends ExceptionHandlingController {
     protected Boolean hasError = false;
 
     public String submit() {
-        return "/index.faces";
+        return "/index.faces?faces-redirect=true";
     }
 
 
@@ -52,7 +52,7 @@ public class BaseFlightController extends ExceptionHandlingController {
         flight.setArrivalTime(flightModel.getArrivalDateTime());
         flight.setNumberOfSeats(flightModel.getAvailableSeats());
         flight.setPrice(flightModel.getFlightPrice());
-        //TODO: flight.setSeatsThreshhold(flightModel.getSeatsThreshold());
+        flight.setSeatsThreshold(flightModel.getSeatsThreshold());
     }
 
     protected HttpServletRequest getRequest() {

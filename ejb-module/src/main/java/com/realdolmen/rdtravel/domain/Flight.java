@@ -83,7 +83,6 @@ public class Flight extends AbstractEntity {
         this.availableSeats = availableSeats;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -180,8 +179,12 @@ public class Flight extends AbstractEntity {
         this.customerPrice = customerPrice;
     }
 
+    @PrePersist
+    @PostLoad
     public void setDefaultCustomerPrice() {
-        this.customerPrice = price + (price * MARGIN);
+        if (customerPrice == null) {
+            customerPrice = price + (price * MARGIN);
+        }
     }
 
     public Integer getAvailableSeats() {

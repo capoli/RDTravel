@@ -2,7 +2,6 @@ package selenium;
 
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,6 +16,7 @@ public class FlightCreationTest {
     private static final String arrivalDateErrorId = "arrival-date-time-error";
     private static final String priceErrorId = "flight-price-error";
     private static final String seatsErrorId = "flight-available-seats-error";
+    private static final String seatsThresholdErrorId = "seats-threshold-error";
     static final String departureLocationId = "departure-location";
     static final String arrivalLocationId = "arrival-location";
     static final String departureDateId = "departure-date-time";
@@ -24,6 +24,7 @@ public class FlightCreationTest {
     static final String flightPriceId = "flight-price";
     static final String flightAvailableSeatsId = "flight-available-seats";
     static final String flightFormId = "flight-form";
+    static final String seatsThresholdId = "seats-threshold";
 
     @Before
     public void openBrowser() {
@@ -93,45 +94,50 @@ public class FlightCreationTest {
     public void testIfErrorMessageOnMissingDateTimes() {
         assertTrue(driver.findElement(By.id(departureDateErrorId)).getText().equals(""));
         assertTrue(driver.findElement(By.id(arrivalDateErrorId)).getText().equals(""));
-        fillForm("99.99", "200");
+        fillForm("99.99", "200", "100");
         checkIfErrorTriggered(departureDateErrorId);
         checkIfErrorTriggered(arrivalDateErrorId);
     }
 
     @Test
     public void testIfErrorMessageOnEmptyPrice() {
-        fillForm("", "200");
+        fillForm("", "200", "100");
         checkIfErrorTriggered(priceErrorId);
     }
 
     @Test
     public void testIfErrorMessageOnNegativePrice() {
-        fillForm("-5", "200");
+        fillForm("-5", "200", "100");
         checkIfErrorTriggered(priceErrorId);
     }
 
     @Test
     public void testIfErrorMessageOnEmptySeats() {
-        fillForm("299.50", "");
+        fillForm("299.50", "", "100");
         checkIfErrorTriggered(seatsErrorId);
     }
 
     @Test
     public void testIfErrorMessageOnNegativeSeats() {
-        fillForm("199.88", "-200");
+        fillForm("199.88", "-200", "100");
         checkIfErrorTriggered(seatsErrorId);
     }
 
     @Test
-    @Ignore
     public void testIfSeatThresholdExists() {
-        //TODO: find seatsthresholdfield is displayed
+        assertNotNull(driver.findElement(By.id(seatsThresholdId)));
     }
 
     @Test
-    @Ignore
-    public void testIfSeatsthresholdFilled() {
-        //TODO: check value of seatsThresholdField
+    public void testIfErrorOnSeatsThresholdEmpty() {
+        fillForm("60", "20", "");
+        checkIfErrorTriggered(seatsThresholdErrorId);
+    }
+
+    @Test
+    public void testIfErrorOnSeatsThresholdNegative() {
+        fillForm("60", "20", "-200");
+        checkIfErrorTriggered(seatsThresholdErrorId);
     }
 
     private void checkIfErrorTriggered(String errorMessageId) {
@@ -142,11 +148,13 @@ public class FlightCreationTest {
         assertTrue(dropdown.findElements(By.className("ui-selectonemenu-list-item")).size() > 10);
     }
 
-    private void fillForm(String price, String seats) {
+    private void fillForm(String price, String seats, String seatsThreshold) {
         WebElement flightPrice = driver.findElement(By.id(flightPriceId));
         flightPrice.sendKeys(price);
         WebElement flightAvailableSeats = driver.findElement(By.id(flightAvailableSeatsId));
         flightAvailableSeats.sendKeys(seats);
+        WebElement threshold = driver.findElement(By.id(seatsThresholdId));
+        threshold.sendKeys(seatsThreshold);
         WebElement form = driver.findElement(By.id(flightFormId));
         form.submit();
     }

@@ -91,7 +91,7 @@ public class UpdateFlightController extends BaseFlightController {
         flightModel.setDepartureLocationId(flightToUpdate.getDepartureLocation().getId());
         flightModel.setFlightPrice(flightToUpdate.getPrice());
         flightModel.setAvailableSeats(flightToUpdate.getNumberOfSeats());
-        //TODO: flightModel.setSeatsThreshold(flightToUpdate.getSeatsThreshhold());
+        flightModel.setSeatsThreshold(flightToUpdate.getSeatsThreshold());
     }
 
     public String updateFlight() {
@@ -100,7 +100,7 @@ public class UpdateFlightController extends BaseFlightController {
             completeFlight(flightToUpdate);
             flightEJB.updateFlight(flightToUpdate);
             flightIdBean.setFlightId(null);
-            return "/index.faces?faces.redirect=true&includeViewParams=true";
+            return "/index.faces?faces-redirect=true&includeViewParams=true";
         }
         return null;
     }

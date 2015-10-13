@@ -1,7 +1,6 @@
 package selenium;
 
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -66,9 +65,9 @@ public class FlightUpdateTest {
     }
 
     @Test
-    @Ignore
     public void checkIfSeatsThresholdFilled() {
-        //TODO: check if seats filled
+        WebElement seatsThreshold = driver.findElement(By.id(seatsThresholdId));
+        assertEquals("120", seatsThreshold.getAttribute("value"));
     }
 
     @Test

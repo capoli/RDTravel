@@ -10,7 +10,7 @@ public class FlightModel {
     private Date departureDateTime;
     private Double flightPrice;
     private Integer availableSeats;
-    private Double seatsThreshold;
+    private Integer seatsThreshold;
 
     public Long getArrivalLocationId() {
         return arrivalLocationId;
@@ -58,5 +58,13 @@ public class FlightModel {
 
     public void setAvailableSeats(Integer availableSeats) {
         this.availableSeats = availableSeats;
+    }
+
+    public Integer getSeatsThreshold() {
+        return seatsThreshold;
+    }
+
+    public void setSeatsThreshold(Integer seatsThreshold) {
+        this.seatsThreshold = seatsThreshold;
     }
 }

@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class Booking extends AbstractEntity {
-    //TODO: add customer
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
