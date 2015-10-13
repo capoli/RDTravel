@@ -6,11 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.naming.NamingException;
-import java.util.Date;
 import java.util.List;
-
-import static com.realdolmen.rdtravel.utils.TestDataUtil.hawai;
-import static com.realdolmen.rdtravel.utils.TestDataUtil.london;
 
 public class FlightEJBTest extends RemoteIntegrationTest {
     private RemoteFlightEJB repo;
@@ -28,16 +24,9 @@ public class FlightEJBTest extends RemoteIntegrationTest {
     }
 
     @Test
-    public void FlightCanBeFoundById() {
+    public void flightCanBeFoundById() {
         Flight flight = repo.findFlightById(flightId);
         assertNotNull(flight);
-    }
-
-    @Test
-    public void FlightCanBeCreated() {
-        Flight flight = new Flight(new Date(), new Date(), 200, 99.99, hawai(), london(), 0.05, 200);
-        repo.createFlight(flight);
-        assertNotNull(flight.getId());
     }
 
     @Test
@@ -45,6 +34,25 @@ public class FlightEJBTest extends RemoteIntegrationTest {
         Flight flight = repo.findFlightById(flightId);
         repo.deleteFlight(flight);
         assertNull(repo.findFlightById(flightId));
+    }
+
+    @Test
+    public void flightCanBeUpdated() {
+        Flight flight = repo.findFlightById(flightId);
+        int newNumberOfSeats = 444;
+        flight.setNumberOfSeats(newNumberOfSeats);
+        repo.updateFlight(flight);
+        Flight flight1 = repo.findFlightById(flightId);
+        assertEquals(newNumberOfSeats, flight1.getNumberOfSeats().intValue());
+    }
+
+    @Test
+    public void flightsCanBeFoundByAirline() {
+        long airlineId = 1000l;
+        List<Flight> flights = repo.findFlightsByAirline(airlineId);
+        for (Flight flight : flights) {
+            assertEquals(airlineId, flight.getAirline().getId().longValue());
+        }
     }
 
 }

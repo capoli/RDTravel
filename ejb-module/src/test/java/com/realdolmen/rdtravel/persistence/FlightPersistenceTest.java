@@ -19,7 +19,7 @@ public class FlightPersistenceTest extends DataSetPersistenceTest {
     public void flightCanBePersisted() {
         Location departure = entityManager().find(Location.class, 1000l);
         Location arrival = entityManager().find(Location.class, 1001l);
-        Flight flight = new Flight(new Date(), new Date(), 180, 50.0, departure, arrival, 0.05, 120);
+        Flight flight = new Flight(new Date(), new Date(), 180, 50.0, departure, arrival, 120, 120);
         entityManager().persist(flight);
         entityManager().flush();
         entityManager().refresh(flight);

@@ -31,16 +31,70 @@
                     </h:panelGrid>
                 </p:panel>
                 <p:outputPanel id="summary" style="display: block">
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputLabel for="averagePrice" value="Average price:"/>
-                        <h:outputText id="averagePrice" value="#{bookingReportController.report.average}"/>
-                        <h:outputLabel for="minPrice" value="Min price:"/>
-                        <h:outputText id="minPrice" value="#{bookingReportController.report.min}"/>
-                        <h:outputLabel for="maxPrice" value="Max price:"/>
-                        <h:outputText id="maxPrice" value="#{bookingReportController.report.max}"/>
+                    <h:panelGrid id="priceSummary" columns="2" cellpadding="5">
+                        <h:outputLabel for="averagePrice1" value="Average price:"/>
+                        <h:outputText id="averagePrice1" value="#{bookingReportController.report.average}"/>
+                        <h:outputLabel for="minPrice1" value="Min price:"/>
+                        <h:outputText id="minPrice1" value="#{bookingReportController.report.min}"/>
+                        <h:outputLabel for="maxPrice1" value="Max price:"/>
+                        <h:outputText id="maxPrice1" value="#{bookingReportController.report.max}"/>
                     </h:panelGrid>
+                    <p:dataTable value="#{bookingReportController.bookings}" var="booking"
+                                 widgetVar="bookingTable" filteredValue="#{bookingReportController.filteredBookings}">
+                        <p:ajax event="filter" listener="#{bookingReportController.onFilterChange}"/>
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Search all fields:"/>
+                                <p:inputText id="globalFilter" onkeyup="PF('bookingTable').filter()" style="width:150px"
+                                             placeholder="Enter keyword"/>
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:column filterBy="#{booking.totalPrice}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Booking price"/>
+                            </f:facet>
+                            <h:outputText value="#{booking.totalPrice}"/>
+                        </p:column>
+                        <p:column filterBy="#{booking.trip.period.periodStart.toGMTString()}"
+                                  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Period start"/>
+                            </f:facet>
+                            <h:outputText value="#{booking.trip.period.periodStart.toGMTString()}"/>
+                        </p:column>
+                        <p:column filterBy="#{booking.trip.period.periodEnd.toGMTString()}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Period end"/>
+                            </f:facet>
+                            <h:outputText value="#{booking.trip.period.periodEnd.toGMTString()}"/>
+                        </p:column>
+                        <p:column filterBy="#{booking.trip.destination.continent.name}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Trip destination region"/>
+                            </f:facet>
+                            <h:outputText value="#{booking.trip.destination.continent.name}"/>
+                        </p:column>
+                        <p:column filterBy="#{booking.trip.flights.get(0).airline.name}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Airline"/>
+                            </f:facet>
+                            <h:outputText value="#{booking.trip.flights.get(0).airline.name}"/>
+                        </p:column>
+                    </p:dataTable>
                 </p:outputPanel>
+                <h:commandButton id="myHiddenButtonID" value="RenderSomething" style="display:none">
+                    <f:ajax render="priceSummary" />
+                </h:commandButton>
             </h:form>
+            <h:outputScript>
+            window.addEventListener("load", init, false);
+            function init() {
+                document.getElementById('globalFilter').addEventListener('onchange', executeFilter, false);
+            }
+            function executeFilter(event) {
+                    document.getElementById('myHiddenButtonID').click();
+            }
+        </h:outputScript>
         </ui:define>
     </ui:composition>
 </h:body>

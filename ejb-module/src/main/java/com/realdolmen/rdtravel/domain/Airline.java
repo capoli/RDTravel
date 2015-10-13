@@ -5,13 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Airline {
+public class Airline extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic(optional = false)
     private String name;
+
+    private Double discount;
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
     @OneToMany(mappedBy = "airline")
     private List<Flight> flights = new ArrayList<>();

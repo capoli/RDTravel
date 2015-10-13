@@ -12,5 +12,7 @@ public interface RemoteTripEJB {
     //TODO: available seats ook in rekening brengen
     List<Trip> findTripsForCriteria(Long destinationId, Date periodStart, Date periodEnd, Integer numberOfParticipants);
     List<Location> findLocationsWithTrips();
-    List<String> findLocationnamesWithTrips();
+    List<String> findLocationNamesWithTrips();
+
+    Trip findTripEagerLoaded(Long id);
 }

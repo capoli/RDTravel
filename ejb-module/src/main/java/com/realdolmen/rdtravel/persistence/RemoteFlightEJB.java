@@ -6,7 +6,7 @@ import javax.ejb.Remote;
 import java.util.List;
 
 @Remote
-public interface RemoteFlightEJB  {
+public interface RemoteFlightEJB {
     List<Flight> findFlights();
 
     Flight findFlightById(Long id);

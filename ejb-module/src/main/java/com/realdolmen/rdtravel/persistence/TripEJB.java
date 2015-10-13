@@ -8,7 +8,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -39,12 +38,12 @@ public class TripEJB implements RemoteTripEJB {
             boolean availableFlights = false;
             Trip newTrip = new Trip(trip.getPricePerDay(), trip.getDestination(), trip.getPeriod());
             for (Flight flight : trip.getFlights()) {
-                if(flight.getAvailableSeats() >= numberOfParticipants) {
+                if (flight.getAvailableSeats() >= numberOfParticipants) {
                     newTrip.addFlight(flight);
                     availableFlights = true;
                 }
             }
-            if(availableFlights) {
+            if (availableFlights) {
                 trips.add(trip);
             }
         }
@@ -58,8 +57,13 @@ public class TripEJB implements RemoteTripEJB {
     }
 
     @Override
-    public List<String> findLocationnamesWithTrips() {
+    public List<String> findLocationNamesWithTrips() {
         return em.createQuery("select distinct lower(t.destination.name) from Trip t order by t.destination.name", String.class)
                 .getResultList();
+    }
+
+    @Override
+    public Trip findTripEagerLoaded(Long id) {
+        return (Trip) em.createQuery("SELECT distinct t FROM Trip t join fetch t.flights WHERE t.id = :id").setParameter("id", id).getResultList().get(0);
     }
 }
