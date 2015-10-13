@@ -5,7 +5,6 @@
 
 <h:head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <h:outputStylesheet name="bootstrap.css" library="css"/>
     <h:outputStylesheet name="main.css" library="css"/>
@@ -16,25 +15,26 @@
 </h:head>
 
 <h:body>
-    <div id="header">
-        <ui:insert name="header">
-            <ui:include src="/resources/templates/commonHeader.xhtml"/>
-        </ui:insert>
-    </div>
-
-    <div id="content" style="margin-bottom: 5%">
-        <ui:insert name="content"/>
-        <h:messages id="application-messages" style="color: red; list-style-type: none"/>
-    </div>
-
-
-    <footer class="footer" style="position: fixed; top: 95%">
-        <div id="footer" class="container">
-            <ui:insert name="footer">
-                <ui:include src="/resources/templates/commonFooter.xhtml"/>
+    <div id="page">
+        <div id="header">
+            <ui:insert name="header">
+                <ui:include src="/resources/templates/commonHeader.xhtml"/>
             </ui:insert>
         </div>
-    </footer>
 
+        <div id="content" style="margin-bottom: 5%">
+            <ui:insert name="content"/>
+            <h:messages id="application-messages" style="color: red; list-style-type: none"/>
+        </div>
+
+
+        <footer class="footer" style="position: fixed; top: 95%">
+            <div id="footer" class="container">
+                <ui:insert name="footer">
+                    <ui:include src="/resources/templates/commonFooter.xhtml"/>
+                </ui:insert>
+            </div>
+        </footer>
+    </div>
 </h:body>
 </html>
