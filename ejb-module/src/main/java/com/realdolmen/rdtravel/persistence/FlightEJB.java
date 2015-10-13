@@ -13,7 +13,7 @@ import java.util.List;
 public class FlightEJB implements RemoteFlightEJB {
 
     @PersistenceContext
-    private EntityManager em;
+    public EntityManager em;
 
     @Override
     public List<Flight> findFlights() {

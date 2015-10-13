@@ -55,7 +55,7 @@ public class FlightUpdateTest {
     @Test
     public void checkIfPriceFilled() {
         WebElement price = driver.findElement(By.id(flightPriceId));
-        assertEquals("75.00", price.getAttribute("value"));
+        assertEquals("75.0", price.getAttribute("value"));
     }
 
     @Test

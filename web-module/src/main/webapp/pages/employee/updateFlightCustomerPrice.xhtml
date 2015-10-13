@@ -24,9 +24,7 @@
             <p:inputText id="customer-price"
                          value="#{updateFlightPriceController.customerPrice}"
                          converterMessage="The number must be decimal eg: 000.00">
-                <f:convertNumber pattern="#,###,##0.00"/>
-                <f:validateLongRange minimum="0"/>
-                <f:validator binding="#{notEmptyValidator}"/>
+                <f:validator binding="#{positiveDoubleValidator}"/>
             </p:inputText>
             <p:message for="customer-price" id="customer-price-error"/>
         </ui:define>

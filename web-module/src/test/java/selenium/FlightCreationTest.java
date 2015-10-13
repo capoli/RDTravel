@@ -112,6 +112,12 @@ public class FlightCreationTest {
     }
 
     @Test
+    public void testIfErrorMessageOnUnParsablePrice() {
+        fillForm("5ff", "200", "100");
+        checkIfErrorTriggered(priceErrorId);
+    }
+
+    @Test
     public void testIfErrorMessageOnEmptySeats() {
         fillForm("299.50", "", "100");
         checkIfErrorTriggered(seatsErrorId);
