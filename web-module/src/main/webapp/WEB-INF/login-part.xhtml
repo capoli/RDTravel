@@ -9,7 +9,7 @@
                          value="#{loginController.user.name}"/>
             <h:inputSecret styleClass="form-control" a:placeholder="password" id="password"
                            value="#{loginController.user.password}"/>
-            <h:commandButton styleClass="btn btn-default" id="login-button" value="#{msg.login}"
+            <h:commandButton styleClass="btn btn-success" id="login-button" value="#{msg.login}"
                              action="#{loginController.login}"
                              rendered="#{request.getUserPrincipal() == null}"/>
         </h:panelGroup>
@@ -19,12 +19,12 @@
             <h:outputText id="screen-name" value="#{request.getUserPrincipal().getName()}"
                           rendered="#{request.getUserPrincipal() != null}"/>
         </div>
-        <h:commandButton styleClass="btn btn-default" id="logout-button" action="#{loginController.logout}"
+        <h:commandButton stsyleClass="btn btn-danger" id="logout-button" action="#{loginController.logout}"
                          value="Log out"/>
     </h:form>
     <h:form prependId="false" styleClass="navbar-form navbar-right" rendered="#{request.getUserPrincipal() == null}">
         <h:panelGroup>
-            <h:commandButton styleClass="btn btn-default" value="#{msg.register}" action="register.faces"/>
+            <h:commandButton styleClass="btn btn-primary" value="#{msg.register}" action="register.faces"/>
         </h:panelGroup>
     </h:form>
 
