@@ -23,10 +23,12 @@
                         <h:outputLabel for="j_password" value="Password:"/>
                         <h:inputSecret class="form-control" type="password" name="j_password" id="j_password"/>
                     </div>
-                    <button type="submit" class="btn btn-default">Login</button>
+                    <button type="submit" class="btn btn-success">Login</button>
+                    <h:link outcome="/register.faces?faces-redirect=true">
+                        <input class="btn btn-primary" type="button" value="Register"/>
+                    </h:link>
                 </form>
-                <h:link outcome="/register.faces">Register</h:link><br/>
-                <h:outputText value="Invalid username or password"
+                <h:outputText style="color:red" value="Invalid username or password"
                               rendered="#{request.getParameter('failed') == true}"/>
             </div>
         </ui:define>

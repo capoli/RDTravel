@@ -19,7 +19,7 @@
             <h:outputText id="screen-name" value="#{request.getUserPrincipal().getName()}"
                           rendered="#{request.getUserPrincipal() != null}"/>
         </div>
-        <h:commandButton stsyleClass="btn btn-danger" id="logout-button" action="#{loginController.logout}"
+        <h:commandButton styleClass="btn btn-danger" id="logout-button" action="#{loginController.logout}"
                          value="Log out"/>
     </h:form>
     <h:form prependId="false" styleClass="navbar-form navbar-right" rendered="#{request.getUserPrincipal() == null}">
