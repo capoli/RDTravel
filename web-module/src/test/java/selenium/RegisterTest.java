@@ -53,6 +53,7 @@ public class RegisterTest {
     @Test
     public void testIfRegisterSucceedsOnCorrectData() {
         register("registerCustomer", "test123", "registerCustomer@hotmail.com");
+        LoginUtil.loginOnTitleBar("registerCustomer", "test123", driver);
         assertTrue(driver.getTitle().equals("RDTravel"));
     }
 
@@ -98,7 +99,7 @@ public class RegisterTest {
 
     @Test
     public void testIfCustomerCanViewRestrictedPageAfterRegister() {
-        register("accessCheck", "test123", "accessCheck@hotmail.com");
+        register("accessCheck", "test123", "access@hotmail.com");
         LoginUtil.loginOnTitleBar("accessCheck", "test123", driver);
         driver.get(RoleTest.customerPage);
         assertEquals("Customer", driver.getTitle());

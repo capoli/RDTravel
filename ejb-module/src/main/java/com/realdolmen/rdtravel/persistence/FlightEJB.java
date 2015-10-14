@@ -30,6 +30,8 @@ public class FlightEJB implements RemoteFlightEJB {
         if (flight.getCustomerPrice() == null) {
             flight.setDefaultCustomerPrice();
         }
+        em.merge(flight.getArrivalLocation());
+        em.merge(flight.getDepartureLocation());
         em.persist(flight);
         return flight;
     }

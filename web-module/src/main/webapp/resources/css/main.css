@@ -1,6 +1,65 @@
 .available-country {
     fill: #8d4310;
 }
+
 .available-country:hover {
     fill: #eb711b;
+}
+
+body {
+    background-color: #5A7D7D;
+}
+
+.twoButtons {
+    width: 49%;
+    float: left;
+    text-align: center;
+}
+
+.threeButtons {
+    width: 30%;
+    float: left;
+    text-align: center;
+}
+
+.map-button {
+    background: rgba(255, 0, 0, 0.3) url('../resources/images/worldMap.png') no-repeat center;
+    background-size: 200px;
+    color: white;
+}
+
+.search-button {
+    background: rgba(255, 0, 0, 0.3) url('../resources/images/searchTrip.png') no-repeat center;
+    background-size: 150px;
+    color: white;
+}
+
+.home-button {
+    width: 300px;
+    height: 300px;
+    border: 200px;
+    border-radius: 500px;
+    font-size: 1.5em;
+    padding-bottom: 245px;
+    color: white;
+}
+
+.report-button {
+    background: rgba(255, 0, 0, 0.3) url('../resources/images/report.png') no-repeat center;
+    background-size: 150px;
+}
+
+.lookup-button {
+    background: rgba(255, 0, 0, 0.3) url('../resources/images/searchFlight.png') no-repeat center;
+    background-size: 150px;
+}
+
+.create-button {
+    background: rgba(255, 0, 0, 0.3) url('../resources/images/createFlight.png') no-repeat center;
+    background-size: 150px;
+}
+
+.discount-button {
+    background: rgba(255, 0, 0, 0.3) url('../resources/images/discount.png') no-repeat center;
+    background-size: 150px;
 }

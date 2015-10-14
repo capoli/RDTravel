@@ -19,6 +19,9 @@
                 <ui:insert name="meta-data"/>
                 <h:form id="flight-form" prependId="false">
                     <p:panelGrid id="panel" border="1" columns="3">
+                        <f:facet name="header">
+                            <h:outputText value="Flight"/>
+                        </f:facet>
                         <p:outputLabel for="departure-location" value="Departure:  "/>
                         <p:selectOneMenu styleClass="departure-location-selection" id="departure-location"
                                          value="#{controller.flightModel.arrivalLocationId}"
