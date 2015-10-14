@@ -77,8 +77,6 @@ public class Flight extends AbstractEntity {
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
         this.setDefaultCustomerPrice();
-        //TODO: calculate duration
-        // this.duration
         this.seatsThreshold = seatsThreshold;
         this.availableSeats = availableSeats;
     }

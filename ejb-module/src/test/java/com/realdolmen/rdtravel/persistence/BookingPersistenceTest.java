@@ -30,7 +30,6 @@ public class BookingPersistenceTest extends DataSetPersistenceTest {
         assertNotNull(booking.getId());
         assertEquals(1001l, (long) trip.getId());
         assertEquals(1, trip.getBookings().size());
-//        assertEquals(1, customer.getBookings().size()); //TODO: FIX double addition
         assertNotNull(booking.getTrip());
     }
 

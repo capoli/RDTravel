@@ -1,6 +1,5 @@
 package selenium;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -8,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import static org.junit.Assert.*;
-
 
 public class RegisterTest {
     private HtmlUnitDriver driver;
@@ -110,7 +108,6 @@ public class RegisterTest {
     private void checkIfErrorTriggered(String errorMessageId) {
         assertFalse(driver.findElement(By.id(errorMessageId)).getText().equals(""));
     }
-
 
     private void register(String userName, String password, String email) {
         driver.get(registerPage);

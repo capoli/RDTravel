@@ -53,7 +53,6 @@ public class SearchTripController implements Serializable {
     private Double totalPrice;
     private String creditCardNumber;
     private String creditCardDate;
-    //    private List<String> paymentTypes;
     private String selectedPaymentType;
     @ManagedProperty("#{param.locationName}")
     private String locationName;

@@ -20,8 +20,6 @@ public class TripEJB implements RemoteTripEJB {
     @PersistenceContext
     private EntityManager em;
 
-
-    //TODO: available seats ook in rekening brengen
     @Override
     public List<Trip> findTripsForCriteria(Long destinationId, Date periodStart, Date periodEnd, Integer numberOfParticipants) {
         Timestamp start = new Timestamp(periodStart.getTime());

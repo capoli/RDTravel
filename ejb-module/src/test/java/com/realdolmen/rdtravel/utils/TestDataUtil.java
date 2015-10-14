@@ -20,6 +20,4 @@ public class TestDataUtil {
     public static Location sydney() {
         return new Location("Sydney", "SYD", new Continent("Oceania", "OC"));
     }
-
-
 }

@@ -8,7 +8,6 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
-
 @Named
 @RequestScoped
 public class NotEmptyValidator implements Validator {

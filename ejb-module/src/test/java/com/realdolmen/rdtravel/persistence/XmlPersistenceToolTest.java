@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.persistence;
 
-
 import com.realdolmen.rdtravel.domain.Flight;
 import com.realdolmen.rdtravel.domain.Period;
 import com.realdolmen.rdtravel.domain.Trip;
@@ -68,7 +67,6 @@ public class XmlPersistenceToolTest {
         return trip;
     }
 
-
     private void createTripsFile() throws IOException, JAXBException {
         deleteTestFile();
         TripGroup tripGroup = new TripGroup();
@@ -78,5 +76,4 @@ public class XmlPersistenceToolTest {
         xmlEJB.exportTrips(tripGroup, os);
         os.close();
     }
-
 }

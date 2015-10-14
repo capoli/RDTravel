@@ -1,4 +1,5 @@
 package com.realdolmen.rdtravel.integration;
+
 import com.realdolmen.rdtravel.persistence.DataSetPersistenceTest;
 import org.junit.BeforeClass;
 

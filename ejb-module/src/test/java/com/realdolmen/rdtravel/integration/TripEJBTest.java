@@ -60,6 +60,4 @@ public class TripEJBTest extends RemoteIntegrationTest {
         assertTrue(period.getPeriodStart().after(dates.get(0)));
         assertTrue(period.getPeriodEnd().before(dates.get(1)));
     }
-
-
 }

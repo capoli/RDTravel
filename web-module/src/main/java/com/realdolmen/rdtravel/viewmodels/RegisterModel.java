@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.viewmodels;
 
-
 import javax.validation.constraints.NotNull;
 
 public class RegisterModel {

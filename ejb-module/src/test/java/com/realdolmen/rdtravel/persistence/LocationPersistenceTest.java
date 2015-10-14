@@ -6,16 +6,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-/**
- * Created by OCPAX79 on 6/10/2015.
- */
 public class LocationPersistenceTest extends DataSetPersistenceTest {
     @Rule
     public ExpectedException expector = ExpectedException.none();
 
     @Test
     public void locationCanBePersisted() {
-//        Continent continent = entityManager().find(Continent.class, 1001l);
         Continent continent = new Continent("Europe", "eur");
         Location location = new Location("TestLocation", "tln", continent);
         continent.addLocation(location);

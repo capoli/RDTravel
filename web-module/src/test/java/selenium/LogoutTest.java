@@ -9,9 +9,6 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by TGIAX39 on 6/10/2015.
- */
 public class LogoutTest {
     private WebDriver driver;
 
@@ -29,5 +26,4 @@ public class LogoutTest {
         driver.get(RoleTest.customerPage);
         assertEquals("Login", driver.getTitle());
     }
-
 }

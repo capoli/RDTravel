@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
 
-
 @Named
 @RequestScoped
 public class LoginController implements Serializable {

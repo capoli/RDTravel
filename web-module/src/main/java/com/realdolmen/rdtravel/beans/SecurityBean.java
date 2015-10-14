@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.beans;
 
-
 import com.realdolmen.rdtravel.domain.Customer;
 import com.realdolmen.rdtravel.domain.Partner;
 import com.realdolmen.rdtravel.domain.Role;

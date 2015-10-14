@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.persistence;
 
-
 import com.realdolmen.rdtravel.domain.Trip;
 
 import javax.xml.bind.annotation.XmlAccessType;

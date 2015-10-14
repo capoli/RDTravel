@@ -28,11 +28,6 @@ public class Location extends AbstractEntity {
     @XmlElement(name = "continent")
     private Continent continent;
 
-//    @OneToMany(mappedBy = "destination", cascade = CascadeType.PERSIST)
-    //@XmlElementWrapper(name = "trips")
-    //@XmlElement(name = "trip")
-    //private List<Trip> trips = new ArrayList<>();
-
     public Location() {
     }
 
