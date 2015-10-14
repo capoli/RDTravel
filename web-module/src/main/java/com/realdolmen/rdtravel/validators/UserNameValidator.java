@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.validators;
 
-
 import com.realdolmen.rdtravel.persistence.CustomerEJB;
 
 import javax.enterprise.context.RequestScoped;

@@ -9,7 +9,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-
 @Stateless
 @LocalBean
 public class CustomerEJB implements RemoteCustomerEJB {

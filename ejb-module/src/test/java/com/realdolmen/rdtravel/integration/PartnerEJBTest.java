@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.integration;
 
-
 import com.realdolmen.rdtravel.domain.Partner;
 import com.realdolmen.rdtravel.persistence.RemotePartnerEJB;
 import org.junit.Before;

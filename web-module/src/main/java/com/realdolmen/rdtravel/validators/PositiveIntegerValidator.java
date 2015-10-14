@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
-
 @Named
 @RequestScoped
 public class PositiveIntegerValidator extends NotEmptyValidator {

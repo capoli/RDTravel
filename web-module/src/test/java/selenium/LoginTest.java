@@ -21,7 +21,6 @@ public class LoginTest {
         driver.get(WebUtil.baseUrl);
     }
 
-
     @Test
     public void homePageTitleIsRDTravel() {
         assertEquals("RDTravel", driver.getTitle());

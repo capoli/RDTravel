@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.viewmodels;
 
-
 import java.util.Date;
 
 public class FlightModel {

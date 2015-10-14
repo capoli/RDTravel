@@ -8,9 +8,6 @@ import javax.ejb.Remote;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by OCPAX79 on 5/10/2015.
- */
 @Remote
 public interface RemoteBookingEJB {
     List<String> getPaymentTypesAsString();

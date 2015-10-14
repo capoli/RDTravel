@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.integration;
 
-
 import com.realdolmen.rdtravel.persistence.RemoteLocationEJB;
 import org.junit.Before;
 import org.junit.Test;

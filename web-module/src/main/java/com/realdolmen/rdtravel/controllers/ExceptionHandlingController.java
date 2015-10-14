@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.controllers;
 
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 

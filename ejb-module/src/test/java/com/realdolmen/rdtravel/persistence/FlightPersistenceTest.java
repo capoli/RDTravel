@@ -8,9 +8,6 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Date;
 
-/**
- * Created by OCPAX79 on 6/10/2015.
- */
 public class FlightPersistenceTest extends DataSetPersistenceTest {
     @Rule
     public ExpectedException expector = ExpectedException.none();

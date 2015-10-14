@@ -14,9 +14,6 @@ public class User extends AbstractEntity {
     @Basic(optional = false)
     private String name;
 
-    /**
-     * ALWAYS use the setter to alter the password.
-     */
     @Basic(optional = false)
     private String password;
 
@@ -40,12 +37,6 @@ public class User extends AbstractEntity {
         return password;
     }
 
-    /**
-     * ALWAYS use the setter.
-     * Otherwise the user password will be saved unhashed
-     *
-     * @param password the password that will be saved as a hash
-     */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -55,7 +46,6 @@ public class User extends AbstractEntity {
             this.password = PasswordUtil.getPasswordHash(password);
         }
     }
-
 
     public Long getId() {
         return id;

@@ -5,10 +5,6 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import static junit.framework.TestCase.assertTrue;
 
-
-/**
- * Created by TGIAX39 on 11/10/2015.
- */
 public class FlightSearchTest {
 
     private HtmlUnitDriver driver;

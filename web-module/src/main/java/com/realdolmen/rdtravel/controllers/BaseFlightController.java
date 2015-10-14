@@ -1,6 +1,5 @@
 package com.realdolmen.rdtravel.controllers;
 
-
 import com.realdolmen.rdtravel.domain.Flight;
 import com.realdolmen.rdtravel.domain.Location;
 import com.realdolmen.rdtravel.domain.Partner;
@@ -39,7 +38,6 @@ public class BaseFlightController extends ExceptionHandlingController {
     public String submit() {
         return "/index.faces?faces-redirect=true";
     }
-
 
     protected void completeFlight(Flight flight) {
         Partner partner = partnerEJB.findPartnerByName(principal.getName());
